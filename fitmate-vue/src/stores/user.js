@@ -7,9 +7,14 @@ export const useUserStore = defineStore("user", () => {
 
   const userList = ref([
     {
-      id: "ssafy",
       name: "ssafy",
+      id: "ssafy",
       password: "1234",
+      email: "ssafy@ssafy.com",
+      age: "20대",
+      ability: "중",
+      postCode: "08760",
+      address: "서울",
     },
   ]);
 
