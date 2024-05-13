@@ -4,7 +4,7 @@
     <p>아이디</p>
     <input type="text" v-model="id" />
     <p>비밀번호</p>
-    <input type="text" v-model="password" />
+    <input type="password" v-model="password" />
     <button @click="store.login(id, password)">로그인</button>
   </div>
 </template>

@@ -42,11 +42,11 @@ export const useUserStore = defineStore("user", () => {
     router.push({ name: "home" });
   };
 
-  const signUp = function (id, name, password) {
+  const signUp = function (user) {
     let isExistUser = false;
 
-    userList.value.map((user) => {
-      if (user.id === id) {
+    userList.value.map((el) => {
+      if (el.id === user.id) {
         isExistUser = true;
       }
     });
@@ -54,11 +54,8 @@ export const useUserStore = defineStore("user", () => {
     if (isExistUser) {
       alert("이미 존재하는 아이디입니다.");
     } else {
-      userList.value.push({
-        id: id,
-        name: name,
-        password: password,
-      });
+      user.liked_videos = [];
+      userList.value.push(user);
       alert("회원가입 성공!");
       router.push({ name: "login" });
     }
