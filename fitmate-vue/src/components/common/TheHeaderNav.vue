@@ -5,11 +5,12 @@
         <RouterLink to="/">Home | </RouterLink>
         <RouterLink to="/video">Video | </RouterLink>
         <RouterLink to="/routine">Routine | </RouterLink>
+        <RouterLink to="/community">Community | </RouterLink>
         <RouterLink to="/login" v-if="store.loginUser.id === ''"
           >Login |
         </RouterLink>
-        <RouterLink to="/signup" v-if="store.loginUser.id === ''"
-          >Signup |
+        <RouterLink to="/mypage" v-if="store.loginUser.id !== ''"
+          >MyPage |
         </RouterLink>
         <a v-if="store.loginUser.id !== ''" @click="store.logout">Logout</a>
       </nav>

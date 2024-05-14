@@ -6,8 +6,11 @@ import VideoDetail from "../components/video/VideoDetail.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupView from "../views/SignupView.vue";
 import RoutineView from "../views/RoutineView.vue";
-import RoutineList from "../components/routine/RoutineList.vue"
+import RoutineList from "../components/routine/RoutineList.vue";
 import RoutineDetail from "../components/routine/RoutineDetail.vue";
+import CommunityView from "../views/CommunityView.vue";
+import CommunityList from "../components/community/CommunityList.vue";
+import CommunityDetail from "../components/community/CommunityDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -57,13 +60,28 @@ const router = createRouter({
         {
           path: ":id",
           name: "routineDetail",
-          component: RoutineDetail
-        }
+          component: RoutineDetail,
+        },
       ],
-    }
+    },
+    {
+      path: "/community",
+      name: "community",
+      component: CommunityView,
+      children: [
+        {
+          path: "",
+          name: "communityList",
+          component: CommunityList,
+        },
+        {
+          path: ":id",
+          name: "communityDetail",
+          component: CommunityDetail,
+        },
+      ],
+    },
   ],
 });
 
 export default router;
-
-

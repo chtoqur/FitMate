@@ -6,7 +6,16 @@ export const useCommentStore = defineStore("comment", () => {
   const router = useRouter();
 
   // 사실 전체 댓글을 안 가져오고 db측에서 게시글 아이디를 받아서 리턴해서 받아오는게 이상적일듯?
-  const allCommentList = ref([]);
+  const allCommentList = ref([
+    {
+      id: 1,
+      communityId: 1,
+      content: "test",
+      writer: "ssafy",
+      regDate: new Date().toLocaleString(),
+      parent: null,
+    },
+  ]);
 
   const nowCommentList = ref([]);
 
@@ -19,7 +28,7 @@ export const useCommentStore = defineStore("comment", () => {
   const getNowCommentList = function (postId) {
     nowCommentList.value = [];
     allCommentList.value.map((com) => {
-      if (com.communityId === postId) {
+      if (com.communityId == postId) {
         nowCommentList.value.push(com);
       }
     });

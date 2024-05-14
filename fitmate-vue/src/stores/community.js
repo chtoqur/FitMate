@@ -7,11 +7,49 @@ export const useCommunityStore = defineStore("community", () => {
 
   const postList = ref([]);
 
-  const nowPost = ref({});
+  const nowPost = ref({
+    id: 1,
+    title: "test",
+    content: "test",
+    writer: "admin",
+    regDate: new Date().toLocaleString(),
+    likeCount: 1,
+    viewCount: 10,
+    category: "notice",
+    commentCnt: 3,
+  });
 
   const createPost = function (post) {
     post.regDate = new Date().toLocaleString();
     postList.value.push(post);
+  };
+
+  const getPostList = function () {
+    // axios~ 해서 postList 가져오기
+    postList.value = [
+      {
+        id: 1,
+        title: "test",
+        content: "test",
+        writer: "admin",
+        regDate: new Date().toLocaleString(),
+        likeCount: 1,
+        viewCount: 10,
+        category: "notice",
+        commentCnt: 3,
+      },
+      {
+        id: 2,
+        title: "게시판 테스트입니다",
+        content: "Test2",
+        writer: "ssafy",
+        regDate: new Date().toLocaleString(),
+        likeCount: 1,
+        viewCount: 10,
+        category: "free",
+        commentCnt: 5,
+      },
+    ];
   };
 
   const getPostById = function (id) {
@@ -41,6 +79,7 @@ export const useCommunityStore = defineStore("community", () => {
     postList,
     nowPost,
     createPost,
+    getPostList,
     getPostById,
     updatePost,
     deletePost,
