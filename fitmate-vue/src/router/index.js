@@ -11,6 +11,7 @@ import RoutineDetail from "../components/routine/RoutineDetail.vue";
 import CommunityView from "../views/CommunityView.vue";
 import CommunityList from "../components/community/CommunityList.vue";
 import CommunityDetail from "../components/community/CommunityDetail.vue";
+import MyPageView from "../views/MyPageView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -80,6 +81,11 @@ const router = createRouter({
           component: CommunityDetail,
         },
       ],
+    },
+    {
+      path: "/mypage",
+      name: "mypage",
+      component: MyPageView,
     },
   ],
 });

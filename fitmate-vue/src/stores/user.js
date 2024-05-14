@@ -21,6 +21,8 @@ export const useUserStore = defineStore("user", () => {
   const loginUser = ref({
     id: "",
     name: "",
+    nickname: "",
+    img: "",
   });
 
   const login = function (id, password) {
@@ -28,6 +30,8 @@ export const useUserStore = defineStore("user", () => {
       if (user.id === id && user.password === password) {
         loginUser.value.id = user.id;
         loginUser.value.name = user.name;
+        loginUser.value.nickname = "닉네임";
+        loginUser.value.img = "이미지 src";
       }
     });
 
