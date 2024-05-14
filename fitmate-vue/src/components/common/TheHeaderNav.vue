@@ -4,6 +4,7 @@
       <nav>
         <RouterLink to="/">Home | </RouterLink>
         <RouterLink to="/video">Video | </RouterLink>
+        <RouterLink to="/routine">Routine | </RouterLink>
         <RouterLink to="/login" v-if="store.loginUser.id === ''"
           >Login |
         </RouterLink>

@@ -5,6 +5,9 @@ import VideoList from "../components/video/VideoList.vue";
 import VideoDetail from "../components/video/VideoDetail.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupView from "../views/SignupView.vue";
+import RoutineView from "../views/RoutineView.vue";
+import RoutineList from "../components/routine/RoutineList.vue"
+import RoutineDetail from "../components/routine/RoutineDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -41,6 +44,23 @@ const router = createRouter({
       name: "signup",
       component: SignupView,
     },
+    {
+      path: "/routine",
+      name: "routine",
+      component: RoutineView,
+      children: [
+        {
+          path: "",
+          name: "routineList",
+          component: RoutineList,
+        },
+        {
+          path: ":id",
+          name: "routineDetail",
+          component: RoutineDetail
+        }
+      ],
+    }
   ],
 });
 
