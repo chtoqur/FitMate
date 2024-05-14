@@ -1,11 +1,18 @@
 <template>
   <div>
-    <p>이름</p>
-    <input type="text" v-model="user.name" />
     <p>아이디</p>
     <input type="text" v-model="user.id" />
     <p>비밀번호</p>
     <input type="password" v-model="user.password" />
+    <p>비밀번호 확인</p>
+    <input type="password" v-model="repPassword" />
+    <p>{{ isPassword }}</p>
+    <p>닉네임</p>
+    <input type="text" v-model="user.nickname" />
+    <p>이름</p>
+    <input type="text" v-model="user.name" />
+    <p>이메일</p>
+    <input type="text" v-model="user.email" />
     <p>연령</p>
     <input type="number" v-model="user.age" />
     <p>운동 능력</p>
@@ -34,7 +41,7 @@
 
 <script setup>
 import { useUserStore } from "@/stores/user";
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 
 const store = useUserStore();
 
@@ -57,6 +64,11 @@ const postOpen = () => {
 
 const address = ref("");
 const detailAddress = ref("");
+const repPassword = ref("");
+
+const isPassword = computed(() => {
+  return repPassword.value === user.value.password;
+});
 
 watch([address, detailAddress], ([newAddress, newDetailAddress]) => {
   user.value.address = `${newAddress} ${newDetailAddress}`;
@@ -66,6 +78,8 @@ const user = ref({
   name: "",
   id: "",
   password: "",
+  nickname: "",
+  email: "",
   age: "",
   fitnessLevel: "",
   postCode: "",
