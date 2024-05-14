@@ -1,20 +1,18 @@
 <template>
-  <div id="container">
-    <header>
-      <nav>
-        <RouterLink to="/">Home | </RouterLink>
-        <RouterLink to="/video">Video | </RouterLink>
-        <RouterLink to="/routine">Routine | </RouterLink>
-        <RouterLink to="/login" v-if="store.loginUser.id === ''"
-          >Login |
-        </RouterLink>
-        <RouterLink to="/signup" v-if="store.loginUser.id === ''"
-          >Signup |
-        </RouterLink>
-        <a v-if="store.loginUser.id !== ''" @click="store.logout">Logout</a>
-      </nav>
-    </header>
-  </div>
+  <nav>
+    <div id="container">
+      <RouterLink to="/">Home | </RouterLink>
+      <RouterLink to="/video">Video | </RouterLink>
+      <RouterLink to="/routine">Routine | </RouterLink>
+      <RouterLink to="/login" v-if="store.loginUser.id === ''"
+        >Login |
+      </RouterLink>
+      <RouterLink to="/signup" v-if="store.loginUser.id === ''"
+        >Signup |
+      </RouterLink>
+      <a v-if="store.loginUser.id !== ''" @click="store.logout">Logout</a>
+    </div>
+  </nav>
 </template>
 
 <script setup>

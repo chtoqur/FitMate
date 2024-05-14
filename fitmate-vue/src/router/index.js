@@ -8,6 +8,7 @@ import SignupView from "../views/SignupView.vue";
 import RoutineView from "../views/RoutineView.vue";
 import RoutineList from "../components/routine/RoutineList.vue"
 import RoutineDetail from "../components/routine/RoutineDetail.vue";
+import ExerciseDetail from "@/components/exercise/ExerciseDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -60,6 +61,11 @@ const router = createRouter({
           component: RoutineDetail
         }
       ],
+    },
+    {
+      path: "/exercise",
+      name: "exercise",
+      component: ExerciseDetail
     }
   ],
 });
