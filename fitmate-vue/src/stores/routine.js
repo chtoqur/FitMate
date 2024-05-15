@@ -39,7 +39,7 @@ export const useRoutineStore = defineStore("routine", ()=>{
     {
       id: 2,
       title: "초보를 위한 전신 루틴 for women",
-      level: 1,
+      level: 3,
       part: "전신",
       courses: [
         {

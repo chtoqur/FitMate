@@ -36,7 +36,6 @@ import ExerciseDetail from '../exercise/ExerciseDetail.vue';
 const routineStore = useRoutineStore();
 const exerciseStore = useExerciseStore();
 const route = useRoute();
-const exercise = ref({});
 
 const findExercise = (id) => {
   return exerciseStore.exerciseList.find(exercise => exercise.id == id);
