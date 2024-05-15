@@ -1,19 +1,46 @@
 <template>
-  <div id="container">
+  <div id="nav-container">
     <header>
-      <nav>
-        <RouterLink to="/">Home | </RouterLink>
-        <RouterLink to="/video">Video | </RouterLink>
-        <RouterLink to="/routine">Routine | </RouterLink>
-        <RouterLink to="/community">Community | </RouterLink>
-        <RouterLink to="/login" v-if="store.loginUser.id === ''"
-          >Login |
-        </RouterLink>
-        <RouterLink to="/mypage" v-if="store.loginUser.id !== ''"
-          >MyPage |
-        </RouterLink>
-        <a v-if="store.loginUser.id !== ''" @click="store.logout">Logout</a>
-      </nav>
+      <div class="header-inner">
+        <!-- logo -->
+        <div class="nav-left">
+          <RouterLink to="/" class="nav-left-el">
+            <span>HOME</span>
+          </RouterLink>
+        </div>
+        <!-- navigation -->
+        <nav>
+          <ul class="nav-ul">
+            <li>
+              <RouterLink to="/video" class="nav-ul-el">
+                <span>GUIDE</span>
+              </RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/routine" class="nav-ul-el">
+                <span>ROUTINE</span>
+              </RouterLink>
+            </li>
+            <li>
+              <RouterLink to="/community" class="nav-ul-el">
+                <span>COMMUNITY</span>
+              </RouterLink>
+            </li>
+          </ul>
+        </nav>
+        <!-- login/logout / mypage -->
+        <div class="nav-right">
+          <RouterLink to="/login" v-if="store.loginUser.id === ''" class="nav-right-el">
+            <span>LOGIN</span>
+          </RouterLink>
+          <RouterLink to="/mypage" v-if="store.loginUser.id !== ''" class="nav-right-el">
+            <span>MYPAGE</span>
+          </RouterLink>
+          <a v-if="store.loginUser.id !== ''" @click="store.logout" class="nav-right-el">
+            <span>LOGOUT</span>
+          </a>
+        </div>
+      </div>
     </header>
   </div>
 </template>
@@ -25,31 +52,66 @@ const store = useUserStore();
 </script>
 
 <style scoped>
-#container {
-  font-size: large;
-  text-align: center;
-  background-color: grey;
-  height: 33px;
-}
-
-nav a {
-  font-weight: bold;
+* {
   text-decoration: none;
-  color: white;
 }
 
-nav a.router-link-exact-active {
+#nav-container {
+  height: 100px;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid black
+}
+
+header {
+  height: 100%;
+}
+
+.header-inner {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  margin: 0 19%;
+}
+
+.nav-left, .nav-ul, .nav-right {
+  display: flex;
+  gap: 19px;
+  align-items: center;
+}
+
+.nav-ul {
+  height: 100%;
+}
+
+.nav-left-el, .nav-left-el span, .nav-ul li, .nav-ul-el, .nav-ul-el span, .nav-right-el, .nav-right-el span {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left span, .nav-ul span, .nav-right span {
   color: black;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-nav a:hover {
+.nav-right {
   cursor: pointer;
+}
+
+.nav-left span:hover, .nav-ul span:hover, .nav-right span:hover {
+  color: rgb(118, 159, 205);
 }
 
 button {
   border: none;
   background-color: grey;
   color: black;
-  font-size: large;
 }
 </style>
