@@ -1,39 +1,80 @@
 <template>
   <div>
     <div v-for="com in store.nowCommentList" :key="com.id">
-      <h5>작성자</h5>
-      <h5>{{ com.writer }}</h5>
-      <p>내용</p>
-      <div v-if="com.editing">
-        <input type="text" v-model="updateComment" />
+      <div v-if="com.parent === null">
+        <h5>작성자</h5>
+        <h5>{{ com.writer }}</h5>
+        <p>내용</p>
+        <div v-if="com.editing">
+          <input type="text" v-model="updateComment" />
+          <button
+            @click="
+              store.updateComment(com.id, updateComment), (com.editing = false)
+            "
+          >
+            등록
+          </button>
+        </div>
+        <p v-else>{{ com.content }}</p>
         <button
-          @click="
-            store.updateComment(com.id, updateComment), (com.editing = false)
-          "
+          v-if="com.writer === userStore.loginUser.id && !com.editing"
+          @click="setUpdateComment(com.id)"
         >
-          등록
+          수정
+        </button>
+        <button
+          v-if="com.writer === userStore.loginUser.id && com.editing"
+          @click="com.editing = false"
+        >
+          취소
+        </button>
+        <button
+          v-if="com.writer === userStore.loginUser.id"
+          @click="store.deleteComment(com.id)"
+        >
+          삭제
         </button>
       </div>
-      <p v-else>{{ com.content }}</p>
-      <button
-        v-if="com.writer === userStore.loginUser.id && !com.editing"
-        @click="setUpdateComment(com.id)"
-      >
-        수정
-      </button>
-      <button
-        v-if="com.writer === userStore.loginUser.id && com.editing"
-        @click="com.editing = false"
-      >
-        취소
-      </button>
-      <button
-        v-if="com.writer === userStore.loginUser.id"
-        @click="store.deleteComment(com.id)"
-      >
-        삭제
-      </button>
+      <div v-for="child in store.nowCommentList" :key="child.id">
+        <!-- style 부분 css로 (답글)바꿔야함 -->
+        <div v-if="child.parent === com.id" style="padding-left: 1rem">
+          <h5>작성자</h5>
+          <h5>{{ child.writer }}</h5>
+          <p>내용</p>
+          <div v-if="child.editing">
+            <input type="text" v-model="updateComment" />
+            <button
+              @click="
+                store.updateComment(child.id, updateComment),
+                  (child.editing = false)
+              "
+            >
+              등록
+            </button>
+          </div>
+          <p v-else>{{ child.content }}</p>
+          <button
+            v-if="child.writer === userStore.loginUser.id && !child.editing"
+            @click="setUpdateComment(child.id)"
+          >
+            수정
+          </button>
+          <button
+            v-if="child.writer === userStore.loginUser.id && child.editing"
+            @click="child.editing = false"
+          >
+            취소
+          </button>
+          <button
+            v-if="child.writer === userStore.loginUser.id"
+            @click="store.deleteComment(child.id)"
+          >
+            삭제
+          </button>
+        </div>
+      </div>
     </div>
+
     <div v-if="userStore.loginUser.id !== ''">
       <input type="text" v-model="comment.content" />
       <button @click="createComment">등록</button>
