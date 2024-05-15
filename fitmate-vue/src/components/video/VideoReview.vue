@@ -5,9 +5,12 @@
     <p>작성일: {{ review.regDate }}</p>
     <span>내용: </span>
     <div v-if="review.editing">
-      <input type="text" v-model="updateReview.content" />
+      <input type="text" v-model="updateReview" />
       <button
-        @click="store.updateReview(updateReview), (review.editing = false)"
+        @click="
+          store.updateReview(updateReviewId, updateReview),
+            (review.editing = false)
+        "
       >
         등록
       </button>
@@ -46,12 +49,14 @@ defineProps({
   review: Object,
 });
 
-const updateReview = ref({});
+const updateReview = ref("");
+const updateReviewId = ref(0);
 
 const setUpdateReview = function (id) {
   store.videoReviewList.map((el) => {
     if (el.id === id) {
-      updateReview.value = el;
+      updateReview.value = el.content;
+      updateReviewId.value = id;
       el.editing = true;
     } else {
       el.editing = false;

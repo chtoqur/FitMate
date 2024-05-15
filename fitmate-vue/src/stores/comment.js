@@ -11,12 +11,33 @@ export const useCommentStore = defineStore("comment", () => {
     {
       id: commentId++,
       communityId: 1,
-      content: "test",
+      content: "id 1",
       writer: "ssafy",
       regDate: new Date().toLocaleString(),
       parent: null,
       editing: false,
       // editing은 db에 저장하지 않고 js 측에서 받아오면서 추가해야할덧
+      childComment: false,
+    },
+    {
+      id: commentId++,
+      communityId: 1,
+      content: "id 2",
+      writer: "ssafy",
+      regDate: new Date().toLocaleString(),
+      parent: null,
+      editing: false,
+      childComment: false,
+    },
+    {
+      id: commentId++,
+      communityId: 1,
+      content: "id 1의 답글",
+      writer: "ssafy",
+      regDate: new Date().toLocaleString(),
+      parent: 1,
+      editing: false,
+      childComment: false,
     },
   ]);
 
@@ -38,10 +59,10 @@ export const useCommentStore = defineStore("comment", () => {
     });
   };
 
-  const updateComment = function (comment) {
+  const updateComment = function (id, content) {
     allCommentList.value.map((el) => {
-      if (el.id === comment.id) {
-        el = comment;
+      if (el.id === id) {
+        el.content = content;
       }
     });
 
