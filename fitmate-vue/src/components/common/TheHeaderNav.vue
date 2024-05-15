@@ -76,12 +76,13 @@ header {
 
 .nav-left, .nav-ul, .nav-right {
   display: flex;
-  gap: 19px;
+  gap: 20px;
   align-items: center;
 }
 
 .nav-ul {
   height: 100%;
+  gap: 40px;
 }
 
 .nav-left-el, .nav-left-el span, .nav-ul li, .nav-ul-el, .nav-ul-el span, .nav-right-el, .nav-right-el span {
