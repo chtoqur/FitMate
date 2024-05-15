@@ -82,6 +82,7 @@ export const useVideoStore = defineStore("video", () => {
   };
 
   const videoAllReviewList = ref([
+    // editing은 프론트쪽에서만 관리
     {
       id: reviewId++,
       videoId: 1,

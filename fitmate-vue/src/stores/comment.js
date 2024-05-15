@@ -45,12 +45,12 @@ export const useCommentStore = defineStore("comment", () => {
       }
     });
 
-    //getNowCommentList와 비슷..
-    nowCommentList.value.map((el) => {
-      if (el.id === comment.id) {
-        el = comment;
-      }
-    });
+    // //getNowCommentList와 비슷..
+    // nowCommentList.value.map((el) => {
+    //   if (el.id === comment.id) {
+    //     el = comment;
+    //   }
+    // });
   };
 
   const deleteComment = function (id) {
