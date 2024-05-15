@@ -4,11 +4,12 @@ import { useRouter } from "vue-router";
 
 export const useCommentStore = defineStore("comment", () => {
   const router = useRouter();
+  let commentId = 1;
 
   // 사실 전체 댓글을 안 가져오고 db측에서 게시글 아이디를 받아서 리턴해서 받아오는게 이상적일듯?
   const allCommentList = ref([
     {
-      id: 1,
+      id: commentId++,
       communityId: 1,
       content: "test",
       writer: "ssafy",
@@ -19,8 +20,9 @@ export const useCommentStore = defineStore("comment", () => {
 
   const nowCommentList = ref([]);
 
-  const createComment = function (postId, comment) {
-    comment.communityId = postId;
+  const createComment = function (comment) {
+    comment.id = commentId++;
+    comment.regDate = new Date().toLocaleString();
     allCommentList.value.push(comment);
     nowCommentList.value.push(comment);
   };

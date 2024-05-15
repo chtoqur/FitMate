@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ store.loginUser.img }}</p>
+    <p>{{ store.loginUser.image }}</p>
     <p>{{ store.loginUser.id }}</p>
     <p>{{ store.loginUser.name }}</p>
     <p>{{ store.loginUser.nickname }}</p>

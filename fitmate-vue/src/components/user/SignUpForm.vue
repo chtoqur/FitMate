@@ -1,12 +1,18 @@
 <template>
   <div>
     <p>아이디</p>
-    <input type="text" v-model="user.id" />
+    <input type="text" v-model="user.id" :disabled="idChecked" />
+    <button @click="checkId(user.id)" :disabled="idChecked">중복 확인</button>
     <p>비밀번호</p>
     <input type="password" v-model="user.password" />
     <p>비밀번호 확인</p>
     <input type="password" v-model="repPassword" />
-    <p>{{ isPassword }}</p>
+    <p v-if="isPassword && repPassword" style="color: green">
+      비밀번호가 일치합니다.
+    </p>
+    <p v-if="!isPassword && repPassword" style="color: red">
+      비밀번호가 일치하지 않습니다.
+    </p>
     <p>닉네임</p>
     <input type="text" v-model="user.nickname" />
     <p>이름</p>
@@ -35,7 +41,7 @@
     <br />
     <input type="text" v-model="detailAddress" placeholder="상세 주소" />
     <br />
-    <button @click="store.signUp(user)">회원가입</button>
+    <button @click="signUp">회원가입</button>
   </div>
 </template>
 
@@ -44,6 +50,7 @@ import { useUserStore } from "@/stores/user";
 import { ref, onMounted, watch, computed } from "vue";
 
 const store = useUserStore();
+const idChecked = ref(false);
 
 onMounted(() => {
   const script = document.createElement("script");
@@ -69,6 +76,38 @@ const repPassword = ref("");
 const isPassword = computed(() => {
   return repPassword.value === user.value.password;
 });
+
+const checkId = function (id) {
+  if (store.checkId(id)) {
+    alert("이미 존재하는 아이디입니다.");
+  } else {
+    idChecked.value = confirm("사용 가능한 아이디입니다. 사용하시겠습니까?");
+  }
+};
+
+const signUp = function () {
+  if (!isPassword) return;
+
+  if (user.value.name === "") {
+    alert("이름을 입력해주세요.");
+  } else if (user.value.id === "") {
+    alert("아이디를 입력해주세요.");
+  } else if (user.value.password === "") {
+    alert("비밀번호를 입력해주세요.");
+  } else if (user.value.nickname === "") {
+    alert("닉네임를 입력해주세요.");
+  } else if (user.value.email === "") {
+    alert("이메일을 입력해주세요.");
+  } else if (user.value.age === "") {
+    alert("나이를 입력해주세요.");
+  } else if (user.value.fitnessLevel === "") {
+    alert("운동 능력을 입력해주세요.");
+  } else if (user.value.postCode === "") {
+    alert("주소를 입력해주세요.");
+  } else {
+    store.signUp(user);
+  }
+};
 
 watch([address, detailAddress], ([newAddress, newDetailAddress]) => {
   user.value.address = `${newAddress} ${newDetailAddress}`;

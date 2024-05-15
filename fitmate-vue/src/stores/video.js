@@ -160,6 +160,14 @@ export const useVideoStore = defineStore("video", () => {
 
   const createReview = function (review, video, user) {
     videoReviewList.value.push({
+      id: reviewId,
+      videoId: video,
+      userId: user,
+      content: review,
+      regDate: new Date().toLocaleString(),
+    });
+
+    videoAllReviewList.value.push({
       id: reviewId++,
       videoId: video,
       userId: user,
@@ -175,8 +183,6 @@ export const useVideoStore = defineStore("video", () => {
         videoReviewList.value.push(review);
       }
     });
-
-    console.log(videoReviewList.value);
   };
 
   const updateReview = function (review) {
@@ -191,6 +197,7 @@ export const useVideoStore = defineStore("video", () => {
     const idx = videoAllReviewList.value.findIndex(
       (review) => review.id === id
     );
+
     if (idx !== -1) {
       videoAllReviewList.value.splice(idx, 1);
     }

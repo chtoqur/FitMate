@@ -16,7 +16,6 @@ export const useCommunityStore = defineStore("community", () => {
     likeCount: 1,
     viewCount: 10,
     category: "notice",
-    commentCnt: 3,
   });
 
   const createPost = function (post) {
@@ -36,7 +35,6 @@ export const useCommunityStore = defineStore("community", () => {
         likeCount: 1,
         viewCount: 10,
         category: "notice",
-        commentCnt: 3,
       },
       {
         id: 2,
@@ -47,7 +45,6 @@ export const useCommunityStore = defineStore("community", () => {
         likeCount: 1,
         viewCount: 10,
         category: "free",
-        commentCnt: 5,
       },
     ];
   };

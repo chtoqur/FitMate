@@ -8,30 +8,49 @@ export const useUserStore = defineStore("user", () => {
   const userList = ref([
     {
       name: "ssafy",
+      nickname: "닉네임",
       id: "ssafy",
       password: "1234",
       email: "ssafy@ssafy.com",
+      image: "imgSrc",
       age: 25,
       fitnessLevel: "중",
       postCode: "08760",
       address: "서울",
+      likedVideos: [1],
     },
   ]);
 
   const loginUser = ref({
-    id: "",
     name: "",
     nickname: "",
-    img: "",
+    id: "",
+    password: "",
+    email: "",
+    image: "",
+    age: 0,
+    fitnessLevel: "",
+    postCode: "",
+    address: "",
+    likedVideos: [],
   });
+
+  const checkId = function (id) {
+    let isExistUser = false;
+
+    userList.value.map((el) => {
+      if (el.id === id) {
+        isExistUser = true;
+      }
+    });
+
+    return isExistUser;
+  };
 
   const login = function (id, password) {
     userList.value.map((user) => {
       if (user.id === id && user.password === password) {
-        loginUser.value.id = user.id;
-        loginUser.value.name = user.name;
-        loginUser.value.nickname = "닉네임";
-        loginUser.value.img = "이미지 src";
+        loginUser.value = user;
       }
     });
 
@@ -52,29 +71,36 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const signUp = function (user) {
-    let isExistUser = false;
+    user.liked_videos = [];
+    userList.value.push(user);
+    alert("회원가입 성공!");
+    router.push({ name: "login" });
+  };
 
-    userList.value.map((el) => {
-      if (el.id === user.id) {
-        isExistUser = true;
-      }
-    });
+  const likeVideo = function (videoId) {
+    console.log("찜");
+    loginUser.value.likedVideos.push(videoId);
+    console.log(videoId);
+    console.log(loginUser.value.likedVideos);
+  };
 
-    if (isExistUser) {
-      alert("이미 존재하는 아이디입니다.");
-    } else {
-      user.liked_videos = [];
-      userList.value.push(user);
-      alert("회원가입 성공!");
-      router.push({ name: "login" });
+  const unlikeVideo = function (videoId) {
+    console.log("찜취소");
+    const idx = loginUser.value.likedVideos.findIndex((id) => id === videoId);
+    if (idx !== -1) {
+      loginUser.value.likedVideos.splice(idx, 1);
     }
+    console.log(loginUser.value.likedVideos);
   };
 
   return {
     userList,
     loginUser,
+    checkId,
     login,
     logout,
     signUp,
+    likeVideo,
+    unlikeVideo,
   };
 });

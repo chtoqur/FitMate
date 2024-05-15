@@ -22,9 +22,9 @@
         :review="review"
       />
 
-      <div>
+      <div v-if="userStore.loginUser.id !== ''">
         <input type="text" v-model="review" />
-        <button @click="createReview">등록</button>
+        <button @click="createReview()">등록</button>
       </div>
     </div>
   </div>

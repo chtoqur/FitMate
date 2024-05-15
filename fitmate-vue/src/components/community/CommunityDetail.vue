@@ -7,8 +7,8 @@
         <h4>{{ store.nowPost.regDate }}</h4>
       </div>
       <div>
-        <button>목록</button>
-        <h4>댓글 수 : {{ store.nowPost.commentCnt }}</h4>
+        <RouterLink to="/community">목록</RouterLink>
+        <h4>댓글 수 : {{ commentStore.nowCommentList.length }}</h4>
       </div>
     </div>
 
