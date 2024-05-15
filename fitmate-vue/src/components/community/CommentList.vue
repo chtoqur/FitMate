@@ -34,6 +34,19 @@
         >
           삭제
         </button>
+        <button
+          v-if="userStore.loginUser.id !== ''"
+          @click="setChildComment(com.id)"
+        >
+          답글
+        </button>
+      </div>
+      <div v-if="com.childComment">
+        <input type="text" v-model="childComment.content" />
+        <button @click="createChildComment(), (com.childComment = false)">
+          등록
+        </button>
+        <button @click="com.childComment = false">취소</button>
       </div>
       <div v-for="child in store.nowCommentList" :key="child.id">
         <!-- style 부분 css로 (답글)바꿔야함 -->
@@ -103,6 +116,23 @@ const comment = ref({
   parent: null,
 });
 
+const childComment = ref({
+  communityId: route.params.id,
+  content: "",
+  writer: userStore.loginUser.id,
+  parent: null,
+});
+
+const setChildComment = function (parentId) {
+  childComment.value.parent = parentId;
+  childComment.value.content = "";
+  store.allCommentList.map((el) => {
+    if (el.id === parentId) {
+      el.childComment = true;
+    }
+  });
+};
+
 const setUpdateComment = function (id) {
   store.nowCommentList.map((el) => {
     if (el.id === id) {
@@ -126,6 +156,10 @@ const createComment = function () {
     writer: userStore.loginUser.id,
     parent: null,
   };
+};
+
+const createChildComment = function () {
+  store.createComment(childComment.value);
 };
 </script>
 

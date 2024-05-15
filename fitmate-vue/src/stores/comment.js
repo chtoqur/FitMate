@@ -17,6 +17,7 @@ export const useCommentStore = defineStore("comment", () => {
       parent: null,
       editing: false,
       // editing은 db에 저장하지 않고 js 측에서 받아오면서 추가해야할덧
+      childComment: false,
     },
     {
       id: commentId++,
@@ -26,6 +27,7 @@ export const useCommentStore = defineStore("comment", () => {
       regDate: new Date().toLocaleString(),
       parent: null,
       editing: false,
+      childComment: false,
     },
     {
       id: commentId++,
@@ -35,6 +37,7 @@ export const useCommentStore = defineStore("comment", () => {
       regDate: new Date().toLocaleString(),
       parent: 1,
       editing: false,
+      childComment: false,
     },
   ]);
 
