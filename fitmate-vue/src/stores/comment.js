@@ -38,10 +38,10 @@ export const useCommentStore = defineStore("comment", () => {
     });
   };
 
-  const updateComment = function (comment) {
+  const updateComment = function (id, content) {
     allCommentList.value.map((el) => {
-      if (el.id === comment.id) {
-        el = comment;
+      if (el.id === id) {
+        el.content = content;
       }
     });
 

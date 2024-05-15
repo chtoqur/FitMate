@@ -196,10 +196,10 @@ export const useVideoStore = defineStore("video", () => {
     });
   };
 
-  const updateReview = function (review) {
+  const updateReview = function (id, review) {
     videoAllReviewList.value.map((el) => {
-      if (el.id === review.id) {
-        el = review;
+      if (el.id === id) {
+        el.content = review;
       }
     });
   };

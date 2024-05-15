@@ -5,9 +5,11 @@
       <h5>{{ com.writer }}</h5>
       <p>내용</p>
       <div v-if="com.editing">
-        <input type="text" v-model="updateComment.content" />
+        <input type="text" v-model="updateComment" />
         <button
-          @click="store.updateComment(updateComment), (com.editing = false)"
+          @click="
+            store.updateComment(com.id, updateComment), (com.editing = false)
+          "
         >
           등록
         </button>
@@ -63,7 +65,8 @@ const comment = ref({
 const setUpdateComment = function (id) {
   store.nowCommentList.map((el) => {
     if (el.id === id) {
-      updateComment.value = el;
+      updateComment.value = el.content;
+      updateCommentId.value = id;
       el.editing = true;
     } else {
       el.editing = false;
@@ -71,7 +74,8 @@ const setUpdateComment = function (id) {
   });
 };
 
-const updateComment = ref({});
+const updateComment = ref("");
+const updateCommentId = ref(0);
 
 const createComment = function () {
   store.createComment(comment.value);
