@@ -15,6 +15,8 @@ export const useCommentStore = defineStore("comment", () => {
       writer: "ssafy",
       regDate: new Date().toLocaleString(),
       parent: null,
+      editing: false,
+      // editing은 db에 저장하지 않고 js 측에서 받아오면서 추가해야할덧
     },
   ]);
 

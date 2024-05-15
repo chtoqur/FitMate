@@ -4,12 +4,26 @@
       <h5>작성자</h5>
       <h5>{{ com.writer }}</h5>
       <p>내용</p>
-      <p>{{ com.content }}</p>
+      <div v-if="com.editing">
+        <input type="text" v-model="updateComment.content" />
+        <button
+          @click="store.updateComment(updateComment), (com.editing = false)"
+        >
+          등록
+        </button>
+      </div>
+      <p v-else>{{ com.content }}</p>
       <button
-        v-if="com.writer === userStore.loginUser.id"
-        @click="store.updateComment"
+        v-if="com.writer === userStore.loginUser.id && !com.editing"
+        @click="setUpdateComment(com.id)"
       >
         수정
+      </button>
+      <button
+        v-if="com.writer === userStore.loginUser.id && com.editing"
+        @click="com.editing = false"
+      >
+        취소
       </button>
       <button
         v-if="com.writer === userStore.loginUser.id"
@@ -45,6 +59,19 @@ const comment = ref({
   writer: userStore.loginUser.id,
   parent: null,
 });
+
+const setUpdateComment = function (id) {
+  store.nowCommentList.map((el) => {
+    if (el.id === id) {
+      updateComment.value = el;
+      el.editing = true;
+    } else {
+      el.editing = false;
+    }
+  });
+};
+
+const updateComment = ref({});
 
 const createComment = function () {
   store.createComment(comment.value);

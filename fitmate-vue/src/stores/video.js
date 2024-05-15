@@ -88,6 +88,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "2개월 후기 10kg 빠졌어요",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -95,6 +96,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "힘들어요",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -103,6 +105,7 @@ export const useVideoStore = defineStore("video", () => {
       content:
         "헐, 이렇게 힘들어도 운동하고 싶어요. 이 영상 보면서 뭔가 엄청난 자극을 받는 느낌이에요.",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -110,6 +113,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "와, 이 운동 영상 너무 좋아요. ",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -117,6 +121,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "운동은 스트레스를 해소시켜줘요. ",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -124,6 +129,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "운동을 통해 에너지가 생겨요. .",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -131,6 +137,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "와... 이 영상 보면서 나도 모르게 다리가 아파요. ",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -139,6 +146,7 @@ export const useVideoStore = defineStore("video", () => {
       content:
         "운동을 통해 몸매도 예쁘게 만들 수 있어요. 운동하다가 좀 느슨해지면 이 영상을 보면 다시 힘을 얻을 것 같아요. ",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -146,6 +154,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "운동은 건강한 생활의 시작이에요.",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
     {
       id: reviewId++,
@@ -153,6 +162,7 @@ export const useVideoStore = defineStore("video", () => {
       userId: "ssafy",
       content: "앗! 저기, 너무 힘들어보여요",
       regDate: new Date().toLocaleString(),
+      editing: false,
     },
   ]);
 
