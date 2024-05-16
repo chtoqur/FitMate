@@ -1,0 +1,17 @@
+package com.fitmate.community.model.dao;
+
+import java.util.List;
+
+import com.fitmate.community.model.dto.VideoComment;
+
+public interface VideoCommentDao {
+	public List<VideoComment> selectAll();
+	
+	public void insertComment(VideoComment comment);
+	
+	public List<VideoComment> selectNowVideo(int videoId);
+	
+	public void updateComment(VideoComment comment);
+	
+	public void deleteComment(int id);
+}

@@ -1,0 +1,14 @@
+package com.ssafy.fitmate.model.service;
+
+import java.util.List;
+
+import com.ssafy.fitmate.model.dto.Routine;
+
+public class RoutineServiceImpl implements RoutineService{
+
+	@Override
+	public List<Routine> getList() {
+		return null;
+	}
+
+}

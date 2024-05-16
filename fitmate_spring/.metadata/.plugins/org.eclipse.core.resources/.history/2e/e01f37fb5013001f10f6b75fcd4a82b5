@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 네임스페이스에 DAO 풀패키지명을 작성 -->
+<mapper namespace="com.fitmate.video.model.dao.VideoCommentDao">
+	<select id="selectAll">
+		SELECT id, video_id AS videoId, writer, content, reg_date AS regDate, parent
+		FROM video_comment
+	</select>
+
+	<insert id="insertComment" parameterType="VideoComment">
+		INSERT INTO video_comment
+		VALUES (#{id}, #{videoId}, #{writer}, #{content}, #{regDate}, #{parent})
+	</insert>
+
+	<select id="selectNowVideo" parameterType="int">
+		SELECT id, video_id AS videoId, writer, content, reg_date AS regDate, parent
+		FROM video_comment
+		WHERE video_id = #{id}
+	</select>
+	
+	
+	<update id="updateComment" parameterType="VideoComment">
+		UPDATE video_comment
+		SET content = #{content}
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM video_comment
+		WHERE id = #{id}
+	</delete>
+	
+</mapper>

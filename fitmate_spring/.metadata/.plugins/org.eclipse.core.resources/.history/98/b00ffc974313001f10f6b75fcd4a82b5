@@ -1,0 +1,14 @@
+package com.fitmate.community.model.dao;
+
+import java.util.List;
+
+import com.fitmate.community.model.dto.Routine;
+
+public interface RoutineDao {
+	
+	public List<Routine> selectAll();
+	
+	public void insertRountine(Routine routine);
+	
+//	public List<Routine> search(SearchCondition searchCondition);
+}

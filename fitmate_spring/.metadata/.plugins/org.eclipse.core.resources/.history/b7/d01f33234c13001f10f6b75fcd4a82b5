@@ -1,0 +1,19 @@
+package com.fitmate.community.model.dao;
+
+import java.util.List;
+
+import com.fitmate.community.model.dto.CommunityComment;
+
+public interface CommunityCommentDao {
+
+	public List<CommunityComment> selectAll();
+	
+	public int insertComment(CommunityComment comment);
+	
+	public List<CommunityComment> selectNowPost(int id);
+	
+	public int updateComment(CommunityComment comment);
+	
+	public int deleteComment(int id);
+	
+}

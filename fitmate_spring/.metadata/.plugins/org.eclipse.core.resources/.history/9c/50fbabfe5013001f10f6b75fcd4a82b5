@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 네임스페이스에 DAO 풀패키지명을 작성 -->
+<mapper namespace="com.fitmate.video.model.dao.VideoDao">
+	
+	<!-- 전체 영상 조회 -->
+	<select id="selectAll" resultType="video">
+		SELECT id, title, description, thumbnail, channel_name AS channelName, view_cnt AS viewCnt, youtube_videoId AS youtubeVideoID
+		FROM video;
+	</select>
+	
+	<!-- 영상 상세 조회 -->
+	<select id="selectOne" resultType="video" parameterType="int">
+		SELECT id, title, description, thumbnail, channel_name AS channelName, view_cnt AS viewCnt, youtube_videoId AS youtubeVideoID
+		FROM video
+		WHERE id = #{id};
+	</select>
+	
+	<!-- 영상 등록 -->
+	<insert id="insertVideo" parameterType="Video">
+		INSERT INTO board (title, description, thumbnail, channel_name, youtube_videoId)
+		VALUES (#{title}, #{description}, #{thumbnail}, #{channelName}, #{youtubeVideoId});
+	</insert>
+</mapper>
