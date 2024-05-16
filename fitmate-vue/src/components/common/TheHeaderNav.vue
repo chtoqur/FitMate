@@ -31,13 +31,13 @@
         <!-- login/logout / mypage -->
         <div class="nav-right">
           <RouterLink to="/login" v-if="store.loginUser.id === ''" class="nav-right-el">
-            <span>LOGIN</span>
+            <span class="mdi mdi-login">&nbsp;LOGIN</span>
           </RouterLink>
           <RouterLink to="/mypage" v-if="store.loginUser.id !== ''" class="nav-right-el">
-            <span>MYPAGE</span>
+            <span class="mdi mdi-account-circle">&nbsp;MYPAGE</span>
           </RouterLink>
           <a v-if="store.loginUser.id !== ''" @click="store.logout" class="nav-right-el">
-            <span>LOGOUT</span>
+            <span class="mdi mdi-logout">&nbsp;LOGOUT</span>
           </a>
         </div>
       </div>
@@ -47,6 +47,7 @@
 
 <script setup>
 import { useUserStore } from "@/stores/user";
+
 
 const store = useUserStore();
 </script>
@@ -58,9 +59,13 @@ const store = useUserStore();
 
 #nav-container {
   height: 100px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
-  border-bottom: 1px solid black
+  border-bottom: 1px solid black;
+}
+
+.mdi {
+  margin-right: 5px;
 }
 
 header {
