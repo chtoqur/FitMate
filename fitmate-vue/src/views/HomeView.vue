@@ -1,16 +1,23 @@
 <template>
+  <div class="rank-section">
+    <HomePopularPost />
+  </div>
   <div>
-    <h1>이서왕자 강현공주</h1>
     <KakaoMap />
   </div>
 </template>
 
 <script setup>
+import HomePopularPost from "@/components/home/HomePopularPost.vue";
 import KakaoMap from "@/components/kakao/KakaoMap.vue";
 </script>
 
 <style scoped>
 * {
   text-align: center;
+}
+
+.rank-section {
+  margin: 0 19%;
 }
 </style>
