@@ -17,7 +17,7 @@ export const useUserStore = defineStore("user", () => {
       fitnessLevel: "중",
       postCode: "08760",
       address: "서울",
-      likedVideos: [1],
+      likedVideos: [1, 3, 5],
     },
   ]);
 
@@ -33,6 +33,8 @@ export const useUserStore = defineStore("user", () => {
     postCode: "",
     address: "",
     likedVideos: [],
+    myPost: [],
+    myComment: [],
   });
 
   const checkId = function (id) {

@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import VideoView from "../views/VideoView.vue";
 import VideoList from "../components/video/VideoList.vue";
 import VideoDetail from "../components/video/VideoDetail.vue";
+import VideoLiked from "../components/video/VideoLiked.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupView from "../views/SignupView.vue";
 import RoutineView from "../views/RoutineView.vue";
@@ -36,6 +37,11 @@ const router = createRouter({
           path: ":id",
           name: "videoDetail",
           component: VideoDetail,
+        },
+        {
+          path: "liked",
+          name: "videoLiked",
+          component: VideoLiked,
         },
       ],
     },

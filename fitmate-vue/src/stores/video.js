@@ -73,6 +73,8 @@ export const useVideoStore = defineStore("video", () => {
 
   const video = ref({});
 
+  const nowList = ref([]);
+
   const getVideo = function (id) {
     videoList.value.map((el) => {
       if (el.id == id) {
@@ -219,6 +221,7 @@ export const useVideoStore = defineStore("video", () => {
   return {
     videoList,
     video,
+    nowList,
     getVideo,
     videoAllReviewList,
     videoReviewList,
