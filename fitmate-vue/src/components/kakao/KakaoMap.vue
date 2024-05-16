@@ -14,9 +14,9 @@ const initMap = function () {
   let myCenter = new kakao.maps.LatLng(37.501294, 127.039604);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      myCenter = new kakao.maps.LatLng(lat, lon);
+      // const lat = position.coords.latitude;
+      // const lon = position.coords.longitude;
+      // myCenter = new kakao.maps.LatLng(lat, lon);
       new kakao.maps.Marker({
         map,
         position: myCenter,
