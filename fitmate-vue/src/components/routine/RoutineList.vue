@@ -1,47 +1,16 @@
 <template>
   <div>
-    <div class="select">
-      <div
-        class="selected"
-        :data-default="defaultTxt"
-        :data-one="optionOneTxt"
-        :data-two="optionTwoTxt"
-        :data-three="optionThreeTxt"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="1em"
-          viewBox="0 0 512 512"
-          class="arrow"
-        >
-          <path
-            d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
-          ></path>
-        </svg>
-      </div>
-      <div class="options">
-        <div title="all">
-          <input id="all" name="option" type="radio" checked=""
-          @click="selectPart('all')" />
-          <label class="option" for="all" data-txt="전체"></label>
-        </div>
-        <div title="option-1">
-          <input id="option-1" name="option" type="radio"
-          @click="selectPart('full')" />
-          <label class="option" for="option-1" data-txt="전신"></label>
-        </div>
-        <div title="option-2">
-          <input id="option-2" name="option" type="radio"
-          @click="selectPart('upper')" />
-          <label class="option" for="option-2" data-txt="상체"></label>
-        </div>
-        <div title="option-3">
-          <input id="option-3" name="option" type="radio"
-          @click="selectPart('lower')" />
-          <label class="option" for="option-3" data-txt="하체"></label>
-        </div>
-      </div>
-    </div>
+    <v-card-actions>
+      <v-btn color="red" text="Share"></v-btn>
+
+      <v-btn color="orange" text="Explore"></v-btn>
+    </v-card-actions>
+    <v-combobox
+      multiple
+      label="Combobox"
+      :items="['등', '가슴', '어깨', '팔', '하체']"
+      variant="solo"
+    ></v-combobox>
     <div class="rating-container">
       <div class="rating">
         <input type="radio" id="star-3" name="star-radio" value="star-3"
@@ -65,6 +34,13 @@
       v-for="routine in routineList"
       :key="routine.id"
       @click="navigateToDetail(routine.id)"
+    >
+      <RoutineCard :routine="routine"/>
+    </div>
+    <!-- <div
+      v-for="routine in routineList"
+      :key="routine.id"
+      @click="navigateToDetail(routine.id)"
       class="routine-card"
     >
       <div>
@@ -73,7 +49,7 @@
       <div>
         <span>{{ routine.title }}</span>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -81,6 +57,7 @@
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useRoutineStore } from '@/stores/routine';
+import RoutineCard from "@/components/routine/RoutineCard.vue";
 
 const router = useRouter();
 const store = useRoutineStore();
@@ -136,7 +113,9 @@ const selectLevel = function(level) {
 }
 
 const navigateToDetail = function(routineId) {
-  router.push({ name: 'routineDetail', params: { id: routineId }})
+  setTimeout(()=>{
+    router.push({ name: 'routineDetail', params: { id: routineId }})
+  }, 300);
 }
 
 onMounted(() => {

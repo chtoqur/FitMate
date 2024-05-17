@@ -68,6 +68,230 @@ export const useRoutineStore = defineStore("routine", ()=>{
         }
       ]
     },
+    {
+      id: 3,
+      title: "테스트 3",
+      level: 3,
+      part: "전신",
+      courses: [
+        {
+          id: 2,
+          name: "랫풀다운",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 3,
+          name: "덤벨 숄더 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 1,
+          name: "덤벨 벤치 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 4,
+          name: "라잉 레그 컬",
+          set: "3",
+          reps: "10회"
+        }
+      ]
+    },
+    {
+      id: 4,
+      title: "테스트 4",
+      level: 3,
+      part: "전신",
+      courses: [
+        {
+          id: 2,
+          name: "랫풀다운",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 3,
+          name: "덤벨 숄더 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 1,
+          name: "덤벨 벤치 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 4,
+          name: "라잉 레그 컬",
+          set: "3",
+          reps: "10회"
+        }
+      ]
+    },
+    {
+      id: 5,
+      title: "테스트 5",
+      level: 3,
+      part: "전신",
+      courses: [
+        {
+          id: 2,
+          name: "랫풀다운",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 3,
+          name: "덤벨 숄더 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 1,
+          name: "덤벨 벤치 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 4,
+          name: "라잉 레그 컬",
+          set: "3",
+          reps: "10회"
+        }
+      ]
+    },
+    {
+      id: 6,
+      title: "테스트 6",
+      level: 3,
+      part: "전신",
+      courses: [
+        {
+          id: 2,
+          name: "랫풀다운",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 3,
+          name: "덤벨 숄더 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 1,
+          name: "덤벨 벤치 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 4,
+          name: "라잉 레그 컬",
+          set: "3",
+          reps: "10회"
+        }
+      ]
+    },
+    {
+      id: 7,
+      title: "테스트 7",
+      level: 3,
+      part: "전신",
+      courses: [
+        {
+          id: 2,
+          name: "랫풀다운",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 3,
+          name: "덤벨 숄더 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 1,
+          name: "덤벨 벤치 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 4,
+          name: "라잉 레그 컬",
+          set: "3",
+          reps: "10회"
+        }
+      ]
+    },
+    {
+      id: 8,
+      title: "테스트 8",
+      level: 3,
+      part: "전신",
+      courses: [
+        {
+          id: 2,
+          name: "랫풀다운",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 3,
+          name: "덤벨 숄더 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 1,
+          name: "덤벨 벤치 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 4,
+          name: "라잉 레그 컬",
+          set: "3",
+          reps: "10회"
+        }
+      ]
+    },
+    {
+      id: 9,
+      title: "테스트 9",
+      level: 3,
+      part: "전신",
+      courses: [
+        {
+          id: 2,
+          name: "랫풀다운",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 3,
+          name: "덤벨 숄더 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 1,
+          name: "덤벨 벤치 프레스",
+          set: "3",
+          reps: "10회"
+        },
+        {
+          id: 4,
+          name: "라잉 레그 컬",
+          set: "3",
+          reps: "10회"
+        }
+      ]
+    },
   ]);
 
   const routine = ref({});
