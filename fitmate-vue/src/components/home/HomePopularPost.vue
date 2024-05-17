@@ -46,7 +46,6 @@ onMounted(() => {
 <style scoped>
 .popular-post {
   margin-top: 50px;
-  height: 500px;
 }
 
 .popular-title {
@@ -60,7 +59,6 @@ onMounted(() => {
   border: 1px solid black;
   border-radius: 7px;
   padding: 10px;
-  
 }
 
 .popular-title h3:hover {
@@ -97,6 +95,7 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   font-weight: bold;
+  width: 45px;
 }
 
 .wrap-title {
