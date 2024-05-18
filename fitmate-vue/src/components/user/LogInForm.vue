@@ -1,9 +1,13 @@
 <template>
   <div>
     <p>아이디</p>
-    <input type="text" v-model="id" />
+    <input type="text" v-model="id" @keyup.enter="store.login(id, password)" />
     <p>비밀번호</p>
-    <input type="password" v-model="password" />
+    <input
+      type="password"
+      v-model="password"
+      @keyup.enter="store.login(id, password)"
+    />
     <br />
     <button @click="store.login(id, password)">로그인</button>
     <br />
