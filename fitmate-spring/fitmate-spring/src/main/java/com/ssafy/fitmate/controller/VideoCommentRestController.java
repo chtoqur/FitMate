@@ -55,7 +55,7 @@ public class VideoCommentRestController {
 		return new ResponseEntity<>(community, HttpStatus.OK);
 	}
 
-	@PostMapping("/board")
+	@PostMapping("/")
 	public ResponseEntity<?> write(@ModelAttribute VideoComment comment) {
 		commentService.writeComment(comment);
 		return new ResponseEntity<>(HttpStatus.CREATED);
@@ -76,23 +76,4 @@ public class VideoCommentRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-//	@PostMapping("/file1")
-//	public ResponseEntity<Void> fileUpload(@RequestParam("file") MultipartFile multipartFile) throws IllegalStateException, IOException {
-//
-//		if (multipartFile != null && multipartFile.getSize() > 0) {
-//			String fileName = multipartFile.getOriginalFilename();
-//			
-//			Resource resource = loader.getResource("classpath:/static/img");
-//			multipartFile.transferTo(new File(resource.getFile(), fileName));
-//		}
-//
-//		return new ResponseEntity<>(HttpStatus.OK);
-//	}
-	
-//	@PostMapping("/file2")
-//	public ResponseEntity<Void> fileUpload2(@RequestParam("file") MultipartFile multipartFile, @ModelAttribute CommunityComment community){
-//		
-//		commentService.filePost(multipartFile, community);
-//		return new ResponseEntity<>(HttpStatus.OK);
-//	}
 }

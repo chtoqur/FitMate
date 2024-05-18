@@ -20,8 +20,8 @@
 	
 	<!-- 게시글 등록 -->
 	<insert id="insertPost" parameterType="Community">
-		INSERT INTO board (title, content, writer, category)
-		VALUES (#{title}, #{content}, #{writer}, #{category});
+		INSERT INTO community (title, writer, content, reg_date, like_cnt, view_cnt, category, comment_cnt, file)
+		VALUES (#{title}, #{writer}, #{content}, now(), 0, 0, #{category}, 0, #{file});
 	</insert>
 
 	<!-- 게시글 삭제  -->

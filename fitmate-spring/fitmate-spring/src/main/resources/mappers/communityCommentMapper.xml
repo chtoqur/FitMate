@@ -16,8 +16,8 @@
 	</select>
 	
 	<insert id="insertComment" parameterType="CommunityComment">
-		INSERT INTO community_comment
-		VALUES (#{id}, #{communityId}, #{content}, #{writer}, #{regDate}, #{parent})
+		INSERT INTO community_comment (community_id, writer, content, reg_date, parent)
+		VALUES (#{communityId}, #{writer}, #{content}, #{regDate}, #{parent})
 	</insert>
 	
 	<update id="updateComment" parameterType="CommunityComment">

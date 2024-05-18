@@ -55,7 +55,7 @@ public class CommunityCommentRestController {
 		return new ResponseEntity<>(community, HttpStatus.OK);
 	}
 
-	@PostMapping("/board")
+	@PostMapping("/")
 	public ResponseEntity<?> write(@ModelAttribute CommunityComment comment) {
 		commentService.writeComment(comment);
 		return new ResponseEntity<>(HttpStatus.CREATED);

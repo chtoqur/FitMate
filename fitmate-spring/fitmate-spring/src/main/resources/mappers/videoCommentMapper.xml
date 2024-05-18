@@ -10,8 +10,8 @@
 	</select>
 
 	<insert id="insertComment" parameterType="VideoComment">
-		INSERT INTO video_comment
-		VALUES (#{id}, #{videoId}, #{writer}, #{content}, #{regDate}, #{parent})
+		INSERT INTO video_comment (video_id, writer, content, reg_date, parent)
+		VALUES (#{videoId}, #{writer}, #{content}, #{regDate}, #{parent})
 	</insert>
 
 	<select id="selectNowVideo" parameterType="int">
