@@ -25,7 +25,7 @@ public class RoutineRestController {
 		this.routineService = routineService;
 	}
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public ResponseEntity<?> list() {
 		List<Routine> list = routineService.getList();
 		

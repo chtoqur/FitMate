@@ -9,15 +9,12 @@
         hide-delimiters
         height="300px"
       >
-        <v-carousel-item
-          v-for="(video, i) in homeStore.rankedVideos"
-          :key="i"
-        >
+        <v-carousel-item v-for="(video, i) in homeStore.rankedVideos" :key="i">
           <div class="d-flex fill-height justify-center align-center">
             <iframe
               width="500px"
               height="300px"
-              :src="video.url"
+              :src="`https://www.youtube.com/embed/${video.youtubeVideoId}`"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -32,18 +29,17 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-import { useHomeStore } from '@/stores/home';
+import { onBeforeMount } from "vue";
+import { useHomeStore } from "@/stores/home";
 
 const homeStore = useHomeStore();
 
-onMounted(()=>{
-  homeStore.getRankedVideos();
-})
+onBeforeMount(async () => {
+  await homeStore.getRankedVideos();
+});
 </script>
 
 <style scoped>
-
 .ranked-container {
   margin-top: 50px;
 }
@@ -67,8 +63,9 @@ onMounted(()=>{
   height: 100px;
 }
 
-.v-window, .v-theme--light, .v-carousel {
+.v-window,
+.v-theme--light,
+.v-carousel {
   height: 300px;
 }
-
 </style>

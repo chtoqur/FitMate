@@ -6,16 +6,17 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class Community {
 	private int id;
 	private String title;
-	private String writer;
 	private String content;
+	private String writer;
 	private String regDate;
 	private int likeCnt;
 	private int viewCnt;
 	private String category;
+	private int commentCnt;
 	private String file;
 //	private String fileId;
 //	private String fileName;
-	
+
 	public Community() {
 	}
 
@@ -25,17 +26,21 @@ public class Community {
 		this.content = content;
 	}
 
-	public Community(int id, String title, String writer, String content, String regDate, int viewCnt, int likeCnt, String category) {
+	public Community(int id, String title, String content, String writer, String regDate, int likeCnt, int viewCnt,
+			String category, int commentCnt, String file) {
+		super();
 		this.id = id;
 		this.title = title;
-		this.writer = writer;
 		this.content = content;
+		this.writer = writer;
 		this.regDate = regDate;
-		this.viewCnt = viewCnt;
 		this.likeCnt = likeCnt;
+		this.viewCnt = viewCnt;
 		this.category = category;
+		this.commentCnt = commentCnt;
+		this.file = file;
 	}
-	
+
 //	public String getFileId() {
 //		return fileId;
 //	}
@@ -76,6 +81,14 @@ public class Community {
 		this.title = title;
 	}
 
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
+
 	public String getWriter() {
 		return writer;
 	}
@@ -107,7 +120,7 @@ public class Community {
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
 	}
-	
+
 	public int getLikeCnt() {
 		return likeCnt;
 	}
@@ -126,9 +139,11 @@ public class Community {
 
 	@Override
 	public String toString() {
-		return "Community [id=" + id + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
-				+ regDate + ", likeCnt=" + likeCnt + ", viewCnt=" + viewCnt + ", category=" + category + ", file="
-				+ file + "]";
+		return "Community [id=" + id + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regDate="
+				+ regDate + ", likeCnt=" + likeCnt + ", viewCnt=" + viewCnt + ", category=" + category + ", commentCnt="
+				+ commentCnt + ", file=" + file + "]";
 	}
+
+	
 
 }

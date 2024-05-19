@@ -1,7 +1,7 @@
 <template>
   <div>
     <hr />
-    <p>작성자: {{ review.userId }}</p>
+    <p>작성자: {{ review.writer }}</p>
     <p>작성일: {{ review.regDate }}</p>
     <span>내용: </span>
     <div v-if="review.editing">

@@ -25,7 +25,7 @@ public class ExerciseRestController {
 		this.exerciseService = exerciseService;
 	}
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public ResponseEntity<?> list() {
 		List<Exercise> list = exerciseService.getList();
 		

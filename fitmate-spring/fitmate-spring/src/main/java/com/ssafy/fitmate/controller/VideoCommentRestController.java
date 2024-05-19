@@ -37,7 +37,7 @@ public class VideoCommentRestController {
 		this.commentService = commentService;
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	@Operation(summary = "댓글 전체 조회", description = "댓글 전체 조회 가넝")
 	public ResponseEntity<?> list() {
 		List<VideoComment> list = commentService.getCommentList(); // 검색 조회
@@ -55,7 +55,7 @@ public class VideoCommentRestController {
 		return new ResponseEntity<>(community, HttpStatus.OK);
 	}
 
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<?> write(@ModelAttribute VideoComment comment) {
 		commentService.writeComment(comment);
 		return new ResponseEntity<>(HttpStatus.CREATED);

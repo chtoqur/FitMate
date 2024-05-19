@@ -32,9 +32,15 @@
 <script setup>
 import { useVideoStore } from "@/stores/video";
 import { useUserStore } from "@/stores/user";
+import { onMounted } from "vue";
 
 const store = useVideoStore();
 const userStore = useUserStore();
+
+onMounted(() => {
+  store.getAllVideoList();
+  store.getAllVideoReviewList();
+});
 </script>
 
 <style scoped>

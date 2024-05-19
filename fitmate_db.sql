@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS video (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
+    part VARCHAR(10),
     description VARCHAR(255),
     thumbnail VARCHAR(255),
     channel_name VARCHAR(255),
