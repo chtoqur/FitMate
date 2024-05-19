@@ -21,7 +21,7 @@
   gap: 0.5em;
   margin-top: 100px;
 
-  border: 1px solid blue
+  background-color: rgb(245, 245, 245);
 }
 
 a {

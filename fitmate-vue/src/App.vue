@@ -1,8 +1,8 @@
 <template>
-  <div> 
-    <TheHeaderNav class="header-nav, section"/>
-    <RouterView class="router-view" />
-    <TheFooter />
+  <div class="app-container">
+    <TheHeaderNav class="header-nav"/>
+    <RouterView class="router-view"/>
+    <TheFooter class="footer-section"/>
   </div>
 </template>
 
@@ -17,7 +17,21 @@ import TheFooter from "@/components/common/TheFooter.vue";
     display: none;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .header-nav {
+  height: 100px;
+}
+
+.router-view {
+  flex: 1;
+}
+
+.footer-section {
   height: 100px;
 }
 </style>
