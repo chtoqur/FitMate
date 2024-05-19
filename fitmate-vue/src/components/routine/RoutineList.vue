@@ -1,121 +1,84 @@
 <template>
   <div>
-    <v-card-actions>
-      <v-btn color="red" text="Share"></v-btn>
-
-      <v-btn color="orange" text="Explore"></v-btn>
-    </v-card-actions>
-    <v-combobox
-      multiple
-      label="Combobox"
-      :items="['등', '가슴', '어깨', '팔', '하체']"
-      variant="solo"
-    ></v-combobox>
-    <div class="rating-container">
-      <div class="rating">
-        <input type="radio" id="star-3" name="star-radio" value="star-3"
-          @click="selectLevel(3)" v-model="selectedLevel">
-        <label for="star-3">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
-        </label>
-        <input type="radio" id="star-2" name="star-radio" value="star-2"
-          @click="selectLevel(2)" v-model="selectedLevel">
-        <label for="star-2">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
-        </label>
-        <input type="radio" id="star-1" name="star-radio" value="star-1"
-          @click="selectLevel(1)" v-model="selectedLevel">
-        <label for="star-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
-        </label>
+    <div class="routine-title">
+      <h4>부위와 난이도를 선택해 <br>
+        오늘의 루틴을 시작해보세요
+      </h4>
+    </div>
+    <div class="routine-select">
+      <div class="routine-part">
+        <v-combobox
+          multiple
+          label="운동 부위를 선택하세요"
+          :items="['어깨', '팔', '가슴', '복근', '등', '하체']"
+          variant="solo"
+          v-model="selectedParts"
+          @update:modelValue="selectPart"
+        ></v-combobox>
+      </div>
+      <div class="routine-level">
+        <div class="rating">
+          <input type="radio" id="star-3" name="star-radio" value="star-3"
+            @click="selectLevel(3)" v-model="selectedLevel">
+          <label for="star-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+          </label>
+          <input type="radio" id="star-2" name="star-radio" value="star-2"
+            @click="selectLevel(2)" v-model="selectedLevel">
+          <label for="star-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+          </label>
+          <input type="radio" id="star-1" name="star-radio" value="star-1"
+            @click="selectLevel(1)" v-model="selectedLevel">
+          <label for="star-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+          </label>
+        </div>
       </div>
     </div>
-    <div
-      v-for="routine in routineList"
-      :key="routine.id"
-      @click="navigateToDetail(routine.id)"
-    >
-      <RoutineCard :routine="routine"/>
+    <div class="routine-card">
+      <div
+        v-for="routine in routineList" :key="routine.id"
+      >
+        <RoutineCard :routine="routine"/>
+      </div>
     </div>
-    <!-- <div
-      v-for="routine in routineList"
-      :key="routine.id"
-      @click="navigateToDetail(routine.id)"
-      class="routine-card"
-    >
-      <div>
-        <span>난이도 {{ routine.level }}</span>
-      </div>
-      <div>
-        <span>{{ routine.title }}</span>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useRoutineStore } from '@/stores/routine';
+import { useUserStore } from '@/stores/user';
 import RoutineCard from "@/components/routine/RoutineCard.vue";
 
 const router = useRouter();
 const store = useRoutineStore();
+const userStore = useUserStore();
+
 const routineList = ref([]);
-
-const defaultTxt = ref("전체");
-const optionOneTxt = ref("전신");
-const optionTwoTxt = ref("상체");
-const optionThreeTxt = ref("하체");
-
+const selectedParts = ref([]);
 const selectedLevel = ref("");
 
-const updateDataAttrs = function(option) {
-  switch(option) {
-    case 'all':
-      defaultTxt.value = "전체";
-      break;
-    case 'full':
-      defaultTxt.value = "전신";
-      break;
-    case 'upper':
-      defaultTxt.value = "상체";
-      break;
-    case 'lower':
-      defaultTxt.value = "하체";
-      break;
-    default:
-      defaultTxt.value = "전체";
-  }
-}
-
-const selectPart = function(part) {
-  updateDataAttrs(part);
-
-  // 난이도 미선택
-  if (selectedLevel.value === "" && defaultTxt.value !== "전체") {
-    routineList.value = store.routineList.filter((el) => el.part == defaultTxt.value);
-  } else if (defaultTxt.value === "전체" && selectedLevel.value === ""){
-    routineList.value = store.routineList
-  } else if (defaultTxt.value === "전체" && selectLevel.value !== "") {
-    routineList.value = store.routineList.filter((el) => el.level == selectedLevel.value.charAt(5));
-  } else { // 난이도 선택
+const selectPart = (part) => {
+  if (selectedParts.value.length === 0 && selectedLevel.value === "") { // 부위 미선택 && 난이도 미선택: 전체 출력
+    routineList.value = store.routineList;
+  } else if (selectedParts.value.length !== 0 && selectedLevel.value === ""){ // 부위 선택 && 난이도 미선택
+    routineList.value = store.routineList.filter((el) => selectedParts.value.includes(el.part));
+  } else if (selectedParts.value.length !== 0 && selectLevel.value !== "") { // 부위 선택 && 난이도 선택
+    routineList.value = store.routineList.filter((el) => el.level == selectedLevel.value.charAt(5)).filter((el) => selectedParts.value.includes(el.part));
+  } else { // 부위 미선택 && 난이도 선택
     routineList.value = store.routineList.filter((el) => el.level == selectedLevel.value.charAt(5)).filter((el) => el.part == defaultTxt.value);
   }
 }
 
 const selectLevel = function(level) {
-  if (defaultTxt.value == "전체") {
+  if (selectedParts.value.length == 0) {
     routineList.value = store.routineList.filter((el) => el.level == level);
   } else {
-    routineList.value = store.routineList.filter((el) => el.level == level).filter((el) => el.part == defaultTxt.value);
+    routineList.value = store.routineList.filter((el) => el.level == level).filter((el) => selectedParts.value.includes(el.part));
   }
-}
-
-const navigateToDetail = function(routineId) {
-  setTimeout(()=>{
-    router.push({ name: 'routineDetail', params: { id: routineId }})
-  }, 300);
 }
 
 onMounted(() => {
@@ -124,6 +87,49 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.routine-title {
+  display: flex;
+  height: 200px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  font-size: 40px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.routine-select {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  margin-bottom: 5rem;
+}
+
+.routine-part {
+  display: flex;
+  width: 400px;
+  margin-right: 50px;
+}
+
+.routine-level {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.routine-card {
+  display: flex;
+  margin: 0 19%;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5rem;
+}
+
+/* import */
+
 .select {
   width: fit-content;
   cursor: pointer;
@@ -222,12 +228,6 @@ onMounted(() => {
   content: attr(data-three);
 }
 
-.rating-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .rating {
   display: flex;
   flex-direction: row-reverse;
@@ -245,8 +245,8 @@ onMounted(() => {
 }
 
 .rating svg {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   overflow: visible;
   fill: transparent;
   stroke: var(--stroke);
@@ -311,9 +311,5 @@ onMounted(() => {
     transform: scale(1.2);
     fill: var(--fill);
   }
-}
-
-.routine-card {
-  border: 1px solid black;
 }
 </style>
