@@ -20,10 +20,10 @@
       <div class="video-liked">
         <span>좋아요한 영상</span>
       </div>
-      <RouterLink to="video/liked">찜</RouterLink>
       <div class="love">
         <input id="switch" type="checkbox"
-        @click.prevent="loadLikedVideo"
+        :checked="isChecked"
+        @click="handleCheckboxClick"
         >
         <label class="love-heart" for="switch">
           <i class="left"></i>
@@ -35,55 +35,59 @@
     </div>
     <div class="video-list">
       <div
-        v-for="video in store.videoList" :key="video.id"
+        v-for="video in videoList" :key="video.id"
       >
-        <RouterLink :to="`/video/${video.id}`">
-          <v-card
-            class="mx-auto"
-            max-width="430"
-            height="340"
-            hover
-          >
-            <v-card-item style="padding-bottom: 0;">
+        <v-card
+        class="mx-auto"
+        max-width="430"
+        height="350"
+        hover
+        >
+          <v-card-item style="padding-bottom: 0;">
+            <RouterLink :to="`/video/${video.id}`"
+              class="router-link"
+            >
               <v-img
                 :src="video.thumbnail"
                 style="width: 400px;"  
               >
               </v-img>
-              <v-card-title>
+              <v-card-title
+                class="vcard-title"
+              >
                 {{ video.title }}
               </v-card-title>
               <v-card-subtitle>
                 운동 부위 : {{ video.part }}
               </v-card-subtitle>
-            </v-card-item>
-            <v-card-actions style="padding-top: 0;">
-              <v-spacer></v-spacer>
-              <v-btn
-                color="medium-emphasis"
-                icon="mdi-heart"
-                size="small"
+            </RouterLink>
+          </v-card-item>
+          <v-card-actions style="padding-top: 0;">
+            <v-spacer></v-spacer>
+            <v-btn
+              color="medium-emphasis"
+              icon="mdi-heart"
+              size="small"
+            ></v-btn>
+            <v-btn
+              color="medium-emphasis"
+              icon="mdi-bookmark"
+              size="small"
+            ></v-btn>
+            <v-btn
+              color="medium-emphasis"
+              icon="mdi-share-variant"
+              size="small"
               ></v-btn>
-              <v-btn
-                color="medium-emphasis"
-                icon="mdi-bookmark"
-                size="small"
-              ></v-btn>
-              <v-btn
-                color="medium-emphasis"
-                icon="mdi-share-variant"
-                size="small"
-              ></v-btn>
-            </v-card-actions>
-          </v-card>
-        </RouterLink>
+          </v-card-actions>
+        </v-card>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useVideoStore } from "@/stores/video";
 import { useUserStore } from "@/stores/user";
@@ -93,21 +97,57 @@ const router = useRouter();
 const userStore = useUserStore();
 
 const selectedParts = ref([]);
+const isChecked = ref(false);
+const videoList = ref([]);
 
-const loadLikedVideo = () => {
+
+// const isLiked = (videoId) => {
+//   console.log(likeBtn);
+//   if (userStore.loginUser.id !== '') {
+//     likeBtn.classList.remove("text-medium-emphasis");
+//   }
+//   return userStore.loginUser.likedVideos.includes(videoId);
+// }
+
+const handleCheckboxClick = (event) => {
   if (userStore.loginUser.id === '') {
+    event.preventDefault();
     if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
       router.push({ name: 'login' })
     }
+  } else { // 로그인 상태
+    isChecked.value = event.target.checked;
+    selectPart();
   }
 }
+
+const selectPart = () => {
+  if (selectedParts.value.length === 0 && isChecked.value === false) { // 부위 미선택 && 찜목록 OFF
+    videoList.value = store.videoList;
+  } else if (selectedParts.value.length !== 0 && isChecked.value === false){ // 부위 선택 && 찜목록 OFF
+    videoList.value = store.videoList.filter((el) => selectedParts.value.includes(el.part));
+  } else if (selectedParts.value.length !== 0 && isChecked.value === true) { // 부위 선택 && 찜목록 ON
+    videoList.value = store.videoList.filter((el) => userStore.loginUser.likedVideos.includes(el.id)).filter((el) => selectedParts.value.includes(el.part));
+  } else { // 부위 미선택 && 찜목록 ON
+    videoList.value = store.videoList.filter((el) => userStore.loginUser.likedVideos.includes(el.id));
+  }
+}
+
+onMounted(() => {
+  videoList.value = store.videoList;
+})
 
 </script>
 
 <style scoped>
+.liked > .v-btn__content {
+  color: red;
+}
+
 * {
   text-decoration: none;
 }
+
 
 ul {
   list-style-type: none;
@@ -157,6 +197,14 @@ ul {
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
+}
+
+.router-link {
+  color: black;
+}
+
+.vcard-title {
+  margin-top: 5px;
 }
 
 /* 찜 토글 버튼 */
