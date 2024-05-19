@@ -61,7 +61,7 @@ const routineList = ref([]);
 const selectedParts = ref([]);
 const selectedLevel = ref("");
 
-const selectPart = (part) => {
+const selectPart = () => {
   if (selectedParts.value.length === 0 && selectedLevel.value === "") { // 부위 미선택 && 난이도 미선택: 전체 출력
     routineList.value = store.routineList;
   } else if (selectedParts.value.length !== 0 && selectedLevel.value === ""){ // 부위 선택 && 난이도 미선택
