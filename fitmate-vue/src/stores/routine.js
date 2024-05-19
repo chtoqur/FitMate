@@ -6,41 +6,49 @@ export const useRoutineStore = defineStore("routine", ()=>{
   const routineList = ref([
     {
       id: 1,
-      title: "초보를 위한 전신 루틴 for men",
-      level: 1,
-      part: "전신",
+      title: "허벅지 집중 루틴",
+      img: "url('@/assets/img/routine/1.jpg')",
+      level: 2,
+      part: "하체",
       courses: [
         {
-          id: 1,
-          name: "덤벨 벤치 프레스",
+          id: 5,
           set: "3",
-          reps: "8~12회"
+          reps: "10회"
         },
         {
-          id: 2,
-          name: "랫풀다운",
+          id: 6,
           set: "3",
-          reps: "8~12회"
+          reps: "10회"
         },
         {
-          id: 3,
-          name: "덤벨 숄더 프레스",
+          id: 7,
           set: "3",
-          reps: "8~12회"
+          reps: "10회"
         },
         {
-          id: 4,
-          name: "라잉 레그 컬",
+          id: 8,
+          set: "5",
+          reps: "5회"
+        },
+        {
+          id: 9,
           set: "3",
-          reps: "8~12회"
-        }
+          reps: "10회"
+        },
+        {
+          id: 10,
+          set: "5",
+          reps: "10회"
+        },
       ]
     },
     {
       id: 2,
-      title: "초보를 위한 전신 루틴 for women",
-      level: 3,
-      part: "전신",
+      title: "어깨 집중 루틴",
+      img: "",
+      level: 2,
+      part: "어깨",
       courses: [
         {
           id: 2,
@@ -70,9 +78,10 @@ export const useRoutineStore = defineStore("routine", ()=>{
     },
     {
       id: 3,
-      title: "테스트 3",
-      level: 3,
-      part: "전신",
+      title: "하체 집중 루틴",
+      img: "",
+      level: 2,
+      part: "하체",
       courses: [
         {
           id: 2,
@@ -102,9 +111,11 @@ export const useRoutineStore = defineStore("routine", ()=>{
     },
     {
       id: 4,
-      title: "테스트 4",
-      level: 3,
-      part: "전신",
+      title: "복근 집중 루틴",
+      img: "",
+      
+      level: 2,
+      part: "복근",
       courses: [
         {
           id: 2,
@@ -134,9 +145,9 @@ export const useRoutineStore = defineStore("routine", ()=>{
     },
     {
       id: 5,
-      title: "테스트 5",
+      title: "프레임을 넓히는 등 루틴",
       level: 3,
-      part: "전신",
+      part: "등",
       courses: [
         {
           id: 2,
@@ -166,9 +177,9 @@ export const useRoutineStore = defineStore("routine", ()=>{
     },
     {
       id: 6,
-      title: "테스트 6",
-      level: 3,
-      part: "전신",
+      title: "힙업 하체 루틴",
+      level: 1,
+      part: "하체",
       courses: [
         {
           id: 2,
@@ -198,9 +209,9 @@ export const useRoutineStore = defineStore("routine", ()=>{
     },
     {
       id: 7,
-      title: "테스트 7",
-      level: 3,
-      part: "전신",
+      title: "단단한 코어를 위한 복근 루틴",
+      level: 1,
+      part: "복근",
       courses: [
         {
           id: 2,
@@ -230,9 +241,9 @@ export const useRoutineStore = defineStore("routine", ()=>{
     },
     {
       id: 8,
-      title: "테스트 8",
+      title: "덤벨로 수행하는 하체 루틴",
       level: 3,
-      part: "전신",
+      part: "하체",
       courses: [
         {
           id: 2,
@@ -262,9 +273,9 @@ export const useRoutineStore = defineStore("routine", ()=>{
     },
     {
       id: 9,
-      title: "테스트 9",
-      level: 3,
-      part: "전신",
+      title: "팔 집중 루틴",
+      level: 1,
+      part: "팔",
       courses: [
         {
           id: 2,
