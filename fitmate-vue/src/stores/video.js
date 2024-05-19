@@ -7,7 +7,7 @@ export const useVideoStore = defineStore("video", () => {
     {
       id: 1,
       title: "전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]",
-      part: "전신",
+      part: "어깨",
       url: "https://www.youtube.com/embed/gMaB-fG4u4g",
       thumbnail:
         "https://i.ytimg.com/vi/gMaB-fG4u4g/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCYL_b5RWp6EGD3vhWaugQqB-opA",
@@ -16,7 +16,7 @@ export const useVideoStore = defineStore("video", () => {
     {
       id: 2,
       title: "하루 15분! 전신 칼로리 불태우는 다이어트 운동",
-      part: "전신",
+      part: "팔",
       url: "https://www.youtube.com/embed/swRNeYw1JkY",
       thumbnail:
         "https://i.ytimg.com/vi/swRNeYw1JkY/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBdCntJRy-V96l8tfZNHv6f2BoE-w",
@@ -26,7 +26,7 @@ export const useVideoStore = defineStore("video", () => {
       id: 3,
       title:
         "상체 다이어트 최고의 운동 BEST [팔뚝살/겨드랑이살/등살/가슴어깨라인]",
-      part: "상체",
+      part: "가슴",
       url: "https://www.youtube.com/embed/54tTYO-vU2E",
       thumbnail:
         "https://i.ytimg.com/vi/54tTYO-vU2E/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLDxWlfWshc8D0IBhLDgV_oy_9u31A",
@@ -35,7 +35,7 @@ export const useVideoStore = defineStore("video", () => {
     {
       id: 4,
       title: "상체비만 다이어트 최고의 운동 [상체 핵매운맛]",
-      part: "상체",
+      part: "등",
       url: "https://www.youtube.com/embed/QqqZH3j_vH0",
       thumbnail:
         "https://i.ytimg.com/vi/QqqZH3j_vH0/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAHjpKpEBo2dH3F0U5ob8sSagiioQ",
@@ -62,7 +62,7 @@ export const useVideoStore = defineStore("video", () => {
     {
       id: 7,
       title: "11자복근 복부 최고의 운동 [복근 핵매운맛]",
-      part: "복부",
+      part: "복근",
       url: "https://www.youtube.com/embed/PjGcOP-TQPE",
       thumbnail:
         "https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA",
@@ -71,7 +71,7 @@ export const useVideoStore = defineStore("video", () => {
     {
       id: 8,
       title: "(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)",
-      part: "복부",
+      part: "복근",
       url: "https://www.youtube.com/embed/7TLk7pscICk",
       thumbnail:
         "https://i.ytimg.com/vi/7TLk7pscICk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLCSzdQy_ZUn3NE2zk6_gtu61aShgg",
