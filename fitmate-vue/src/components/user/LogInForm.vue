@@ -1,15 +1,19 @@
 <template>
   <div>
     <p>아이디</p>
-    <input type="text" v-model="id" @keyup.enter="store.login(id, password)" />
+    <input
+      type="text"
+      v-model="user.id"
+      @keyup.enter="store.login(id, password)"
+    />
     <p>비밀번호</p>
     <input
       type="password"
-      v-model="password"
-      @keyup.enter="store.login(id, password)"
+      v-model="user.password"
+      @keyup.enter="store.login(user)"
     />
     <br />
-    <button @click="store.login(id, password)">로그인</button>
+    <button @click="store.login(user)">로그인</button>
     <br />
     <RouterLink to="/signup">Signup</RouterLink>
   </div>
@@ -21,8 +25,10 @@ import { ref } from "vue";
 
 const store = useUserStore();
 
-const id = ref("");
-const password = ref("");
+const user = ref({
+  id: "",
+  password: "",
+});
 </script>
 
 <style scoped></style>

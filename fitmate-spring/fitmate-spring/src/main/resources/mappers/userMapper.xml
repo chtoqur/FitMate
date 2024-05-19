@@ -15,7 +15,7 @@
 	</insert>
 
 	<select id="selectOne" parameterType="Map" resultType="User">
-		SELECT id, name, nickname, email, age, fitness_level AS fitnessLevel, post_code AS postCode, address, liked_videos AS likedVideos
+		SELECT id, name, nickname, email, age, fitness_level AS fitnessLevel, post_code AS postCode, address, liked_videos AS likedVideos, img
 		FROM users
 		WHERE id = #{id} AND password = #{password}
 	</select>
@@ -31,5 +31,15 @@
 		SET liked_videos=#{likedVideos}
 		WHERE id = #{id}
 	</update>
+	
+	<update id="updateUserProfileImage">
+        UPDATE users
+        SET img = #{imageUrl}
+        WHERE id = #{userId}
+    </update>
+    
+    <select id="checkIdExists" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM users WHERE id = #{id}
+    </select>
 	
 </mapper>

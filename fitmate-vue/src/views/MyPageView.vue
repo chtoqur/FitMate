@@ -1,10 +1,9 @@
 <template>
   <div>
     <div>
-      <!-- 프로필 이미지 영역 -->
       <img
-        :src="profilePictureUrl"
-        alt="Profile Picture"
+        :src="`http://localhost:8080${profilePictureUrl}`"
+        alt="프로필사진"
         @click="showModal = true"
         class="profile-picture"
       />
@@ -14,15 +13,13 @@
         @change="onFileChange"
         style="display: none"
       />
-
-      <!-- 모달 -->
       <div v-if="showModal" class="modal">
         <div class="modal-content">
           <span class="close" @click="closeModal">&times;</span>
           <input type="file" @change="onFileChange" ref="fileInput" />
           <img v-if="previewImage" :src="previewImage" alt="Profile Preview" />
-          <button @click="saveProfilePicture">Save</button>
-          <button @click="closeModal">Cancel</button>
+          <button @click="saveProfilePicture">저장</button>
+          <button @click="closeModal">취소</button>
         </div>
       </div>
     </div>
@@ -72,6 +69,7 @@ import { useVideoStore } from "@/stores/video";
 import { useCommunityStore } from "@/stores/community";
 import { useCommentStore } from "@/stores/comment";
 import { onMounted, ref, computed } from "vue";
+import axios from "axios";
 
 const userStore = useUserStore();
 const videoStore = useVideoStore();
@@ -89,20 +87,40 @@ const onFileChange = (event) => {
 
 const saveProfilePicture = async () => {
   if (!selectedFile.value) {
-    alert("No file selected");
+    alert("파일이 선택되지 않았습니다.");
     return;
   }
 
-  // 업로드 로직 실행 후, 이미지 업데이트
-  userStore.loginUser.image = previewImage.value;
+  try {
+    const formData = new FormData();
+    formData.append("file", selectedFile.value);
+    formData.append("userId", userStore.loginUser.id);
 
-  // 모달 닫기
-  closeModal();
+    const response = await axios.post(
+      "http://localhost:8080/user/image",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    if (response.data.message === "success") {
+      // 프로필 이미지 경로 업데이트
+      userStore.loginUser.image = response.data.imageUrl;
+      closeModal();
+    } else {
+      alert("프로필 이미지 업로드에 실패했습니다.");
+    }
+  } catch (error) {
+    console.error("프로필 이미지 업로드 오류:", error);
+    alert("프로필 이미지 업로드에 실패했습니다.");
+  }
 };
 
 const closeModal = () => {
   showModal.value = false;
-  // 선택된 파일과 프리뷰 초기화
   selectedFile.value = null;
   previewImage.value = null;
 };
@@ -137,17 +155,12 @@ onMounted(() => {
       userStore.loginUser.myComment.push(com);
     }
   });
-
-  // fileInput.value = document.createElement("input");
-  // fileInput.value.type = "file";
-  // fileInput.value.style.display = "none";
-  // document.body.appendChild(fileInput.value);
 });
 </script>
 
 <style scoped>
 .modal {
-  display: block; /* Hidden by default */
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;

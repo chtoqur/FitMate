@@ -1,6 +1,7 @@
 package com.ssafy.fitmate.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ssafy.fitmate.model.dto.User;
 
@@ -11,4 +12,10 @@ public interface UserService {
 	public void signup(User user);
 	//로그인 하기
 	public User login(String id, String password);
+	
+	Map<String, Object> authenticate(String id, String password);
+	
+	public void updateUserProfileImage(String userId, String imageUrl);
+	
+	public int checkIdExists(String id);
 }
