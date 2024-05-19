@@ -47,6 +47,7 @@
 
 <script setup>
 import { useUserStore } from "@/stores/user";
+import { onMounted, ref } from 'vue';
 
 const store = useUserStore();
 </script>
@@ -122,5 +123,18 @@ button {
 
 .router-link-active span {
   color: rgb(118, 159, 205);
+}
+
+/* sticky */
+
+.nav-sticky .nav-links {
+position: fixed;
+/* width: 90%; */
+
+/* 필터 코드 */
+/* -webkit-backdrop-filter: saturate(180%) blur(15px);
+-moz-backdrop-filter: saturate(180%) blur(15px);
+-o-backdrop-filter: saturate(180%) blur(15px);
+backdrop-filter: saturate(180%) blur(15px); */
 }
 </style>

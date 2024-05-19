@@ -1,31 +1,32 @@
 <template>
   <div>
-    <section>
-      <div class="section-2">
-        <div class="rank-section">
-          <HomePopularPost />
+      <section>
+        <div class="section-2">
+          <div class="rank-section">
+            <HomePopularPost />
+          </div>
+          <div>
+            <HomeRankedVideo />
+          </div>
         </div>
+      </section>
+      <section>
         <div>
-          <HomeRankedVideo />
         </div>
-      </div>
-    </section>
-    <section>
+      </section>
       <div>
+        <KakaoMap />
       </div>
-    </section>
-    <div>
-      <KakaoMap />
-    </div>
   </div>
 </template>
-
 <script setup>
 import HomePopularPost from "@/components/home/HomePopularPost.vue";
 import HomeRankedVideo from "@/components/home/HomeRankedVideo.vue";
 import KakaoMap from "@/components/kakao/KakaoMap.vue";
-</script>
+import { onMounted, ref } from 'vue';
 
+
+</script>
 <style scoped>
 * {
   text-align: center;
