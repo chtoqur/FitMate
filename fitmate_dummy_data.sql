@@ -1,5 +1,6 @@
 -- user 테이블 더미 데이터 삽입
 INSERT INTO users (id, password, name, nickname, email, age, fitness_level, post_code, address, liked_videos, img) VALUES
+('ssafy', '1234', 'ssafy', 'ssafy', 'ssafy@ssafy.com', '25', '중', '08760', '서울특별시 관악구 관천로 10길 34', '[1,3,5]', 'ssafy.jpg'),
 ('user1', 'password1', 'Alice', 'alice', 'alice@example.com', 25, '하', '12345', '123 Main St', '[1, 2]', 'img1.jpg'),
 ('user2', 'password2', 'Bob', 'bob', 'bob@example.com', 30, '중', '23456', '456 Oak St', '[2, 3]', 'img2.jpg'),
 ('user3', 'password3', 'Charlie', 'charlie', 'charlie@example.com', 35, '상', '34567', '789 Pine St', '[3, 4]', 'img3.jpg'),
@@ -12,15 +13,16 @@ INSERT INTO users (id, password, name, nickname, email, age, fitness_level, post
 ('user10', 'password10', 'Jack', 'jack', 'jack@example.com', 29, '하', '01234', '707 Beech St', '[10, 1]', 'img10.jpg');
 
 -- video 테이블 더미 데이터 삽입
-INSERT INTO video (title, description, thumbnail, channel_name, view_cnt, youtube_videoId) VALUES
-('Workout 1', 'Full body workout', 'thumb1.jpg', 'Channel A', 1000, 'vid1'),
-('Workout 2', 'Cardio session', 'thumb2.jpg', 'Channel B', 2000, 'vid2'),
-('Workout 3', 'Strength training', 'thumb3.jpg', 'Channel C', 1500, 'vid3'),
-('Workout 4', 'Yoga for beginners', 'thumb4.jpg', 'Channel D', 2500, 'vid4'),
-('Workout 5', 'Advanced HIIT', 'thumb5.jpg', 'Channel E', 3000, 'vid5'),
-('Workout 6', 'Pilates routine', 'thumb6.jpg', 'Channel F', 1200, 'vid6'),
-('Workout 7', 'Morning stretches', 'thumb7.jpg', 'Channel G', 1300, 'vid7'),
-('Workout 8', 'Evening relaxation', 'thumb8.jpg', 'Channel H', 2200, 'vid8'),
+INSERT INTO video (id, title, part, url, thumbnail, view_cnt)
+VALUES
+('전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]', '전신', 'https://www.youtube.com/embed/gMaB-fG4u4g', 'https://i.ytimg.com/vi/gMaB-fG4u4g/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCYL_b5RWp6EGD3vhWaugQqB-opA', 25),
+('하루 15분! 전신 칼로리 불태우는 다이어트 운동', '전신', 'https://www.youtube.com/embed/swRNeYw1JkY', 'https://i.ytimg.com/vi/swRNeYw1JkY/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBdCntJRy-V96l8tfZNHv6f2BoE-w', 1421),
+('상체 다이어트 최고의 운동 BEST [팔뚝살/겨드랑이살/등살/가슴어깨라인]', '상체', 'https://www.youtube.com/embed/54tTYO-vU2E', 'https://i.ytimg.com/vi/54tTYO-vU2E/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLDxWlfWshc8D0IBhLDgV_oy_9u31A', 13),
+('상체비만 다이어트 최고의 운동 [상체 핵매운맛]', '상체', 'https://www.youtube.com/embed/QqqZH3j_vH0', 'https://i.ytimg.com/vi/QqqZH3j_vH0/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAHjpKpEBo2dH3F0U5ob8sSagiioQ', 2048127),
+('하체운동이 중요한 이유? 이것만 보고 따라하자 ! [하체운동 교과서]', '하체', 'https://www.youtube.com/embed/tzN6ypk6Sps', 'https://i.ytimg.com/vi/tzN6ypk6Sps/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAAxHIjOn8ti0G7vnAhfOIu_s27tQ', 175),
+('저는 하체 식주의자 입니다', '하체', 'https://www.youtube.com/embed/u5OgcZdNbMo', 'https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA', 85875641),
+('11자복근 복부 최고의 운동 [복근 핵매운맛]', '복부', 'https://www.youtube.com/embed/PjGcOP-TQPE', 'https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA', 45612),
+('(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)', '복부', 'https://www.youtube.com/embed/7TLk7pscICk', 'https://i.ytimg.com/vi/7TLk7pscICk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLCSzdQy_ZUn3NE2zk6_gtu61aShgg', 45675123),
 ('Workout 9', 'Core exercises', 'thumb9.jpg', 'Channel I', 1700, 'vid9'),
 ('Workout 10', 'Upper body strength', 'thumb10.jpg', 'Channel J', 1100, 'vid10');
 
