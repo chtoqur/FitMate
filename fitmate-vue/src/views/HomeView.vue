@@ -11,8 +11,7 @@
       </div>
     </section>
     <section>
-      <div>
-      </div>
+      <div></div>
     </section>
     <div>
       <KakaoMap />
@@ -37,5 +36,4 @@ import KakaoMap from "@/components/kakao/KakaoMap.vue";
   margin: 0 19%;
   height: 400px;
 }
-
 </style>

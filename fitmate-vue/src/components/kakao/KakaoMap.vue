@@ -1,22 +1,47 @@
 <template>
   <div>
-    <div id="map"></div>
+    <div class="container">
+      <div id="map"></div>
+      <ul>
+        <li v-for="gym in gyms" :key="gym.id" @click="goToGymDetail(gym.id)">
+          {{ gym.place_name }} - {{ gym.address_name }}
+        </li>
+      </ul>
+    </div>
+    <button v-if="store.loginUser.id !== ''" @click="showPostCodeLocation">
+      내 집 위치
+    </button>
+    <span v-if="store.loginUser.id !== ''"> | </span>
+    <button v-if="store.loginUser.id !== ''" @click="searchGymsByPostCode">
+      내 집 주변 헬스장 찾기
+    </button>
+    <span v-if="store.loginUser.id !== ''"> | </span>
     <button @click="initMap">내위치</button>
+    <span> | </span>
+    <button @click="searchNearbyGyms">내위치 주변 헬스장 찾기</button>
+    <span> | </span>
     <button @click="displayMarker(myMarkerPosition)">즐겨찾기 마커 표시</button>
+    <span> | </span>
     <button @click="displayMarker([])">즐겨찾기 마커 해제</button>
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref, toRaw } from "vue";
+import { useUserStore } from "@/stores/user";
+
+const store = useUserStore();
+
 let map = null;
+const gyms = ref([]);
+
 const initMap = function () {
   let myCenter = new kakao.maps.LatLng(37.501294, 127.039604);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      // const lat = position.coords.latitude;
-      // const lon = position.coords.longitude;
-      // myCenter = new kakao.maps.LatLng(lat, lon);
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      myCenter = new kakao.maps.LatLng(lat, lon);
       new kakao.maps.Marker({
         map,
         position: myCenter,
@@ -41,14 +66,131 @@ const initMap = function () {
   map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 };
 
+// 내 위치 기준으로 헬스장 세개 검색
+const searchNearbyGyms = function () {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const coords = new kakao.maps.LatLng(lat, lon);
+
+      const places = new kakao.maps.services.Places();
+      places.keywordSearch(
+        "헬스장",
+        function (data, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            const sortedData = data
+              .sort((a, b) => a.distance - b.distance)
+              .slice(0, 3);
+            gyms.value = sortedData.map((gym) => ({
+              id: gym.id,
+              place_name: gym.place_name,
+              address_name: gym.address_name,
+              latlng: [gym.y, gym.x],
+            }));
+
+            const gymPositions = gyms.value.map((gym) => [
+              gym.latlng[0],
+              gym.latlng[1],
+            ]);
+            displayMarker(gymPositions);
+          } else {
+            alert("헬스장을 찾을 수 없습니다.");
+          }
+        },
+        { location: coords, radius: 5000 }
+      );
+    });
+  } else {
+    alert("현재 위치를 가져올 수 없습니다.");
+  }
+};
+
+// 주소지 중심으로 헬스장 검색
+const searchGymsByPostCode = function () {
+  const geocoder = new kakao.maps.services.Geocoder();
+  geocoder.addressSearch(
+    "서울특별시 관악구 관천로10길 34 스위트빌 502호",
+    function (result, status) {
+      if (status === kakao.maps.services.Status.OK) {
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        const places = new kakao.maps.services.Places();
+        places.keywordSearch(
+          "헬스장",
+          function (data, status) {
+            if (status === kakao.maps.services.Status.OK) {
+              const sortedData = data
+                .sort((a, b) => a.distance - b.distance)
+                .slice(0, 3);
+              gyms.value = sortedData.map((gym) => ({
+                id: gym.id,
+                place_name: gym.place_name,
+                address_name: gym.address_name,
+                latlng: [gym.y, gym.x],
+              }));
+
+              const gymPositions = gyms.value.map((gym) => [
+                gym.latlng[0],
+                gym.latlng[1],
+              ]);
+              displayMarker(gymPositions);
+            } else {
+              alert("헬스장을 찾을 수 없습니다.");
+            }
+          },
+          { location: coords, radius: 5000 }
+        );
+      } else {
+        alert("우편번호에 해당하는 위치를 찾을 수 없습니다.");
+      }
+    }
+  );
+};
+
+// 우편번호로 집 위치 보이게 하기
+const showPostCodeLocation = function () {
+  console.log(store.loginUser.postCode);
+  const geocoder = new kakao.maps.services.Geocoder();
+  geocoder.addressSearch(
+    "서울특별시 관악구 관천로10길 34 스위트빌 502호",
+    function (result, status) {
+      console.log(status);
+      if (status === kakao.maps.services.Status.OK) {
+        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+        const marker = new kakao.maps.Marker({
+          map: map,
+          position: coords,
+        });
+        map.setCenter(coords);
+      } else {
+        alert("우편번호에 해당하는 위치를 찾을 수 없습니다.");
+      }
+    }
+  );
+};
+
+// 지도 중심 위치로 그 헬스장 잡기
+const focusOnGym = function (latlng) {
+  const position = new kakao.maps.LatLng(latlng[0], latlng[1]);
+  map.setCenter(position);
+  map.setLevel(3);
+};
+
+// 카카오맵 사이트에서 해당 헬스장 띄워버리기
+const goToGymDetail = function (gymId) {
+  const url = `https://place.map.kakao.com/${gymId}`;
+  window.open(url, "_blank");
+};
+
 onMounted(() => {
   if (window.kakao && window.kakao.maps) {
     initMap();
   } else {
-    const script = document.createElement("script"); // autoload=false 스크립트를 동적으로 로드하기 위해서 사용
+    const script = document.createElement("script");
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
       import.meta.env.VITE_KAKAO_API_KEY
-    }`;
+    }&libraries=services`;
     script.addEventListener("load", () => {
       kakao.maps.load(initMap);
     }); //헤드태그에 추가
@@ -56,7 +198,7 @@ onMounted(() => {
   }
 });
 
-const myMarkerPosition = ref([[33.450701, 126.570667]]);
+const myMarkerPosition = ref([[37.501294, 127.039604]]);
 
 const markers = ref([]);
 
@@ -89,6 +231,13 @@ const displayMarker = function (markerPositions) {
 </script>
 
 <style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
 #map {
   width: 500px;
   height: 400px;

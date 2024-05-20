@@ -44,7 +44,7 @@ public class CommunityRestController {
 		this.communityService = communityService;
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	@Operation(summary = "게시글 조회", description = "게시글 조건에 따른 조회 가넝")
 	public ResponseEntity<?> list(@Parameter(description = "검색 조건") @ModelAttribute SearchCondition condition) {
 //		List<Community> list = communityService.search(condition); // 검색 조회
@@ -66,7 +66,7 @@ public class CommunityRestController {
 		return new ResponseEntity<Community>(community, headers, HttpStatus.OK);
 	}
 
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<?> write(@ModelAttribute Community community) {
 		// 등록한 게시글을 보냈는데
 		communityService.writePost(community);

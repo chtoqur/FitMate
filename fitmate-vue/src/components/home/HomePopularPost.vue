@@ -4,8 +4,12 @@
       <h3>커뮤니티 인기글</h3>
     </div>
     <ol>
-      <li v-for="(post, index) in homeStore.popularPostList" :key="post.id"
-      class="popular-li">
+      <li
+        v-for="(post, index) in homeStore.popularPostList"
+        :key="post.id"
+        class="popular-li"
+      >
+        <!-- <RouterLink :to="`community/${post.id}`"> -->
         <a href="#" class="popular-link">
           <div class="wrap-info">
             <span class="post-idx">{{ index + 1 }}</span>
@@ -23,24 +27,24 @@
             </span>
           </div>
         </a>
+        <!-- </RouterLink> -->
       </li>
     </ol>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
-import { useHomeStore } from '@/stores/home';
+import { ref, onBeforeMount, computed } from "vue";
+import { useHomeStore } from "@/stores/home";
 import { useCommunityStore } from "@/stores/community";
 
 const homeStore = useHomeStore();
 const communityStore = useCommunityStore();
 
-onMounted(() => {
+onBeforeMount(() => {
   communityStore.getPostList();
   homeStore.getPopularPosts();
 });
-
 </script>
 
 <style scoped>

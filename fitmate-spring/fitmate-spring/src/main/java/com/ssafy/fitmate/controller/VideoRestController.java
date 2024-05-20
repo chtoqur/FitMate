@@ -30,7 +30,7 @@ public class VideoRestController {
 		this.videoService = videoService;
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	@Operation(summary = "동영상 전체 조회", description = "동영상 전체 조회 가넝")
 	public ResponseEntity<?> list() {
 		List<Video> list = videoService.getVideoList();
@@ -48,7 +48,7 @@ public class VideoRestController {
 		return new ResponseEntity<Video>(community, HttpStatus.OK);
 	}
 
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<?> write(@ModelAttribute Video video) {
 		videoService.writeVideo(video);
 		
