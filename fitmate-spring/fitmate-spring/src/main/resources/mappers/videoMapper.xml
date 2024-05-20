@@ -7,20 +7,20 @@
 	
 	<!-- 전체 영상 조회 -->
 	<select id="selectAll" resultType="video">
-		SELECT id, title, description, thumbnail, channel_name AS channelName, view_cnt AS viewCnt, youtube_videoId AS youtubeVideoID
+		SELECT id, title, part, description, thumbnail, channel_name AS channelName, view_cnt AS viewCnt, youtube_videoId AS youtubeVideoID
 		FROM video;
 	</select>
 	
 	<!-- 영상 상세 조회 -->
 	<select id="selectOne" resultType="video" parameterType="int">
-		SELECT id, title, description, thumbnail, channel_name AS channelName, view_cnt AS viewCnt, youtube_videoId AS youtubeVideoID
+		SELECT id, title, part, description, thumbnail, channel_name AS channelName, view_cnt AS viewCnt, youtube_videoId AS youtubeVideoID
 		FROM video
 		WHERE id = #{id};
 	</select>
 	
 	<!-- 영상 등록 -->
 	<insert id="insertVideo" parameterType="Video">
-		INSERT INTO board (title, description, thumbnail, channel_name, youtube_videoId)
-		VALUES (#{title}, #{description}, #{thumbnail}, #{channelName}, #{youtubeVideoId});
+		INSERT INTO board (title, part, description, thumbnail, channel_name, youtube_videoId)
+		VALUES (#{title}, #{part}, #{description}, #{thumbnail}, #{channelName}, #{youtubeVideoId});
 	</insert>
 </mapper>

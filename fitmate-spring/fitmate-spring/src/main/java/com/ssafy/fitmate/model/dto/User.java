@@ -14,6 +14,7 @@ public class User {
 	private String postCode;
 	private String address;
 	private String likedVideos;
+	private String savedRoutine;
 	private String img;
 
 	public User() {
@@ -32,11 +33,12 @@ public class User {
 		this.postCode = postCode;
 		this.address = address;
 		this.likedVideos = "[]";
+		this.savedRoutine = "[]";
 	}
 
 
 	public User(String id, String password, String name, String nickname, String email, int age, String fitnessLevel,
-			String postCode, String address, String likedVideos) {
+			String postCode, String address, String likedVideos, String savedRoutine) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -48,6 +50,7 @@ public class User {
 		this.postCode = postCode;
 		this.address = address;
 		this.likedVideos = likedVideos;
+		this.savedRoutine = savedRoutine;
 	}
 
 	public String getId() {
@@ -130,6 +133,15 @@ public class User {
 		this.likedVideos = likedVideos;
 	}
 	
+	
+	public String getSavedRoutine() {
+		return savedRoutine;
+	}
+
+	public void setSavedRoutine(String savedRoutine) {
+		this.savedRoutine = savedRoutine;
+	}
+
 	public String getImg() {
 		return img;
 	}
@@ -142,6 +154,6 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", name=" + name + ", nickname=" + nickname + ", email="
 				+ email + ", age=" + age + ", fitnessLevel=" + fitnessLevel + ", postCode=" + postCode + ", address="
-				+ address + ", likedVideos=" + likedVideos + "]";
+				+ address + ", likedVideos=" + likedVideos + ", savedRoutine=" + savedRoutine + ", img=" + img + "]";
 	}
 }

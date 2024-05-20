@@ -24,10 +24,9 @@
       </div>
     </div>
     <div>
-      <p>{{ userStore.loginUser.image }}</p>
-      <p>{{ userStore.loginUser.id }}</p>
-      <p>{{ userStore.loginUser.name }}</p>
-      <p>{{ userStore.loginUser.nickname }}</p>
+      <p>아이디 : {{ userStore.loginUser.id }}</p>
+      <p>이름 : {{ userStore.loginUser.name }}</p>
+      <p>닉네임 : {{ userStore.loginUser.nickname }}</p>
     </div>
     <br />
     <div>
@@ -68,7 +67,7 @@ import { useUserStore } from "@/stores/user";
 import { useVideoStore } from "@/stores/video";
 import { useCommunityStore } from "@/stores/community";
 import { useCommentStore } from "@/stores/comment";
-import { onMounted, ref, computed } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 import axios from "axios";
 
 const userStore = useUserStore();
@@ -129,26 +128,24 @@ const profilePictureUrl = computed(() => {
   return userStore.loginUser.image ? userStore.loginUser.image : "";
 });
 
-const openFileSelector = () => {
-  if (!fileInput.value) return;
-  fileInput.value.click();
-};
+// const openFileSelector = () => {
+//   if (!fileInput.value) return;
+//   fileInput.value.click();
+// };
 
-onMounted(() => {
+onBeforeMount(async () => {
   videoStore.nowList = [];
   videoStore.videoList.forEach((video) => {
     if (userStore.loginUser.likedVideos.includes(video.id)) {
       videoStore.nowList.push(video);
     }
   });
-
   userStore.loginUser.myPost = [];
   communityStore.postList.forEach((post) => {
     if (userStore.loginUser.id === post.writer) {
       userStore.loginUser.myPost.push(post);
     }
   });
-
   userStore.loginUser.myComment = [];
   commentStore.allCommentList.forEach((com) => {
     if (userStore.loginUser.id === com.writer) {

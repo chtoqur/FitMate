@@ -30,13 +30,25 @@
         </nav>
         <!-- login/logout / mypage -->
         <div class="nav-right">
-          <RouterLink to="/login" v-if="store.loginUser.id === ''" class="nav-right-el">
+          <RouterLink
+            to="/login"
+            v-if="store.loginUser.id === ''"
+            class="nav-right-el"
+          >
             <span class="mdi mdi-login">&nbsp;Login</span>
           </RouterLink>
-          <RouterLink to="/mypage" v-if="store.loginUser.id !== ''" class="nav-right-el">
+          <RouterLink
+            to="/mypage"
+            v-if="store.loginUser.id !== ''"
+            class="nav-right-el"
+          >
             <span class="mdi mdi-account-circle">&nbsp;Mypage</span>
           </RouterLink>
-          <a v-if="store.loginUser.id !== ''" @click="store.logout" class="nav-right-el">
+          <a
+            v-if="store.loginUser.id !== ''"
+            @click="store.logout"
+            class="nav-right-el"
+          >
             <span class="mdi mdi-logout">&nbsp;Logout</span>
           </a>
         </div>
@@ -47,7 +59,6 @@
 
 <script setup>
 import { useUserStore } from "@/stores/user";
-import { onMounted, ref } from 'vue';
 
 const store = useUserStore();
 </script>
@@ -79,7 +90,9 @@ header {
   margin: 0 19%;
 }
 
-.nav-left, .nav-ul, .nav-right {
+.nav-left,
+.nav-ul,
+.nav-right {
   display: flex;
   gap: 20px;
   align-items: center;
@@ -90,7 +103,13 @@ header {
   gap: 40px;
 }
 
-.nav-left-el, .nav-left-el span, .nav-ul li, .nav-ul-el, .nav-ul-el span, .nav-right-el, .nav-right-el span {
+.nav-left-el,
+.nav-left-el span,
+.nav-ul li,
+.nav-ul-el,
+.nav-ul-el span,
+.nav-right-el,
+.nav-right-el span {
   display: flex;
   height: 100%;
   align-items: center;
@@ -101,7 +120,9 @@ nav {
   align-items: center;
 }
 
-.nav-left span, .nav-ul span, .nav-right span {
+.nav-left span,
+.nav-ul span,
+.nav-right span {
   color: black;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -111,7 +132,9 @@ nav {
   cursor: pointer;
 }
 
-.nav-left span:hover, .nav-ul span:hover, .nav-right span:hover {
+.nav-left span:hover,
+.nav-ul span:hover,
+.nav-right span:hover {
   color: rgb(118, 159, 205);
 }
 
@@ -128,11 +151,11 @@ button {
 /* sticky */
 
 .nav-sticky .nav-links {
-position: fixed;
-/* width: 90%; */
+  position: fixed;
+  /* width: 90%; */
 
-/* 필터 코드 */
-/* -webkit-backdrop-filter: saturate(180%) blur(15px);
+  /* 필터 코드 */
+  /* -webkit-backdrop-filter: saturate(180%) blur(15px);
 -moz-backdrop-filter: saturate(180%) blur(15px);
 -o-backdrop-filter: saturate(180%) blur(15px);
 backdrop-filter: saturate(180%) blur(15px); */

@@ -8,6 +8,15 @@
     </div>
     <div class="video-select">
       <div class="video-part">
+        <!-- <v-combobox
+          v-model="selectedParts"
+          @update:modelValue="selectPart"
+          :items="['어깨', '팔', '가슴', '복근', '등', '하체']"
+          label="I use chips"
+          chips
+          multiple
+          variant="solo"
+        ></v-combobox> -->
         <v-combobox
           multiple
           label="운동 부위를 선택하세요"
@@ -17,10 +26,10 @@
           @update:modelValue="selectPart"
         ></v-combobox>
       </div>
-      <div class="video-liked">
+      <div class="video-liked" v-if="userStore.loginUser.id !== ''">
         <span>좋아요한 영상</span>
       </div>
-      <div class="love">
+      <div class="love" v-if="userStore.loginUser.id !== ''">
         <input
           id="switch"
           type="checkbox"
@@ -37,7 +46,7 @@
     </div>
     <div class="video-list">
       <div v-for="video in videoList" :key="video.id">
-        <v-card class="mx-auto" max-width="430" height="350" hover>
+        <v-card class="mx-auto" max-width="360" height="300" hover>
           <v-card-item style="padding-bottom: 0">
             <RouterLink :to="`/video/${video.id}`" class="router-link">
               <v-img :src="video.thumbnail" style="width: 400px"> </v-img>
@@ -50,9 +59,24 @@
           <v-card-actions style="padding-top: 0">
             <v-spacer></v-spacer>
             <v-btn
+              v-if="
+                userStore.loginUser.id !== '' &&
+                !userStore.loginUser.likedVideos.includes(video.id)
+              "
               color="medium-emphasis"
               icon="mdi-heart"
               size="small"
+              @click="userStore.likeVideo(video.id)"
+            ></v-btn>
+            <v-btn
+              v-if="
+                userStore.loginUser.id !== '' &&
+                userStore.loginUser.likedVideos.includes(video.id)
+              "
+              color="red"
+              icon="mdi-heart"
+              size="small"
+              @click="userStore.unlikeVideo(video.id)"
             ></v-btn>
             <v-btn
               color="medium-emphasis"
@@ -85,7 +109,9 @@ onMounted(() => {
   store.getAllVideoList();
   store.getAllVideoReviewList();
   videoList.value = store.videoList;
+  console.log(store.videoAllReviewList);
 });
+
 const selectedParts = ref([]);
 const isChecked = ref(false);
 const videoList = ref([]);
@@ -198,6 +224,7 @@ ul {
 }
 
 .vcard-title {
+  font-size: 18px;
   margin-top: 5px;
 }
 

@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useHomeStore } from "@/stores/home";
 
 const homeStore = useHomeStore();

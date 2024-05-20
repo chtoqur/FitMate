@@ -43,22 +43,13 @@ export const useVideoStore = defineStore("video", () => {
 
   const videoReviewList = ref([]);
 
-  const createReview = function (review, video, user) {
-    videoReviewList.value.push({
-      id: reviewId,
-      videoId: video,
-      writer: user,
-      content: review,
-      regDate: new Date().toLocaleString(),
-    });
-
-    videoAllReviewList.value.push({
-      id: reviewId++,
-      videoId: video,
-      writer: user,
-      content: review,
-      regDate: new Date().toLocaleString(),
-    });
+  const createReview = async (review) => {
+    try {
+      const response = await axios.post(REST_VIDEO_REVIEW_API, review);
+      getReviewList(review.videoId);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const getAllVideoReviewList = async () => {
@@ -93,11 +84,10 @@ export const useVideoStore = defineStore("video", () => {
 
   const updateReview = async (id, review) => {
     try {
-      const response = await axios({
-        url: `${REST_VIDEO_REVIEW_API}/${id}`,
-        method: "PUT",
-        data: review,
-      });
+      const response = await axios.put(
+        `${REST_VIDEO_REVIEW_API}/${id}`,
+        review
+      );
       getReviewList(review.videoId);
     } catch (err) {
       console.log(err);
@@ -105,14 +95,18 @@ export const useVideoStore = defineStore("video", () => {
   };
 
   const deleteReview = async (id, videoId) => {
-    try {
-      const response = await axios({
-        url: `${REST_VIDEO_REVIEW_API}/${videoId}`,
-        method: "DELETE",
-      });
-      getReviewList(videoId);
-    } catch (err) {
-      console.log(err);
+    if (confirm("정말 삭제하시겠습니까?")) {
+      try {
+        const response = await axios({
+          url: `${REST_VIDEO_REVIEW_API}/${id}`,
+          method: "DELETE",
+        });
+        getReviewList(videoId);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      return;
     }
   };
 
