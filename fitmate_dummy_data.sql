@@ -13,18 +13,16 @@ INSERT INTO users (id, password, name, nickname, email, age, fitness_level, post
 ('user10', 'password10', 'Jack', 'jack', 'jack@example.com', 29, '하', '01234', '707 Beech St', '[10, 1]', 'img10.jpg');
 
 -- video 테이블 더미 데이터 삽입
-INSERT INTO video (id, title, part, url, thumbnail, view_cnt)
+INSERT INTO video (title, part, description, thumbnail, channel_name, view_cnt, youtube_videoId)
 VALUES
-('전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]', '전신', 'https://www.youtube.com/embed/gMaB-fG4u4g', 'https://i.ytimg.com/vi/gMaB-fG4u4g/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCYL_b5RWp6EGD3vhWaugQqB-opA', 25),
-('하루 15분! 전신 칼로리 불태우는 다이어트 운동', '전신', 'https://www.youtube.com/embed/swRNeYw1JkY', 'https://i.ytimg.com/vi/swRNeYw1JkY/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBdCntJRy-V96l8tfZNHv6f2BoE-w', 1421),
-('상체 다이어트 최고의 운동 BEST [팔뚝살/겨드랑이살/등살/가슴어깨라인]', '상체', 'https://www.youtube.com/embed/54tTYO-vU2E', 'https://i.ytimg.com/vi/54tTYO-vU2E/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLDxWlfWshc8D0IBhLDgV_oy_9u31A', 13),
-('상체비만 다이어트 최고의 운동 [상체 핵매운맛]', '상체', 'https://www.youtube.com/embed/QqqZH3j_vH0', 'https://i.ytimg.com/vi/QqqZH3j_vH0/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAHjpKpEBo2dH3F0U5ob8sSagiioQ', 2048127),
-('하체운동이 중요한 이유? 이것만 보고 따라하자 ! [하체운동 교과서]', '하체', 'https://www.youtube.com/embed/tzN6ypk6Sps', 'https://i.ytimg.com/vi/tzN6ypk6Sps/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAAxHIjOn8ti0G7vnAhfOIu_s27tQ', 175),
-('저는 하체 식주의자 입니다', '하체', 'https://www.youtube.com/embed/u5OgcZdNbMo', 'https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA', 85875641),
-('11자복근 복부 최고의 운동 [복근 핵매운맛]', '복부', 'https://www.youtube.com/embed/PjGcOP-TQPE', 'https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA', 45612),
-('(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)', '복부', 'https://www.youtube.com/embed/7TLk7pscICk', 'https://i.ytimg.com/vi/7TLk7pscICk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLCSzdQy_ZUn3NE2zk6_gtu61aShgg', 45675123),
-('Workout 9', 'Core exercises', 'thumb9.jpg', 'Channel I', 1700, 'vid9'),
-('Workout 10', 'Upper body strength', 'thumb10.jpg', 'Channel J', 1100, 'vid10');
+('전신 다이어트 최고의 운동 [칼소폭 찐 핵핵매운맛]', '전신', '전신운동입니다', 'https://i.ytimg.com/vi/gMaB-fG4u4g/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCYL_b5RWp6EGD3vhWaugQqB-opA', '채널1', 25, 'gMaB-fG4u4g'),
+('하루 15분! 전신 칼로리 불태우는 다이어트 운동', '전신', '요것도 전신운동입니다', 'https://i.ytimg.com/vi/swRNeYw1JkY/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBdCntJRy-V96l8tfZNHv6f2BoE-w', '채널2', 1421, 'swRNeYw1JkY'),
+('상체 다이어트 최고의 운동 BEST [팔뚝살/겨드랑이살/등살/가슴어깨라인]', '상체', '상체운동입니다', 'https://i.ytimg.com/vi/54tTYO-vU2E/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLDxWlfWshc8D0IBhLDgV_oy_9u31A', '채널3', 13, '54tTYO-vU2E'),
+('상체비만 다이어트 최고의 운동 [상체 핵매운맛]', '상체', '요것도 상체운동입니다', 'https://i.ytimg.com/vi/QqqZH3j_vH0/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAHjpKpEBo2dH3F0U5ob8sSagiioQ', '채널4', 2048127, 'QqqZH3j_vH0'),
+('하체운동이 중요한 이유? 이것만 보고 따라하자 ! [하체운동 교과서]', '하체', '하체운동입니다', 'https://i.ytimg.com/vi/tzN6ypk6Sps/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAAxHIjOn8ti0G7vnAhfOIu_s27tQ', '채널5', 175, 'tzN6ypk6Sps'),
+('저는 하체 식주의자 입니다', '하체', '요것도 하체운동입니다', 'https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA', '채널6', 85875641, 'u5OgcZdNbMo'),
+('11자복근 복부 최고의 운동 [복근 핵매운맛]', '복부', '복부운동', 'https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA', '채널7', 45612, 'PjGcOP-TQPE'),
+('(Sub)누워서하는 5분 복부운동!! 효과보장! (매일 2주만 해보세요!)', '복부', '복부운동2', 'https://i.ytimg.com/vi/7TLk7pscICk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLCSzdQy_ZUn3NE2zk6_gtu61aShgg', '채널8', 45675123, '7TLk7pscICk');
 
 -- video_comment 테이블 더미 데이터 삽입
 INSERT INTO video_comment (video_id, writer, content, reg_date, parent) VALUES
@@ -36,8 +34,6 @@ INSERT INTO video_comment (video_id, writer, content, reg_date, parent) VALUES
 (6, 'user6', 'Good pilates exercises', '2024-05-06 15:00:00', NULL),
 (7, 'user7', 'Helped me stretch', '2024-05-07 16:00:00', NULL),
 (8, 'user8', 'Relaxing and calm', '2024-05-08 17:00:00', NULL),
-(9, 'user9', 'Core workout was intense', '2024-05-09 18:00:00', NULL),
-(10, 'user10', 'Great for upper body', '2024-05-10 19:00:00', NULL),
 (1, 'user2', 'Indeed it was!', '2024-05-11 10:00:00', 1),
 (2, 'user3', 'I felt the same!', '2024-05-12 11:00:00', 2);
 
