@@ -76,7 +76,6 @@ import { ref, watch, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useVideoStore } from "@/stores/video";
 import { useUserStore } from "@/stores/user";
-import { onMounted } from "vue";
 
 const store = useVideoStore();
 const router = useRouter();
