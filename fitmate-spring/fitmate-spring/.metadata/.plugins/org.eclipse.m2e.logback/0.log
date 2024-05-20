@@ -297,3 +297,5 @@
 2024-05-20 16:40:53,683 [Worker-173: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2024-05-20 16:40:53,686 [Worker-173: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 9 resources from src\main\resources to target\classes
 2024-05-20 16:40:53,688 [Worker-173: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\src\test\resources
+2024-05-20 17:43:54,342 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@2d5a148d{STOPPING}[12.0.6,sto=0]
+2024-05-20 17:43:54,352 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@36b392b0{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
