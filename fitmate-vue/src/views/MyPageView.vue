@@ -135,6 +135,7 @@ const openFileSelector = () => {
 };
 
 onMounted(() => {
+  console.log(userStore.loginUser.image);
   videoStore.nowList = [];
   videoStore.videoList.forEach((video) => {
     if (userStore.loginUser.likedVideos.includes(video.id)) {
