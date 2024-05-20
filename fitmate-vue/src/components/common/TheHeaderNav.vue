@@ -30,13 +30,25 @@
         </nav>
         <!-- login/logout / mypage -->
         <div class="nav-right">
-          <RouterLink to="/login" v-if="isLoginEmpty" class="nav-right-el">
+          <RouterLink
+            to="/login"
+            v-if="store.loginUser.id === ''"
+            class="nav-right-el"
+          >
             <span class="mdi mdi-login">&nbsp;Login</span>
           </RouterLink>
-          <RouterLink to="/mypage" v-if="!isLoginEmpty" class="nav-right-el">
+          <RouterLink
+            to="/mypage"
+            v-if="store.loginUser.id !== ''"
+            class="nav-right-el"
+          >
             <span class="mdi mdi-account-circle">&nbsp;Mypage</span>
           </RouterLink>
-          <a v-if="!isLoginEmpty" @click="store.logout" class="nav-right-el">
+          <a
+            v-if="store.loginUser.id !== ''"
+            @click="store.logout"
+            class="nav-right-el"
+          >
             <span class="mdi mdi-logout">&nbsp;Logout</span>
           </a>
         </div>
@@ -47,12 +59,8 @@
 
 <script setup>
 import { useUserStore } from "@/stores/user";
-import { computed, ref } from "vue";
 
 const store = useUserStore();
-const isLoginEmpty = computed(() => {
-  return Object.keys(store.loginUser).length === 0;
-});
 </script>
 
 <style scoped>

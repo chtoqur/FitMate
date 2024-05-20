@@ -24,10 +24,9 @@
       </div>
     </div>
     <div>
-      <p>{{ userStore.loginUser.image }}</p>
-      <p>{{ userStore.loginUser.id }}</p>
-      <p>{{ userStore.loginUser.name }}</p>
-      <p>{{ userStore.loginUser.nickname }}</p>
+      <p>아이디 : {{ userStore.loginUser.id }}</p>
+      <p>이름 : {{ userStore.loginUser.name }}</p>
+      <p>닉네임 : {{ userStore.loginUser.nickname }}</p>
     </div>
     <br />
     <div>
@@ -134,8 +133,7 @@ const openFileSelector = () => {
   fileInput.value.click();
 };
 
-onMounted(() => {
-  console.log(userStore.loginUser.image);
+onMounted(async () => {
   videoStore.nowList = [];
   videoStore.videoList.forEach((video) => {
     if (userStore.loginUser.likedVideos.includes(video.id)) {

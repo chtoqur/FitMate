@@ -50,9 +50,24 @@
           <v-card-actions style="padding-top: 0">
             <v-spacer></v-spacer>
             <v-btn
+              v-if="
+                userStore.loginUser.id !== '' &&
+                !userStore.loginUser.likedVideos.includes(video.id)
+              "
               color="medium-emphasis"
               icon="mdi-heart"
               size="small"
+              @click="userStore.likeVideo(video.id)"
+            ></v-btn>
+            <v-btn
+              v-if="
+                userStore.loginUser.id !== '' &&
+                userStore.loginUser.likedVideos.includes(video.id)
+              "
+              color="red"
+              icon="mdi-heart"
+              size="small"
+              @click="userStore.unlikeVideo(video.id)"
             ></v-btn>
             <v-btn
               color="medium-emphasis"
@@ -85,6 +100,7 @@ onMounted(() => {
   store.getAllVideoList();
   store.getAllVideoReviewList();
   videoList.value = store.videoList;
+  console.log(userStore.loginUser);
 });
 const selectedParts = ref([]);
 const isChecked = ref(false);
