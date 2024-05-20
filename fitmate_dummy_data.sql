@@ -35,6 +35,9 @@ INSERT INTO video_comment (video_id, writer, content, reg_date, parent) VALUES
 (7, 'user7', 'Helped me stretch', '2024-05-07 16:00:00', NULL),
 (8, 'user8', 'Relaxing and calm', '2024-05-08 17:00:00', NULL),
 (1, 'user2', 'Indeed it was!', '2024-05-11 10:00:00', 1),
+(1, 'user2', 'Indeed it was!', '2024-05-11 10:00:00', 1),
+(1, 'ssafy', 'test reply comment', '2024-05-11 10:00:00', 1),
+(1, 'ssafy', 'test comment', '2024-05-11 10:00:00', 0),
 (2, 'user3', 'I felt the same!', '2024-05-12 11:00:00', 2);
 
 -- community 테이블 더미 데이터 삽입
