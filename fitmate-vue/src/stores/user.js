@@ -63,10 +63,7 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const likeVideo = function (videoId) {
-    console.log("찜");
     loginUser.value.likedVideos.push(videoId);
-    console.log(videoId);
-    console.log(loginUser.value.likedVideos);
   };
 
   const unlikeVideo = function (videoId) {
@@ -78,6 +75,16 @@ export const useUserStore = defineStore("user", () => {
     console.log(loginUser.value.likedVideos);
   };
 
+  const saveRoutine = function (routineId) {
+    loginUser.value.savedRoutine.push(routineId);
+  };
+
+  const deleteRoutine = function (routineId) {
+    loginUser.value.savedRoutine = loginUser.value.savedRoutine.filter(
+      (id) => id !== routineId
+    );
+  };
+
   return {
     userList,
     loginUser,
@@ -87,5 +94,7 @@ export const useUserStore = defineStore("user", () => {
     signUp,
     likeVideo,
     unlikeVideo,
+    saveRoutine,
+    deleteRoutine,
   };
 });

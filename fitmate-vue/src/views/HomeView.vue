@@ -18,13 +18,12 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import HomePopularPost from "@/components/home/HomePopularPost.vue";
 import HomeRankedVideo from "@/components/home/HomeRankedVideo.vue";
 import KakaoMap from "@/components/kakao/KakaoMap.vue";
+import { onMounted, ref } from "vue";
 </script>
-
 <style scoped>
 * {
   text-align: center;

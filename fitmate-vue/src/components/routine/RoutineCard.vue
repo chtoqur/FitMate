@@ -1,8 +1,12 @@
 <template>
   <div>
     <div class="card">
-      <div class="img">
-        <div class="save">
+      <div class="img"
+        :style="{ backgroundImage: routine.img }"
+      >
+        <span>이미지 들어갈 공간</span>
+        <div class="save"
+          @click="saveRoutine(routine.id)">
           <svg class="svg" width="683" height="683" viewBox="0 0 683 683" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_993_25)">
               <mask id="mask0_993_25" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="683" height="683">
@@ -21,13 +25,17 @@
         </div>
       </div>
       <div class="text">
-        <div class="title-desc">
+        <div class="title-desc"
+          @click="navigateToDetail(routine.id)"
+        >
           <p class="h3">{{ routine.title }}</p>
           <p class="p"> {{ routine.part }} - 난이도: {{ routine.level }} </p>
         </div>
         <div class="icon-box">
           <v-card-actions>
-            <v-btn color="rgb(63, 114, 175)" text="시작하기"></v-btn>
+            <v-btn color="rgb(63, 114, 175)" text="시작하기"
+              @click="navigateToDetail(routine.id)"
+            ></v-btn>
             <v-btn color="rgb(63, 114, 175)" text="공유하기"></v-btn>
           </v-card-actions>
         </div>
@@ -37,10 +45,44 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useUserStore } from "@/stores/user";
 
-defineProps({
+const props = defineProps({
   routine: Object,
+})
+
+const router = useRouter();
+const userStore = useUserStore();
+
+const navigateToDetail = function(routineId) {
+  setTimeout(()=>{
+    router.push({ name: 'routineDetail', params: { id: routineId }})
+  }, 300);
+}
+
+const saveRoutine = (id) => {
+  if (userStore.loginUser.id === '') {
+    if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
+      router.push({ name: 'login' })
+    }
+  } else {
+    if ((userStore.loginUser.savedRoutine.length !== 0) && (userStore.loginUser.savedRoutine.find(id => id === props.routine.id))) {
+      userStore.deleteRoutine(id);
+    } else {
+
+    }
+  }
+}
+
+onMounted(() => {
+  if (userStore.loginUser.id !== '' && userStore.loginUser.savedRoutine.length !== 0) {
+    if (userStore.loginUser.savedRoutine.includes(props.routine.id)) {
+      console.log(userStore.loginUser.savedRoutine);
+      document.querySelector('.svg').classList.add('saved-routine');
+    }
+  }
 })
 </script>
 
@@ -60,10 +102,11 @@ defineProps({
   height: 50%;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  background: linear-gradient(#e66465, #9198e5);
+  /* background-image: url('@/assets/img/routine/1.jpg'); */
   display: flex;
   align-items: top;
   justify-content: right;
+  border: 1px solid rgb(97, 137, 201);
 }
 
 .save {
@@ -91,8 +134,13 @@ defineProps({
   height: 15px;
 }
 
+.saved-routine .svg {
+ fill: #ced8de;
+}
+
 .title-desc {
   padding-left: 10px;
+  line-height: 18px;
 }
 
 .icon-box {

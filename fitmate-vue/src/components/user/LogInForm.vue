@@ -1,11 +1,7 @@
 <template>
   <div>
     <p>아이디</p>
-    <input
-      type="text"
-      v-model="user.id"
-      @keyup.enter="store.login(id, password)"
-    />
+    <input type="text" v-model="user.id" @keyup.enter="store.login(user)" />
     <p>비밀번호</p>
     <input
       type="password"

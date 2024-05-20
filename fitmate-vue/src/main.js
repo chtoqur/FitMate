@@ -6,7 +6,7 @@ import router from "./router";
 
 import "@/assets/css/reset.css";
 
-// Vutify import
+// vutify
 import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
@@ -22,9 +22,6 @@ const vuetify = createVuetify({
   icons: {
     defaultSet: 'mdi',
     aliases,
-    sets: {
-      mdi,
-    },
   },
   theme: {
     defaultTheme: 'light',
