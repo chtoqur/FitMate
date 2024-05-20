@@ -11,6 +11,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/gMaB-fG4u4g",
       thumbnail:
         "https://i.ytimg.com/vi/gMaB-fG4u4g/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBCYL_b5RWp6EGD3vhWaugQqB-opA",
+      viewCnt: 25
     },
     {
       id: 2,
@@ -19,6 +20,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/swRNeYw1JkY",
       thumbnail:
         "https://i.ytimg.com/vi/swRNeYw1JkY/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLBdCntJRy-V96l8tfZNHv6f2BoE-w",
+      viewCnt: 1421
     },
     {
       id: 3,
@@ -28,6 +30,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/54tTYO-vU2E",
       thumbnail:
         "https://i.ytimg.com/vi/54tTYO-vU2E/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLDxWlfWshc8D0IBhLDgV_oy_9u31A",
+      viewCnt: 13
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/QqqZH3j_vH0",
       thumbnail:
         "https://i.ytimg.com/vi/QqqZH3j_vH0/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAHjpKpEBo2dH3F0U5ob8sSagiioQ",
+      viewCnt: 2048127
     },
     {
       id: 5,
@@ -44,6 +48,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/tzN6ypk6Sps",
       thumbnail:
         "https://i.ytimg.com/vi/tzN6ypk6Sps/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAAxHIjOn8ti0G7vnAhfOIu_s27tQ",
+      viewCnt: 175
     },
     {
       id: 6,
@@ -52,6 +57,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/u5OgcZdNbMo",
       thumbnail:
         "https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA",
+      viewCnt: 85875641
     },
     {
       id: 7,
@@ -60,6 +66,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/PjGcOP-TQPE",
       thumbnail:
         "https://i.ytimg.com/vi/u5OgcZdNbMo/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLAaopAKEGym2ylTOaiJBfajdXHjlA",
+      viewCnt: 45612
     },
     {
       id: 8,
@@ -68,6 +75,7 @@ export const useVideoStore = defineStore("video", () => {
       url: "https://www.youtube.com/embed/7TLk7pscICk",
       thumbnail:
         "https://i.ytimg.com/vi/7TLk7pscICk/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLCSzdQy_ZUn3NE2zk6_gtu61aShgg",
+      viewCnt: 45675123
     },
   ]);
 
