@@ -12,7 +12,7 @@
         </span>
         <span>{{ post.writer }} | </span>
         <span>{{ post.regDate }} | </span>
-        <span>{{ post.viewCount }}</span>
+        <span>{{ post.viewCnt }}</span>
       </div>
     </div>
   </div>

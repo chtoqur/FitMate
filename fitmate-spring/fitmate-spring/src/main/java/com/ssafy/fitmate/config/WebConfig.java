@@ -23,24 +23,25 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	AdminPageInterceptor adminPageInterceptor;
 	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(adminPageInterceptor).addPathPatterns("/users");
-	}
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry) {
+//		registry.addInterceptor(adminPageInterceptor).addPathPatterns("/users");
+//	}
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET","POST");
+		registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET","POST", "PUT", "DELETE");
 	}
 	
 	@Autowired
 	private JwtInterceptor jwtInterceptor;
-	
-//	@Override
-//	public void addInterceptors(InterceptorRegistry registry) {
-//		registry.addInterceptor(jwtInterceptor).addPathPatterns("/**")
-//		.excludePathPatterns("/api-user/**", "/swagger-ui/**", "/v3/api-docs/**");
-//	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(jwtInterceptor).addPathPatterns("/**")
+		.excludePathPatterns("/community/**", "/swagger-ui/**", "/video/**", "/routine/**", "/user/**", "/users/**", "/mypage/**");
+	}
+
 	
 	
 }

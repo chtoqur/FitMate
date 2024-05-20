@@ -60,10 +60,10 @@ public class CommunityRestController {
 	public ResponseEntity<Community> detail(@PathVariable("id") int id) {
 		Community community = communityService.readPost(id);
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Origin", "*");
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("Access-Control-Allow-Origin", "*");
 
-		return new ResponseEntity<Community>(community, headers, HttpStatus.OK);
+		return new ResponseEntity<Community>(community, HttpStatus.OK);
 	}
 
 	@PostMapping("")

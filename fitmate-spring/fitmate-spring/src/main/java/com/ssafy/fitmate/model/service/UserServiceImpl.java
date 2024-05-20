@@ -66,6 +66,16 @@ public class UserServiceImpl implements UserService {
         }
         return result;
     }
+	
+	@Override
+    public void updateLikedVideos(String userId, String likedVideos) {
+        User user = userDao.findById(userId);
+        if (user != null) {
+            user.setLikedVideos(likedVideos);
+            userDao.updateLikedVideos(user);
+        }
+    }
+
 
 	@Override
 	public void updateUserProfileImage(String userId, String imageUrl) {
@@ -81,4 +91,23 @@ public class UserServiceImpl implements UserService {
 	public void updateSavedRoutine(User user) {
 		userDao.updateSavedRoutine(user);
 	}
+	
+	@Override
+	public Map<String, Object> getUserInfo(String id) {
+		User user = userDao.findById(id);
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", user.getId());
+        result.put("name", user.getName());
+        result.put("nickname", user.getNickname());
+        result.put("email", user.getEmail());
+        result.put("image", user.getImg());
+        result.put("age", user.getAge());
+        result.put("fitnessLevel", user.getFitnessLevel());
+        result.put("postCode", user.getPostCode());
+        result.put("address", user.getAddress());
+        result.put("likedVideos", user.getLikedVideos());
+        result.put("savedRoutine", user.getSavedRoutine());
+        return result;
+    }
+
 }

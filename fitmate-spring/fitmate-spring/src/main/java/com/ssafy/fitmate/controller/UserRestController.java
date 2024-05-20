@@ -32,7 +32,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "UserRestController", description = "사용자 CRUD")
 //@CrossOrigin("*")
 public class UserRestController {
-	private static final String UPLOAD_PATH = "resources/users/";
 	private static final String SUCCESS = "success";
 	private static final String Fail = "fail";
 
@@ -41,9 +40,11 @@ public class UserRestController {
 	private final UserService userService;
 
 	@Autowired
-	public UserRestController(UserService userService) {
+	public UserRestController(UserService userService, JwtUtil jwtUtil) {
 		this.userService = userService;
+		this.jwtUtil = jwtUtil;
 	}
+
 
 	@PostMapping("/login")
 	public ResponseEntity<Map<String, Object>> login(@RequestBody User user) {
@@ -53,45 +54,64 @@ public class UserRestController {
 		HttpStatus status = result.containsKey("access-token") ? HttpStatus.ACCEPTED : HttpStatus.UNAUTHORIZED;
 		return new ResponseEntity<>(result, status);
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Map<String, Object>> getUserInfo(@PathVariable String id) {
+		System.out.println(id);
+		Map<String, Object> result = userService.getUserInfo(id);
+		HttpStatus status = result.containsKey("id") ? HttpStatus.ACCEPTED : HttpStatus.UNAUTHORIZED;
+	    
+	    return new ResponseEntity<>(result, status);
+	}
+
 
 	@PostMapping("/image")
 	public ResponseEntity<Map<String, Object>> uploadProfileImage(@RequestPart("file") MultipartFile file,
-			@RequestPart("userId") String userId) {
+	        @RequestPart("userId") String userId) {
 
-		Map<String, Object> result = new HashMap<>();
-		System.out.println("사진 업로드 요청 왔어~");
-		System.out.println(file);
-		System.out.println(userId);
-		if (file.isEmpty()) {
-			result.put("message", "fail");
-			result.put("error", "업로드할 파일이 없습니다.");
-			return ResponseEntity.badRequest().body(result);
-		}
+	    Map<String, Object> result = new HashMap<>();
+	    if (file.isEmpty()) {
+	        result.put("message", "fail");
+	        result.put("error", "업로드할 파일이 없습니다.");
+	        return ResponseEntity.badRequest().body(result);
+	    }
 
-		try {
-//			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-			Path path = Paths.get(UPLOAD_PATH + File.separator + userId + ".jpg");
-			// 디렉토리 생성
-			Files.createDirectories(path.getParent());
-			// 파일 저장
-			Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-			// 이미지 경로 반환
-			String imageUrl = "/resources/users/" + userId + ".jpg";
-			userService.updateUserProfileImage(userId, imageUrl);
-			result.put("message", "success");
-			result.put("imageUrl", imageUrl);
-			return ResponseEntity.ok().body(result);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			result.put("message", "fail");
-			result.put("error", "파일 업로드에 실패했습니다.");
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
-		}
+	    try {
+	        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+	        System.out.println(fileName);
+	        String fileExtension = fileName.substring(fileName.lastIndexOf(".")); // 확장자명 가져오기
+	        System.out.println(fileExtension);
+	        String newFileName = userId + fileExtension;
+	        Path path = Paths.get("src/main/resources/static/users/" + newFileName);
+	        // 디렉토리 생성
+	        Files.createDirectories(path.getParent());
+	        // 파일 저장
+	        Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+	        // 이미지 경로 반환
+	        String imageUrl = "/users/" + newFileName;
+	        userService.updateUserProfileImage(userId, imageUrl);
+	        result.put("message", "success");
+	        result.put("imageUrl", imageUrl);
+	        return ResponseEntity.ok().body(result);
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	        e.printStackTrace();
+	        result.put("message", "fail");
+	        result.put("error", "파일 업로드에 실패했습니다.");
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(result);
+	    }
 	}
 
-	@GetMapping("/checkId/{id}")
+	@GetMapping("/check/{id}")
 	public boolean checkIdExists(@PathVariable String id) {
 		return userService.checkIdExists(id) > 0;
 	}
+	
+	@PostMapping("/{userId}/updatelikedvideos")
+    public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload) {
+        String likedVideos = payload.get("likedVideos");
+        userService.updateLikedVideos(userId, likedVideos);
+        return ResponseEntity.ok().body("Liked videos updated successfully.");
+    }
+
 }
