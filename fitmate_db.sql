@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
     post_code VARCHAR(10),
     address VARCHAR(255),
     liked_videos TEXT,
+    saved_routine TEXT,
     img VARCHAR(255)
 );
 
