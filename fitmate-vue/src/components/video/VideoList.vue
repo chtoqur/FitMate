@@ -17,10 +17,10 @@
           @update:modelValue="selectPart"
         ></v-combobox>
       </div>
-      <div class="video-liked">
+      <div class="video-liked" v-if="userStore.loginUser.id !== ''">
         <span>좋아요한 영상</span>
       </div>
-      <div class="love">
+      <div class="love" v-if="userStore.loginUser.id !== ''">
         <input
           id="switch"
           type="checkbox"
@@ -100,7 +100,6 @@ onMounted(() => {
   store.getAllVideoList();
   store.getAllVideoReviewList();
   videoList.value = store.videoList;
-  console.log(userStore.loginUser);
 });
 const selectedParts = ref([]);
 const isChecked = ref(false);

@@ -26,18 +26,13 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const getUser = async (id) => {
-    console.log(id);
     try {
-      console.log("부른다?");
-      console.log(`${REST_USER_API}/${id}`);
       const response = await axios.get(`${REST_USER_API}/${id}`);
-      console.log(response.data);
       loginUser.value = response.data;
       if (loginUser.value === "") {
         alert("유저 정보 부르기 실패");
       } else {
         loginUser.value.likedVideos = JSON.parse(loginUser.value.likedVideos);
-        router.push({ name: "home" });
       }
     } catch (err) {
       console.log(err);

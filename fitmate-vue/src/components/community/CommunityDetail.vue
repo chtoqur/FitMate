@@ -36,9 +36,7 @@ const store = useCommunityStore();
 const commentStore = useCommentStore();
 
 onBeforeMount(() => {
-  console.log(route.params.id);
   store.getPostById(route.params.id);
-  console.log(store.nowPost);
 });
 </script>
 
