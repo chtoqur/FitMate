@@ -14,7 +14,6 @@ import { useUserStore } from "./stores/user";
 import { useVideoStore } from "./stores/video";
 import { useCommunityStore } from "./stores/community";
 import { useCommentStore } from "./stores/comment";
-import axios from "axios";
 
 const userStore = useUserStore();
 const videoStore = useVideoStore();
@@ -29,6 +28,7 @@ onMounted(async () => {
 
   await videoStore.getAllVideoList();
   await communityStore.getPostList();
+  await commentStore.getAllCommentList();
 });
 </script>
 

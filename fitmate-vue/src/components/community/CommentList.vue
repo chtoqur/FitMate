@@ -1,12 +1,12 @@
 <template>
   <div>
     <div v-for="com in store.nowCommentList" :key="com.id">
-      <div v-if="com.parent === null">
+      <div v-if="com.parent === 0">
         <h5>작성자</h5>
         <h5>{{ com.writer }}</h5>
         <p>내용</p>
         <div v-if="com.editing">
-          <input type="text" v-model="updateComment" />
+          <input type="text" v-model="updateComment.content" />
           <button
             @click="
               store.updateComment(com.id, updateComment), (com.editing = false)
@@ -30,7 +30,7 @@
         </button>
         <button
           v-if="com.writer === userStore.loginUser.id"
-          @click="store.deleteComment(com.id)"
+          @click="store.deleteComment(com.id, com.communityId)"
         >
           삭제
         </button>
@@ -80,7 +80,7 @@
           </button>
           <button
             v-if="child.writer === userStore.loginUser.id"
-            @click="store.deleteComment(child.id)"
+            @click="store.deleteComment(child.id, child.communityId)"
           >
             삭제
           </button>
@@ -107,14 +107,19 @@ const route = useRoute();
 
 onMounted(() => {
   store.getNowCommentList(route.params.id);
+  console.log(store.nowCommentList);
 });
 
 const comment = ref({
   communityId: route.params.id,
   content: "",
-  writer: userStore.loginUser.id,
+  writer: sessionStorage.getItem("id")
+    ? sessionStorage.getItem("id")
+    : userStore.loginUser.id,
   parent: null,
 });
+
+const updateComment = ref({});
 
 const childComment = ref({
   communityId: route.params.id,
@@ -136,8 +141,7 @@ const setChildComment = function (parentId) {
 const setUpdateComment = function (id) {
   store.nowCommentList.map((el) => {
     if (el.id === id) {
-      updateComment.value = el.content;
-      updateCommentId.value = id;
+      updateComment.value = JSON.parse(JSON.stringify(el));
       el.editing = true;
     } else {
       el.editing = false;
@@ -145,15 +149,14 @@ const setUpdateComment = function (id) {
   });
 };
 
-const updateComment = ref("");
-const updateCommentId = ref(0);
-
 const createComment = function () {
   store.createComment(comment.value);
   comment.value = {
     communityId: route.params.id,
     content: "",
-    writer: userStore.loginUser.id,
+    writer: sessionStorage.getItem("id")
+      ? sessionStorage.getItem("id")
+      : userStore.loginUser.id,
     parent: null,
   };
 };
