@@ -107,7 +107,6 @@ const route = useRoute();
 
 onMounted(() => {
   store.getNowCommentList(route.params.id);
-  console.log(store.nowCommentList);
 });
 
 const comment = ref({
