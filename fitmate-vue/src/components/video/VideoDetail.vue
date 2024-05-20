@@ -28,9 +28,10 @@
                   @click="toggleLike"
                   class="button-like"
                 >
-                  <span class="mdi mdi-heart" style="margin-left: 0"
-                    >&nbsp;Like</span
-                  >
+                <span class="mdi mdi-heart" style="margin-left: 0"
+                @click="">
+                  &nbsp;Like
+                </span>
                 </button>
               </div>
             </div>
@@ -38,14 +39,13 @@
         </div>
         <!-- 우측 댓글 창 -->
         <div id="detail-right">
-          <!-- 댓글 리스트 -->
-          <div class="register-box input-group">
+          <!-- <div class="register-box input-group">
             <div class="register-comment">
               <span class="mdi mdi-message-processing-outline">&nbsp;댓글</span>
               <textarea
                 class="register-textarea"
                 placeholder="내용을 입력하세요."
-                rows="3"
+                rows="2"
                 aria-label="With textarea"
                 v-model="review.content"
               ></textarea>
@@ -55,23 +55,25 @@
                 </v-btn>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="comment-list-container">
-            <div id="comment-list">
-              <span
-                >영상 댓글
-                <span class="comment-count">{{
-                  store.videoReviewList.length
-                }}</span>
-              </span>
-            </div>
-            <hr />
-            <div>
-              <VideoReview
-                v-for="review in store.videoReviewList"
-                :key="review.id"
-                :review="review"
-              />
+            <div class="comment-list-wrap">
+              <div id="comment-list">
+                <span
+                  >영상 댓글
+                  <span class="comment-count">{{
+                    store.videoReviewList.length
+                  }}</span>
+                </span>
+              </div>
+              <hr />
+              <div>
+                <VideoReview
+                  v-for="review in store.videoReviewList"
+                  :key="review.id"
+                  :review="review"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -81,7 +83,7 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { useVideoStore } from "@/stores/video";
 import { useUserStore } from "@/stores/user";
@@ -90,6 +92,7 @@ import VideoReview from "./VideoReview.vue";
 const store = useVideoStore();
 const userStore = useUserStore();
 const route = useRoute();
+const router = useRouter();
 
 const review = ref({
   videoId: route.params.id,
@@ -106,12 +109,28 @@ onMounted(() => {
 });
 
 const createReview = function () {
+  if (userStore.loginUser.id === '') {
+    if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
+      router.push({ name: 'login' })
+    }
+    return;
+  }
   store.createReview(review.value);
   review.value.content = "";
 };
 
-const toggleLike = () => {
-  isLiked.value = !isLiked.value;
+const toggleLike = (event) => {
+  if (userStore.loginUser.id === "") {
+    event.preventDefault();
+    if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
+      router.push({ name: "login" });
+    }
+    return;
+  }
+  if (confirm("찜 목록에 추가하시겠습니까?")) {
+    userStore.likeVideo(store.video.id);
+    isLiked.value = !isLiked.value;
+  }
 };
 </script>
 
@@ -177,7 +196,7 @@ const toggleLike = () => {
 
 .register-box {
   width: 100%;
-  border: 1px solid red;
+  height: 20%;
 }
 
 .register-comment {
@@ -189,7 +208,7 @@ const toggleLike = () => {
 }
 
 .register-textarea:focus {
-  border: 1px solid red;
+  outline: none;
 }
 
 .register-comment > span {
@@ -223,6 +242,14 @@ const toggleLike = () => {
 }
 
 .comment-list-container {
+  display: flex;
+  width: 100%;
+  height: 80%;
+}
+
+.comment-list-wrap {
+  width: 100%;
+  margin-top: 20px;
 }
 
 hr {

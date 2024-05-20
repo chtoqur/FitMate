@@ -109,7 +109,6 @@ onMounted(() => {
   store.getAllVideoList();
   store.getAllVideoReviewList();
   videoList.value = store.videoList;
-  console.log(store.videoAllReviewList);
 });
 
 const selectedParts = ref([]);
