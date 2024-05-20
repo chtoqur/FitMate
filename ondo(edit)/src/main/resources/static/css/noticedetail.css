@@ -1,0 +1,72 @@
+#detail-container {
+    width: 1200px;
+    height: 300px;
+    margin: 140px auto 0;
+}
+#mainSentence {
+    text-align: center;
+}
+#notice {
+    margin-top: 30px;
+}
+#boardInfo {
+    padding: 20px;
+    background-color: #f3f3f3;
+    border: 1px solid #e6e6e6;
+    border-top: 1px solid #b3b3b3;
+}
+#boardInfo #title {
+    background: none;
+    font-size: 22px;
+    font-weight: bold;
+}
+#boardInfo span {
+    font-size: 14px;
+    color: #555;
+}
+#boardInfo span#writer {
+    color: #333;
+}
+#boardInfo .bar {
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc;
+    vertical-align: middle;
+}
+#boardContent {
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-top: none;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+#boardContent #content {
+    width: 100%; 
+    resize: none;
+}
+input, textarea {
+    border: none;
+    &:focus {
+        outline: none;
+    }
+}
+#btns {
+    margin-top: 40px;
+    text-align: center;
+}
+#btns button {
+    height: 38px;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0 19px;
+    border: 1px solid #c9c9c9;
+    color: #3b3b3b;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 2.5em;
+    vertical-align: top;
+}

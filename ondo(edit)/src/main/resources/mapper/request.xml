@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : 해당 mapper를 사용하는 DAO 정보 입력 -->
+<mapper namespace="com.example.demo.bookrequest.RequestDAO">
+
+    <resultMap type="com.example.demo.bookrequest.RequestVO" id="requestMap">
+        <result property="isbn"         column="ISBN" />
+        <result property="title"        column="TITLE" />
+        <result property="author"       column="AUTHOR" />
+        <result property="publisher"    column="PUBLISHER" />
+        <result property="pubdate"      column="PUBDATE" />
+        <result property="discount"     column="DISCOUNT" />
+        <result property="note"         column="NOTE" />
+        <result property="userId"       column="USERID" />
+        <result property="reqdate"      column="REQDATE" />
+        <result property="seq"          column="SEQ" />
+        <result property="procResult"   column="PROCRESULT" />
+        <result property="procDate"     column="PROCDATE" />
+    </resultMap>
+
+    <insert id="insertOneRequest">
+        INSERT INTO BOOKREQUEST_TBL(ISBN, TITLE, AUTHOR, PUBLISHER, PUBDATE, DISCOUNT, NOTE, USERID, REQDATE, SEQ, PROCRESULT) VALUES
+        (#{isbn}, #{title}, #{author}, #{publisher}, #{pubdate}, #{discount}, #{note}, #{userId}, SYSDATE, (SELECT NVL(MAX(SEQ), 0)+1 AS SEQ FROM BOOKREQUEST_TBL WHERE USERID=#{userId}), #{procResult})
+    </insert>
+
+    <select id="selectOverlapIsbn" resultType="Integer">
+        SELECT NVL(COUNT(*), 0) FROM BOOKREQUEST_TBL WHERE ISBN=#{isbn}
+    </select>
+    
+    <select id="selectBbsRowCount" resultType="integer">
+        SELECT COUNT(*) FROM BOOKREQUEST_TBL
+    </select>
+
+    <select id="selectBbsRowCountById" resultType="Integer">
+        SELECT COUNT(*) FROM BOOKREQUEST_TBL WHERE USERID=#{userId}
+    </select>
+
+    <select id="selectBbsList" resultMap="requestMap">
+        SELECT * FROM BOOKREQUEST_TBL
+        WHERE SEQ <![CDATA[>=]]> (#{page} * #{rowsPerPage}) + 1 AND 
+              SEQ <![CDATA[<=]]> (#{page} + 1) * #{rowsPerPage} AND
+              USERID=#{userId}
+    </select>
+
+    <update id="updateProcResult">
+        UPDATE BOOKREQUEST_TBL SET PROCRESULT=#{procResult}, PROCDATE=SYSDATE WHERE ISBN=#{isbn}
+    </update>
+
+    <select id="selectCancelRequest" resultType="integer">
+        SELECT COUNT(*) FROM BOOKREQUEST_TBL WHERE ISBN=#{isbn} AND PROCRESULT=#{procResult}
+    </select>
+</mapper>

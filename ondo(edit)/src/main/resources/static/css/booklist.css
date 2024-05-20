@@ -1,0 +1,71 @@
+#book-container {
+    width: 1200px;
+    margin: 0 auto;
+}
+#frm {
+    padding-top: 160px;
+    width: 60%;
+    margin: 0 auto;
+}
+#txtSearch, #btnSearch {
+    height: 60px;
+}
+.bar {
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #ccc;
+    vertical-align: middle;
+}
+#tblBook {
+    margin-top: 100px;
+    border-top: 1px solid #5e6062;
+}
+#tblBook tr td {
+    padding: 20px 0;
+    border-bottom: 1px solid #dedede;
+    height: 180px;
+}
+#thumbnail {
+    float: left;
+    width: 10%;
+}
+#list-body {
+    width: 87%;
+    float: right; 
+    margin-left: 3%;
+    letter-spacing: -1px;
+}
+#title {
+    font-size: 120%;
+    color: #555;
+    font-weight: bold;
+}
+#app {
+    padding: 7px 0;
+    color: #888;
+    font-size: 90%;
+}
+#desc {
+    color: #666;
+    font-size: 90%;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 라인수 */
+    height: 2.6em; /* 라인수에 맞춰 길이 정해줘야함 */
+    -webkit-box-orient: vertical;
+    /* word-wrap:break-word; */
+    line-height: 1.2em;
+    padding: 3px 0;
+}
+#meta {
+    padding-top: 10px;
+    color: #666;
+    font-size: 90%;
+}
+#meta span {
+    color: #888;
+}

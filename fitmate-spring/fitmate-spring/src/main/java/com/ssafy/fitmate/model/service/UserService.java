@@ -18,4 +18,6 @@ public interface UserService {
 	public void updateUserProfileImage(String userId, String imageUrl);
 	
 	public int checkIdExists(String id);
+	
+	public void updateSavedRoutine(User user);
 }

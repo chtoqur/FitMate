@@ -8,6 +8,15 @@
     </div>
     <div class="video-select">
       <div class="video-part">
+        <!-- <v-combobox
+          v-model="selectedParts"
+          @update:modelValue="selectPart"
+          :items="['어깨', '팔', '가슴', '복근', '등', '하체']"
+          label="I use chips"
+          chips
+          multiple
+          variant="solo"
+        ></v-combobox> -->
         <v-combobox
           multiple
           label="운동 부위를 선택하세요"
@@ -37,7 +46,7 @@
     </div>
     <div class="video-list">
       <div v-for="video in videoList" :key="video.id">
-        <v-card class="mx-auto" max-width="430" height="350" hover>
+        <v-card class="mx-auto" max-width="360" height="300" hover>
           <v-card-item style="padding-bottom: 0">
             <RouterLink :to="`/video/${video.id}`" class="router-link">
               <v-img :src="video.thumbnail" style="width: 400px"> </v-img>
@@ -85,7 +94,9 @@ onMounted(() => {
   store.getAllVideoList();
   store.getAllVideoReviewList();
   videoList.value = store.videoList;
+  console.log(store.videoAllReviewList);
 });
+
 const selectedParts = ref([]);
 const isChecked = ref(false);
 const videoList = ref([]);
@@ -198,6 +209,7 @@ ul {
 }
 
 .vcard-title {
+  font-size: 18px;
   margin-top: 5px;
 }
 

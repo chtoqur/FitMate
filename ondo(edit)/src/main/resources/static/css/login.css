@@ -1,0 +1,39 @@
+h1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+li {
+    list-style-type: none;
+}
+.sub-container li::before {
+    display: inline-block;
+    content: "";
+    width: 1px;
+    height: 10px;
+    background-color: #e1e1e1;
+    margin-right: 10px;
+    margin-top: 14px;
+}
+.sub-container li::after {
+    content: "";
+    color: rgb(206, 212, 218);
+}
+.sub-container li:last-child::after {
+    content: "";
+}
+.login-container {
+    border: 1px solid rgb(206, 212, 218);
+    border-radius: 10px;
+    width: 500px;
+    margin: 200px auto 0;
+    padding: 10px;
+}
+.my-button {
+    width: 100%;
+    height: 50px;
+}
+.sub-container {
+    width: 500px;
+    margin: 0 auto;
+}
