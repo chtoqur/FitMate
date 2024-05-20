@@ -34,6 +34,9 @@ export const useCommunityStore = defineStore("community", () => {
       const response = await axios({
         url: `${REST_COMMUNITY_API}/${id}`,
         method: "GET",
+        headers: {
+          "access-token": sessionStorage.getItem("access-token"),
+        },
       });
       nowPost.value = response.data;
     } catch (err) {

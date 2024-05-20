@@ -17,10 +17,10 @@
           @update:modelValue="selectPart"
         ></v-combobox>
       </div>
-      <div class="video-liked">
+      <div class="video-liked" v-if="userStore.loginUser.id !== ''">
         <span>좋아요한 영상</span>
       </div>
-      <div class="love">
+      <div class="love" v-if="userStore.loginUser.id !== ''">
         <input
           id="switch"
           type="checkbox"
@@ -50,9 +50,24 @@
           <v-card-actions style="padding-top: 0">
             <v-spacer></v-spacer>
             <v-btn
+              v-if="
+                userStore.loginUser.id !== '' &&
+                !userStore.loginUser.likedVideos.includes(video.id)
+              "
               color="medium-emphasis"
               icon="mdi-heart"
               size="small"
+              @click="userStore.likeVideo(video.id)"
+            ></v-btn>
+            <v-btn
+              v-if="
+                userStore.loginUser.id !== '' &&
+                userStore.loginUser.likedVideos.includes(video.id)
+              "
+              color="red"
+              icon="mdi-heart"
+              size="small"
+              @click="userStore.unlikeVideo(video.id)"
             ></v-btn>
             <v-btn
               color="medium-emphasis"

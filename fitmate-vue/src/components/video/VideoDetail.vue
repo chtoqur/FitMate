@@ -27,7 +27,7 @@
       />
 
       <div v-if="userStore.loginUser.id !== ''">
-        <input type="text" v-model="review" />
+        <input type="text" v-model="review.content" />
         <button @click="createReview()">등록</button>
       </div>
     </div>
@@ -45,7 +45,13 @@ const store = useVideoStore();
 const userStore = useUserStore();
 const route = useRoute();
 
-const review = ref("");
+const review = ref({
+  videoId: route.params.id,
+  writer: sessionStorage.getItem("id")
+    ? sessionStorage.getItem("id")
+    : userStore.loginUser.id,
+  content: "",
+});
 
 onMounted(() => {
   store.getVideo(route.params.id);
@@ -53,7 +59,7 @@ onMounted(() => {
 });
 
 const createReview = function () {
-  store.createReview(review.value, store.video.id, userStore.loginUser.id);
+  store.createReview(review.value);
   review.value = "";
 };
 </script>

@@ -10,35 +10,53 @@ export const useUserStore = defineStore("user", () => {
 
   const userList = ref([]);
 
-  const loginUser = ref({});
+  const loginUser = ref({
+    id: "",
+    likedVideos: [],
+  });
 
-  // 바꿔야할듯 프론트쪽에 모든 유저 정보를 가져오는거부터 손해에 말이 안되는 상황,,,?
   const checkId = async (id) => {
     try {
-      const response = await axios.get(`${REST_USER_API}/${id}`);
+      const response = await axios.get(`${REST_USER_API}/check/${id}`);
       return response.data !== null;
     } catch (error) {
-      console.error("Error checking user id:", error);
+      console.log(error);
       return false;
     }
   };
 
+  const getUser = async (id) => {
+    try {
+      const response = await axios.get(`${REST_USER_API}/${id}`);
+      loginUser.value = response.data;
+      if (loginUser.value === "") {
+        alert("유저 정보 부르기 실패");
+      } else {
+        loginUser.value.likedVideos = JSON.parse(loginUser.value.likedVideos);
+      }
+    } catch (err) {
+      console.log(err);
+      alert("만료");
+    }
+  };
+
   const login = async (user) => {
-    console.log(user);
     try {
       const response = await axios.post(`${REST_USER_API}/login`, user);
       loginUser.value = response.data;
-      console.log(response.data);
       if (loginUser.value.id === "") {
         alert("로그인 실패");
       } else {
+        sessionStorage.setItem("access-token", response.data["access-token"]);
         loginUser.value.likedVideos = JSON.parse(loginUser.value.likedVideos);
-        console.log(loginUser.value.likedVideos);
+        const token = response.data["access-token"].split(".");
+        let id = JSON.parse(atob(token[1]))["id"];
+        sessionStorage.setItem("id", id);
         alert("로그인 성공");
         router.push({ name: "home" });
       }
-    } catch (error) {
-      console.error("Error logging in:", error);
+    } catch (err) {
+      console.log(err);
       alert("로그인 실패");
     }
   };
@@ -48,6 +66,7 @@ export const useUserStore = defineStore("user", () => {
       id: "",
       name: "",
     };
+    sessionStorage.clear();
     router.push({ name: "home" });
   };
 
@@ -62,17 +81,38 @@ export const useUserStore = defineStore("user", () => {
     }
   };
 
-  const likeVideo = function (videoId) {
+  const likeVideo = async function (videoId) {
     loginUser.value.likedVideos.push(videoId);
+    try {
+      const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
+      await axios.post(
+        `${REST_USER_API}/${loginUser.value.id}/updatelikedvideos`,
+        {
+          likedVideos: likedVideosJson,
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const unlikeVideo = function (videoId) {
-    console.log("찜취소");
+  const unlikeVideo = async function (videoId) {
     const idx = loginUser.value.likedVideos.findIndex((id) => id === videoId);
     if (idx !== -1) {
       loginUser.value.likedVideos.splice(idx, 1);
+      try {
+        const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
+        await axios.post(
+          `${REST_USER_API}/${loginUser.value.id}/updatelikedvideos`,
+          {
+            likedVideos: likedVideosJson,
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+      console.log(loginUser.value.likedVideos);
     }
-    console.log(loginUser.value.likedVideos);
   };
 
   const saveRoutine = function (routineId) {
@@ -89,6 +129,7 @@ export const useUserStore = defineStore("user", () => {
     userList,
     loginUser,
     checkId,
+    getUser,
     login,
     logout,
     signUp,

@@ -5,10 +5,10 @@
     <p>작성일: {{ review.regDate }}</p>
     <span>내용: </span>
     <div v-if="review.editing">
-      <input type="text" v-model="updateReview" />
+      <input type="text" v-model="updateReview.content" />
       <button
         @click="
-          store.updateReview(updateReviewId, updateReview),
+          store.updateReview(updateReview.id, updateReview),
             (review.editing = false)
         "
       >
@@ -17,19 +17,19 @@
     </div>
     <p v-else>{{ review.content }}</p>
     <button
-      v-if="review.userId === userStore.loginUser.id && !review.editing"
+      v-if="review.writer === userStore.loginUser.id && !review.editing"
       @click="setUpdateReview(review.id)"
     >
       수정
     </button>
     <button
-      v-if="review.userId === userStore.loginUser.id && review.editing"
+      v-if="review.writer === userStore.loginUser.id && review.editing"
       @click="review.editing = false"
     >
       취소
     </button>
     <button
-      v-if="review.userId === userStore.loginUser.id"
+      v-if="review.writer === userStore.loginUser.id"
       @click="store.deleteReview(review.id, review.videoId)"
     >
       삭제
@@ -49,14 +49,12 @@ defineProps({
   review: Object,
 });
 
-const updateReview = ref("");
-const updateReviewId = ref(0);
+const updateReview = ref({});
 
 const setUpdateReview = function (id) {
   store.videoReviewList.map((el) => {
     if (el.id === id) {
-      updateReview.value = el.content;
-      updateReviewId.value = id;
+      updateReview.value = JSON.parse(JSON.stringify(el));
       el.editing = true;
     } else {
       el.editing = false;
