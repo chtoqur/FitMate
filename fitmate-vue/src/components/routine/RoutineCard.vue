@@ -77,12 +77,12 @@ const saveRoutine = (id) => {
 }
 
 onMounted(() => {
-  if (userStore.loginUser.id !== '' && userStore.loginUser.savedRoutine.length !== 0) {
-    if (userStore.loginUser.savedRoutine.includes(props.routine.id)) {
-      console.log(userStore.loginUser.savedRoutine);
-      document.querySelector('.svg').classList.add('saved-routine');
-    }
-  }
+  // if (userStore.loginUser.id !== '' && userStore.loginUser.savedRoutine.length !== 0) {
+  //   if (userStore.loginUser.savedRoutine.includes(props.routine.id)) {
+  //     console.log(userStore.loginUser.savedRoutine);
+  //     document.querySelector('.svg').classList.add('saved-routine');
+  //   }
+  // }
 })
 </script>
 

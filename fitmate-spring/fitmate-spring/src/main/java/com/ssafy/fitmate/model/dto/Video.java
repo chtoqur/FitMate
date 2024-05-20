@@ -3,6 +3,7 @@ package com.ssafy.fitmate.model.dto;
 public class Video {
 	private int id;
 	private String title;
+	private String part;
 	private String description;
 	private String thumbnail;
 	private String channelName;
@@ -12,20 +13,22 @@ public class Video {
 	public Video() {
 	}
 	
-	public Video(int id, String title, String description, String thumbnail, String channelName,
+	public Video(int id, String title, String part, String description, String thumbnail, String channelName,
 			String youtubeVideoId) {
 		this.id = id;
 		this.title = title;
+		this.part = part;
 		this.description = description;
 		this.thumbnail = thumbnail;
 		this.channelName = channelName;
 		this.youtubeVideoId = youtubeVideoId;
 	}
 
-	public Video(int id, String title, String description, String thumbnail, String channelName, int viewCnt,
+	public Video(int id, String title, String part, String description, String thumbnail, String channelName, int viewCnt,
 			String youtubeVideoId) {
 		this.id = id;
 		this.title = title;
+		this.part = part;
 		this.description = description;
 		this.thumbnail = thumbnail;
 		this.channelName = channelName;
@@ -47,6 +50,14 @@ public class Video {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getPart() {
+		return part;
+	}
+
+	public void setPart(String part) {
+		this.part = part;
 	}
 
 	public String getDescription() {
@@ -91,9 +102,8 @@ public class Video {
 
 	@Override
 	public String toString() {
-		return "Video [id=" + id + ", title=" + title + ", description=" + description + ", thumbnail=" + thumbnail
-				+ ", channelName=" + channelName + ", viewCnt=" + viewCnt + ", youtubeVideoId=" + youtubeVideoId + "]";
+		return "Video [id=" + id + ", title=" + title + ", part=" + part + ", description=" + description
+				+ ", thumbnail=" + thumbnail + ", channelName=" + channelName + ", viewCnt=" + viewCnt
+				+ ", youtubeVideoId=" + youtubeVideoId + "]";
 	}
-	
-	
 }

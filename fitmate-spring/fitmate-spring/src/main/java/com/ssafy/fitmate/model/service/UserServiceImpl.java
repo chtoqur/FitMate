@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
             result.put("postCode", user.getPostCode());
             result.put("address", user.getAddress());
             result.put("likedVideos", user.getLikedVideos());
+            result.put("savedRoutine", user.getSavedRoutine());
             System.out.println(user.getImg());
 //            result.put("savedRoutine", user.getSavedRoutine());
         } else {
@@ -75,4 +76,9 @@ public class UserServiceImpl implements UserService {
     public int checkIdExists(String id) {
         return userDao.checkIdExists(id);
     }
+
+	@Override
+	public void updateSavedRoutine(User user) {
+		userDao.updateSavedRoutine(user);
+	}
 }
