@@ -28,15 +28,17 @@
 import CommentList from "./CommentList.vue";
 import { useCommunityStore } from "@/stores/community";
 import { useCommentStore } from "@/stores/comment";
-import { onMounted } from "vue";
+import { onBeforeMount } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 const store = useCommunityStore();
 const commentStore = useCommentStore();
 
-onMounted(() => {
+onBeforeMount(() => {
+  console.log(route.params.id);
   store.getPostById(route.params.id);
+  console.log(store.nowPost);
 });
 </script>
 

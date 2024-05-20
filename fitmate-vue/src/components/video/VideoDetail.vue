@@ -4,7 +4,7 @@
       <iframe
         width="560"
         height="315"
-        :src="store.video.url"
+        :src="`https://www.youtube.com/embed/${store.video.youtubeVideoId}`"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -15,6 +15,10 @@
     <div>
       <div>
         <span>{{ store.video.title }}</span>
+        <br />
+        <span>{{ store.video.channelName }}</span>
+        <br />
+        <span>{{ store.video.description }}</span>
       </div>
       <VideoReview
         v-for="review in store.videoReviewList"

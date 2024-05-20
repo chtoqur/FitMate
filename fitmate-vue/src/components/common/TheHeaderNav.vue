@@ -5,7 +5,7 @@
         <!-- logo -->
         <div class="nav-left">
           <RouterLink to="/" class="nav-left-el">
-            <span>HOME</span>
+            <span>Home</span>
           </RouterLink>
         </div>
         <!-- navigation -->
@@ -13,17 +13,17 @@
           <ul class="nav-ul">
             <li>
               <RouterLink to="/video" class="nav-ul-el">
-                <span>GUIDE</span>
+                <span>Training Guide</span>
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/routine" class="nav-ul-el">
-                <span>ROUTINE</span>
+                <span>Routine</span>
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/community" class="nav-ul-el">
-                <span>COMMUNITY</span>
+                <span>Community</span>
               </RouterLink>
             </li>
           </ul>
@@ -31,13 +31,13 @@
         <!-- login/logout / mypage -->
         <div class="nav-right">
           <RouterLink to="/login" v-if="store.loginUser.id === ''" class="nav-right-el">
-            <span class="mdi mdi-login">&nbsp;LOGIN</span>
+            <span class="mdi mdi-login">&nbsp;Login</span>
           </RouterLink>
           <RouterLink to="/mypage" v-if="store.loginUser.id !== ''" class="nav-right-el">
-            <span class="mdi mdi-account-circle">&nbsp;MYPAGE</span>
+            <span class="mdi mdi-account-circle">&nbsp;Mypage</span>
           </RouterLink>
           <a v-if="store.loginUser.id !== ''" @click="store.logout" class="nav-right-el">
-            <span class="mdi mdi-logout">&nbsp;LOGOUT</span>
+            <span class="mdi mdi-logout">&nbsp;Logout</span>
           </a>
         </div>
       </div>
@@ -47,7 +47,7 @@
 
 <script setup>
 import { useUserStore } from "@/stores/user";
-
+import { onMounted, ref } from 'vue';
 
 const store = useUserStore();
 </script>
@@ -119,5 +119,22 @@ button {
   border: none;
   background-color: grey;
   color: black;
+}
+
+.router-link-active span {
+  color: rgb(118, 159, 205);
+}
+
+/* sticky */
+
+.nav-sticky .nav-links {
+position: fixed;
+/* width: 90%; */
+
+/* 필터 코드 */
+/* -webkit-backdrop-filter: saturate(180%) blur(15px);
+-moz-backdrop-filter: saturate(180%) blur(15px);
+-o-backdrop-filter: saturate(180%) blur(15px);
+backdrop-filter: saturate(180%) blur(15px); */
 }
 </style>

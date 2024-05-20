@@ -1,5 +1,0 @@
-package com.ssafy.fitmate.model.service;
-
-public interface ExcerciseService {
-
-}

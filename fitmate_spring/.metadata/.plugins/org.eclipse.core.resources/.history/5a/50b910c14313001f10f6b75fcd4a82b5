@@ -1,5 +1,0 @@
-package com.fitmate.community.model.dao;
-
-public interface ExcerciesDao {
-
-}
