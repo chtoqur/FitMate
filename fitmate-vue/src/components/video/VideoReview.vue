@@ -23,18 +23,18 @@
         </div>
         <!-- 댓글 내용 -->
         <div class="cmt-content-area">
-          <span class="cmt-content"
-          :class="{ hidden: isEditAreaVisible }"
-          >{{ review.content }}</span>
+          <span class="cmt-content" :class="{ hidden: isEditAreaVisible }">{{
+            review.content
+          }}</span>
           <!-- 수정 textarea hidden -->
-          <div class="cmt-edit-box"
-          :class="{ hidden: !isEditAreaVisible }">
+          <div class="cmt-edit-box" :class="{ hidden: !isEditAreaVisible }">
             <textarea
               class="form-control cmt-textarea"
               v-model="editReview.content"
               rows="2"
               aria-label="With textarea"
-            >{{ review.content }}</textarea>
+              >{{ review.content }}</textarea
+            >
           </div>
         </div>
         <!-- 작성일 -->
@@ -44,11 +44,18 @@
         <!-- 버튼 영역 -->
         <div class="cmt-button-area">
           <!-- 일반 display -->
-          <div class="cmt-button-area-before"
-          :class="{ hidden: isEditAreaVisible }">
+          <div
+            class="cmt-button-area-before"
+            :class="{ hidden: isEditAreaVisible }"
+          >
             <!-- v-if 대댓글 아니면 답글 -->
-            <v-btn variant="tonal" class="comment-btn" v-if="userStore.loginUser.id !== '' && review.parent == 0" size="small"
-              @click="toggleReplyArea(review.id)">
+            <v-btn
+              variant="tonal"
+              class="comment-btn"
+              v-if="userStore.loginUser.id !== '' && review.parent == 0"
+              size="small"
+              @click="toggleReplyArea(review.id)"
+            >
               답글
             </v-btn>
             <!-- v-if 작성자 본인이면 수정 + 삭제 -->
@@ -57,7 +64,7 @@
               variant="tonal"
               v-if="review.writer == userStore.loginUser.id"
               size="small"
-              @click="toggleEditArea(review.id)"
+              @click="toggleEditArea(review.id, review.parent, review.content)"
             >
               수정
             </v-btn>
@@ -72,21 +79,28 @@
             </v-btn>
           </div>
           <!-- 수정중 hidden -->
-          <div class="cmt-button-arera-after"
-          :class="{ hidden: !isEditAreaVisible }">
-            <v-btn class="comment-btn" variant="tonal" size="small"
-            @click="isEditAreaVisible = !isEditAreaVisible"
-            >취소</v-btn>
-            <v-btn class="comment-btn" variant="tonal" size="small"
-            @click="updateReview"
-            >수정</v-btn>
+          <div
+            class="cmt-button-arera-after"
+            :class="{ hidden: !isEditAreaVisible }"
+          >
+            <v-btn
+              class="comment-btn"
+              variant="tonal"
+              size="small"
+              @click="isEditAreaVisible = !isEditAreaVisible"
+              >취소</v-btn
+            >
+            <v-btn
+              class="comment-btn"
+              variant="tonal"
+              size="small"
+              @click="updateReview"
+              >수정</v-btn
+            >
           </div>
         </div>
         <!-- 대댓글 영역 -->
-        <div
-          class="cmt-reply-area"
-          :class="{ hidden: !isReplyAreaVisible }"
-        >
+        <div class="cmt-reply-area" :class="{ hidden: !isReplyAreaVisible }">
           <div class="full-reply-area">
             <div class="icon-reply-box">
               <span class="icon-reply"></span>
@@ -94,29 +108,60 @@
             <div class="comment-section">
               <div class="writer-info">
                 <span>
-                  <span><strong>{{ userStore.loginUser.id }}</strong></span>
+                  <span
+                    ><strong>{{ userStore.loginUser.id }}</strong></span
+                  >
                 </span>
               </div>
               <div class="cmt-content-area">
                 <div class="cmt-reply-edit-box">
-                  <textarea class="form-control cmt-reply-textarea" rows="3" aria-label="With textarea"></textarea>
+                  <textarea
+                    class="form-control cmt-reply-textarea"
+                    rows="3"
+                    aria-label="With textarea"
+                    v-model="replyReview.content"
+                  ></textarea>
                 </div>
               </div>
-              <div class="cmt-reply-button-area" data-seq="${comment.seq}" data-regOrder="${comment.regOrder}" data-sortOrder="${comment.sortOrder}" data-replyTo="">
+              <div
+                class="cmt-reply-button-area"
+                data-seq="${comment.seq}"
+                data-regOrder="${comment.regOrder}"
+                data-sortOrder="${comment.sortOrder}"
+                data-replyTo=""
+              >
                 <div class="cmt-button-area-before">
-                  <v-btn variant="tonal" size="small" class="comment-btn"
+                  <v-btn
+                    class="comment-btn"
+                    variant="tonal"
+                    size="small"
+                    @click="isReplyAreaVisible = !isReplyAreaVisible"
+                    >취소</v-btn
+                  >
+                  <v-btn
+                    variant="tonal"
+                    size="small"
+                    class="comment-btn"
                     @click="createReplyReview"
                   >
-                  등록</v-btn>
+                    등록</v-btn
+                  >
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div v-for="childReview in store.videoReviewList">
+          <VideoReview
+            v-if="childReview.parent === review.id"
+            :key="childReview.id"
+            :review="childReview"
+          />
+        </div>
       </div>
     </div>
   </div>
-   <!-- <p v-else>{{ review.content }}</p>
+  <!-- <p v-else>{{ review.content }}</p>
     <button
       v-if="review.writer === userStore.loginUser.id && !review.editing"
       @click="setUpdateReview(review.id)"
@@ -150,12 +195,13 @@ const isReplyAreaVisible = ref(false);
 const isEditAreaVisible = ref(false);
 
 const editReview = ref({
+  id: 0,
   videoId: route.params.id,
   writer: sessionStorage.getItem("id")
     ? sessionStorage.getItem("id")
     : userStore.loginUser.id,
   content: "",
-  parent : -1
+  parent: -1,
 });
 
 const replyReview = ref({
@@ -164,7 +210,7 @@ const replyReview = ref({
     ? sessionStorage.getItem("id")
     : userStore.loginUser.id,
   content: "",
-  parent: -1
+  parent: -1,
 });
 
 defineProps({
@@ -172,24 +218,27 @@ defineProps({
 });
 
 const createReplyReview = () => {
+  console.log(replyReview.value);
   store.createReview(replyReview.value);
-  review.value.content = "";
-}
+  replyReview.value.content = "";
+};
 
 const updateReview = () => {
-  store.updateReview(editReview.value.videoId, editReview);
+  store.updateReview(editReview.value.id, editReview.value);
   isEditAreaVisible.value = !isEditAreaVisible.value;
-}
+};
 
-const toggleReplyArea = (parentId) => {
-  replyReview.value.parent = parentId;
+const toggleReplyArea = (parent) => {
+  replyReview.value.parent = parent;
   isReplyAreaVisible.value = !isReplyAreaVisible.value;
-}
+};
 
-const toggleEditArea = (parentId) => {
-  editReview.value.parent = parentId;
+const toggleEditArea = (reviewId, parent, content) => {
+  editReview.value.id = reviewId;
+  editReview.value.parent = parent;
+  editReview.value.content = content;
   isEditAreaVisible.value = !isEditAreaVisible.value;
-}
+};
 </script>
 
 <style scoped>

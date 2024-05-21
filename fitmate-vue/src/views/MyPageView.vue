@@ -27,6 +27,8 @@
       <p>아이디 : {{ userStore.loginUser.id }}</p>
       <p>이름 : {{ userStore.loginUser.name }}</p>
       <p>닉네임 : {{ userStore.loginUser.nickname }}</p>
+      <p>우편번호 : {{ userStore.loginUser.postCode }}</p>
+      <p>주소 : {{ userStore.loginUser.address }}</p>
     </div>
     <br />
     <div>
@@ -59,6 +61,9 @@
         </div>
       </div>
     </div>
+    <RouterLink to="changepwd">비밀번호 변경</RouterLink>
+    <span> | </span>
+    <RouterLink to="changemyinfo">내 정보 수정</RouterLink>
   </div>
 </template>
 
@@ -113,7 +118,7 @@ const saveProfilePicture = async () => {
       alert("프로필 이미지 업로드에 실패했습니다.");
     }
   } catch (error) {
-    console.error("프로필 이미지 업로드 오류:", error);
+    console.log(error);
     alert("프로필 이미지 업로드에 실패했습니다.");
   }
 };
@@ -134,6 +139,9 @@ const profilePictureUrl = computed(() => {
 // };
 
 onBeforeMount(async () => {
+  await videoStore.getAllVideoList();
+  await communityStore.getPostList();
+  await commentStore.getAllCommentList();
   videoStore.nowList = [];
   videoStore.videoList.forEach((video) => {
     if (userStore.loginUser.likedVideos.includes(video.id)) {

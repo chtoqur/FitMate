@@ -67,6 +67,8 @@ public class VideoCommentRestController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> update(@PathVariable("id") int id, @RequestBody VideoComment comment) {
+		System.out.println(id);
+		System.out.println(comment);
 		comment.setId(id);
 		commentService.modifyComment(comment);
 		return new ResponseEntity<Void>(HttpStatus.OK);

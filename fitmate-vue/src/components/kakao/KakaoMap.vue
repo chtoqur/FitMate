@@ -109,53 +109,48 @@ const searchNearbyGyms = function () {
 // 주소지 중심으로 헬스장 검색
 const searchGymsByPostCode = function () {
   const geocoder = new kakao.maps.services.Geocoder();
-  geocoder.addressSearch(
-    "서울특별시 관악구 관천로10길 34 스위트빌 502호",
-    function (result, status) {
-      if (status === kakao.maps.services.Status.OK) {
-        const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+  geocoder.addressSearch(store.loginUser.address, function (result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-        const places = new kakao.maps.services.Places();
-        places.keywordSearch(
-          "헬스장",
-          function (data, status) {
-            if (status === kakao.maps.services.Status.OK) {
-              const sortedData = data
-                .sort((a, b) => a.distance - b.distance)
-                .slice(0, 3);
-              gyms.value = sortedData.map((gym) => ({
-                id: gym.id,
-                place_name: gym.place_name,
-                address_name: gym.address_name,
-                latlng: [gym.y, gym.x],
-              }));
+      const places = new kakao.maps.services.Places();
+      places.keywordSearch(
+        "헬스장",
+        function (data, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            const sortedData = data
+              .sort((a, b) => a.distance - b.distance)
+              .slice(0, 3);
+            gyms.value = sortedData.map((gym) => ({
+              id: gym.id,
+              place_name: gym.place_name,
+              address_name: gym.address_name,
+              latlng: [gym.y, gym.x],
+            }));
 
-              const gymPositions = gyms.value.map((gym) => [
-                gym.latlng[0],
-                gym.latlng[1],
-              ]);
-              displayMarker(gymPositions);
-            } else {
-              alert("헬스장을 찾을 수 없습니다.");
-            }
-          },
-          { location: coords, radius: 5000 }
-        );
-      } else {
-        alert("우편번호에 해당하는 위치를 찾을 수 없습니다.");
-      }
+            const gymPositions = gyms.value.map((gym) => [
+              gym.latlng[0],
+              gym.latlng[1],
+            ]);
+            displayMarker(gymPositions);
+          } else {
+            alert("헬스장을 찾을 수 없습니다.");
+          }
+        },
+        { location: coords, radius: 5000 }
+      );
+    } else {
+      alert("집 주소에 해당하는 위치를 찾을 수 없습니다.");
     }
-  );
+  });
 };
 
 // 우편번호로 집 위치 보이게 하기
 const showPostCodeLocation = function () {
-  console.log(store.loginUser.postCode);
   const geocoder = new kakao.maps.services.Geocoder();
   geocoder.addressSearch(
     "서울특별시 관악구 관천로10길 34 스위트빌 502호",
     function (result, status) {
-      console.log(status);
       if (status === kakao.maps.services.Status.OK) {
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         const marker = new kakao.maps.Marker({

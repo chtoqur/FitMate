@@ -18,10 +18,59 @@ export const useUserStore = defineStore("user", () => {
   const checkId = async (id) => {
     try {
       const response = await axios.get(`${REST_USER_API}/check/${id}`);
-      return response.data !== null;
+      if (response.data) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return true;
+    }
+  };
+
+  const checkPw = async (user) => {
+    try {
+      const response = await axios.get(`${REST_USER_API}/checkpw`, {
+        params: {
+          id: user.id,
+          pw: user.nowPw,
+        },
+      });
+      if (response.data) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
       console.log(error);
       return false;
+    }
+  };
+
+  const changePw = async (user) => {
+    user.password = user.changePw;
+    try {
+      const response = await axios.put(`${REST_USER_API}/changepw`, user);
+      alert("비밀번호 변경 성공!");
+      router.push({ name: "mypage" });
+    } catch (error) {
+      console.log(error);
+      return true;
+    }
+  };
+
+  const updateUser = async (user) => {
+    user.img = user.image;
+    user.likedVideos = JSON.stringify(user.likedVideos);
+    user.savedRoutine = JSON.stringify(user.savedRoutine);
+    try {
+      const response = await axios.put(`${REST_USER_API}`, user);
+      await getUser(user.id);
+      alert("내 정보 변경 성공!");
+      router.push({ name: "mypage" });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -30,7 +79,7 @@ export const useUserStore = defineStore("user", () => {
       const response = await axios.get(`${REST_USER_API}/${id}`);
       loginUser.value = response.data;
       if (loginUser.value === "") {
-        alert("유저 정보 부르기 실패");
+        router.push({ name: "home" });
       } else {
         loginUser.value.likedVideos = JSON.parse(loginUser.value.likedVideos);
       }
@@ -71,6 +120,7 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const signUp = async (user) => {
+    console.log(user);
     try {
       const response = await axios.post(`${REST_USER_API}/signup`, user);
       alert("회원가입 성공!");
@@ -129,6 +179,9 @@ export const useUserStore = defineStore("user", () => {
     userList,
     loginUser,
     checkId,
+    checkPw,
+    changePw,
+    updateUser,
     getUser,
     login,
     logout,

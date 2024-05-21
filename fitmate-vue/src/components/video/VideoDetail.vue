@@ -28,10 +28,9 @@
                   @click="toggleLike"
                   class="button-like"
                 >
-                <span class="mdi mdi-heart" style="margin-left: 0"
-                @click="">
-                  &nbsp;Like
-                </span>
+                  <span class="mdi mdi-heart" style="margin-left: 0" @click="">
+                    &nbsp;Like
+                  </span>
                 </button>
               </div>
             </div>
@@ -67,9 +66,9 @@
                 </span>
               </div>
               <hr />
-              <div>
+              <div v-for="review in store.videoReviewList">
                 <VideoReview
-                  v-for="review in store.videoReviewList"
+                  v-if="review.parent === 0"
                   :key="review.id"
                   :review="review"
                 />
@@ -106,12 +105,13 @@ const isLiked = ref(false);
 onMounted(() => {
   store.getVideo(route.params.id);
   store.getReviewList(route.params.id);
+  console.log(store.videoReviewList);
 });
 
 const createReview = function () {
-  if (userStore.loginUser.id === '') {
+  if (userStore.loginUser.id === "") {
     if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
-      router.push({ name: 'login' })
+      router.push({ name: "login" });
     }
     return;
   }

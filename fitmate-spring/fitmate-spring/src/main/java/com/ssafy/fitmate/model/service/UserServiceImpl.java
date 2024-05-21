@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void signup(User user) {
-		userDao.insertUser(user);
+	public int signup(User user) {
+		return userDao.insertUser(user);
 	}
 
 	@Override
@@ -59,8 +59,7 @@ public class UserServiceImpl implements UserService {
             result.put("address", user.getAddress());
             result.put("likedVideos", user.getLikedVideos());
             result.put("savedRoutine", user.getSavedRoutine());
-            System.out.println(user.getImg());
-//            result.put("savedRoutine", user.getSavedRoutine());
+            result.put("savedRoutine", user.getSavedRoutine());
         } else {
             result.put("message", "로그인 실패");
         }
@@ -86,10 +85,30 @@ public class UserServiceImpl implements UserService {
     public int checkIdExists(String id) {
         return userDao.checkIdExists(id);
     }
+	
+	@Override
+	public int checkPassword(String id, String pw) {
+		Map<String, String> info = new HashMap<>();
+		info.put("id", id);
+		info.put("password", pw);
+		return userDao.checkPassword(info);
+	}
+	
+	@Override
+	public int changePassword(String id, String editPw) {
+		Map<String, String> info = new HashMap<>();
+		info.put("id", id);
+		info.put("password", editPw);
+		return userDao.changePassword(info);
+	}
 
 	@Override
-	public void updateSavedRoutine(User user) {
-		userDao.updateSavedRoutine(user);
+	public void updateSavedRoutine(String userId, String savedRoutine) {
+		User user = userDao.findById(userId);
+        if (user != null) {
+            user.setSavedRoutine(savedRoutine);
+            userDao.updateSavedRoutine(user);
+        }
 	}
 	
 	@Override
@@ -109,5 +128,23 @@ public class UserServiceImpl implements UserService {
         result.put("savedRoutine", user.getSavedRoutine());
         return result;
     }
+
+	@Override
+	public Map<String, Object> changeUserInfo(User user) {
+		userDao.updateUser(user);
+        Map<String, Object> result = new HashMap<>();
+        result.put("id", user.getId());
+        result.put("name", user.getName());
+        result.put("nickname", user.getNickname());
+        result.put("email", user.getEmail());
+        result.put("image", user.getImg());
+        result.put("age", user.getAge());
+        result.put("fitnessLevel", user.getFitnessLevel());
+        result.put("postCode", user.getPostCode());
+        result.put("address", user.getAddress());
+        result.put("likedVideos", user.getLikedVideos());
+        result.put("savedRoutine", user.getSavedRoutine());
+        return result;
+	}
 
 }

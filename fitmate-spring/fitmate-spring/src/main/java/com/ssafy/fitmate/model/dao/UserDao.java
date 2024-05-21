@@ -26,5 +26,9 @@ public interface UserDao {
 	
 	public User findById(String userId);
 	
+	public int checkPassword(Map<String, String> info);
+	
+	public int changePassword(Map<String, String> info);
+	
 //	public void deleteUser(String id);
 }

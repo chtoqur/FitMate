@@ -9,7 +9,7 @@ public interface UserService {
 	//전체 사용자 목록 불러오기
 	public List<User> getUserList();
 	//사용자 등록하기
-	public void signup(User user);
+	public int signup(User user);
 	//로그인 하기
 	public User login(String id, String password);
 	
@@ -21,7 +21,13 @@ public interface UserService {
 	
 	public int checkIdExists(String id);
 	
-	public void updateSavedRoutine(User user);
+	public void updateSavedRoutine(String userId, String savedRoutine);
 	
 	public Map<String, Object> getUserInfo(String id);
+	
+	public int checkPassword(String id, String pw);
+	
+	public int changePassword(String id, String editPw);
+	
+	public Map<String, Object> changeUserInfo(User user);
 }

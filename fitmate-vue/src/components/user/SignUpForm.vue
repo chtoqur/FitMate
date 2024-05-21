@@ -77,8 +77,8 @@ const isPassword = computed(() => {
   return repPassword.value === user.value.password;
 });
 
-const checkId = function (id) {
-  if (store.checkId(id)) {
+const checkId = async (id) => {
+  if (await store.checkId(id)) {
     alert("이미 존재하는 아이디입니다.");
   } else {
     idChecked.value = confirm("사용 가능한 아이디입니다. 사용하시겠습니까?");
@@ -105,7 +105,7 @@ const signUp = function () {
   } else if (user.value.postCode === "") {
     alert("주소를 입력해주세요.");
   } else {
-    store.signUp(user);
+    store.signUp(user.value);
   }
 };
 

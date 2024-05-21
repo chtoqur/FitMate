@@ -44,6 +44,7 @@ export const useVideoStore = defineStore("video", () => {
   const videoReviewList = ref([]);
 
   const createReview = async (review) => {
+    console.log(review);
     try {
       const response = await axios.post(REST_VIDEO_REVIEW_API, review);
       getReviewList(review.videoId);
@@ -83,6 +84,8 @@ export const useVideoStore = defineStore("video", () => {
   };
 
   const updateReview = async (id, review) => {
+    console.log(id);
+    console.log(review);
     try {
       const response = await axios.put(
         `${REST_VIDEO_REVIEW_API}/${id}`,

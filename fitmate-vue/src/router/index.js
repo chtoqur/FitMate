@@ -14,6 +14,8 @@ import CommunityList from "../components/community/CommunityList.vue";
 import CommunityDetail from "../components/community/CommunityDetail.vue";
 import MyPageView from "../views/MyPageView.vue";
 import ExerciseDetail from "@/components/exercise/ExerciseDetail.vue";
+import ChangePwd from "@/components/user/ChangePwd.vue";
+import ChangeMyInfo from "@/components/user/ChangeMyInfo.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -93,6 +95,16 @@ const router = createRouter({
       path: "/mypage",
       name: "mypage",
       component: MyPageView,
+    },
+    {
+      path: "/changepwd",
+      name: "changePwd",
+      component: ChangePwd,
+    },
+    {
+      path: "/changemyinfo",
+      name: "changeMyInfo",
+      component: ChangeMyInfo,
     },
     {
       path: "/exercise",
