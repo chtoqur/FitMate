@@ -1,30 +1,15 @@
 <template>
   <div class="post-container">
     <div class="post-top-btn">
-      <v-btn
-        depressed
-        text
-        @click="previous"
-        class="prev-post-btn"
-      >
+      <v-btn depressed text @click="previous" class="prev-post-btn">
         <span class="mdi mdi-chevron-up"></span>
         이전글
       </v-btn>
-      <v-btn
-        depressed
-        text
-        @click="previous"
-      >
+      <v-btn depressed text @click="previous">
         <span class="mdi mdi-chevron-down"></span>
         다음글
       </v-btn>
-      <v-btn
-        depressed
-        text
-        @click="previous"
-      >
-        목록으로
-      </v-btn>
+      <v-btn depressed text @click="previous"> 목록으로 </v-btn>
     </div>
     <div class="post-content">
       <div class="post-top">
@@ -40,10 +25,11 @@
               </span>
             </div>
             <div>
-              {{ store.nowPost.regDate }} &nbsp; 조회 {{ store.nowPost.viewCnt }}
+              {{ store.nowPost.regDate }} &nbsp; 조회
+              {{ store.nowPost.viewCnt }}
             </div>
           </div>
-          <hr>
+          <hr />
         </div>
       </div>
       <div class="post-mid">
@@ -87,7 +73,10 @@
                 </span>
               </div>
               <hr />
-              <div v-for="comment in commentStore.nowCommentList">
+              <div
+                v-for="comment in commentStore.nowCommentList"
+                :key="comment.id"
+              >
                 <CommentThread
                   v-if="comment.parent === 0"
                   :key="comment.id"
@@ -117,29 +106,13 @@
       </div>
     </div>
     <div class="post-bottom-btn">
-      <v-btn
-        depressed
-        text
-        @click="router.push('/writePost')">
+      <v-btn depressed text @click="router.push('/writePost')">
         <span class="mdi mdi-lead-pencil"></span>
         &nbsp;글쓰기
       </v-btn>
-      <v-btn
-        depressed
-        text
-        @click="previous"
-      >
-        수정
-      </v-btn>
-      <v-btn
-        depressed
-        text
-        @click="previous"
-      >
-        삭제
-      </v-btn>
+      <v-btn depressed text @click="previous"> 수정 </v-btn>
+      <v-btn depressed text @click="previous"> 삭제 </v-btn>
     </div>
-    
   </div>
 </template>
 
@@ -205,16 +178,17 @@ onBeforeMount(() => {
 }
 
 hr {
-    background: rgb(204, 204, 204);
-    height:1px;
-    border:0;
+  background: rgb(204, 204, 204);
+  height: 1px;
+  border: 0;
 }
 
 .prev-post-btn {
   margin-left: auto;
 }
 
-.post-top-btn button, .post-bottom-btn button {
+.post-top-btn button,
+.post-bottom-btn button {
   margin-left: 10px;
 }
 
@@ -297,7 +271,6 @@ hr {
   color: #e84545;
   margin-left: 4px;
 }
-
 
 .post-bottom-btn {
   display: flex;
@@ -396,5 +369,4 @@ hr {
     opacity: 0;
   }
 }
-
 </style>

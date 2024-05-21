@@ -42,7 +42,7 @@
       <div></div>
     </div>
     <div class="table-wrap">
-      <v-table density="default" hover="true" class="post-table">
+      <v-table density="default" hover class="post-table">
         <thead>
           <tr>
             <th class="text-left">SEQ</th>
