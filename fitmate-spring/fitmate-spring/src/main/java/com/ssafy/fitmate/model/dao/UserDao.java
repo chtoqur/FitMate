@@ -16,13 +16,15 @@ public interface UserDao {
 
 	public int updateUser(User user);
 
-	public int updateLikeVideos(User user);
+	public int updateLikedVideos(User user);
 	
 	public void updateSavedRoutine(User user);
 
 	public void updateUserProfileImage(@Param("userId") String userId, @Param("imageUrl") String imageUrl);
 
 	public int checkIdExists(String id);
+	
+	public User findById(String userId);
 	
 //	public void deleteUser(String id);
 }

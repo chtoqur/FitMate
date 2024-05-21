@@ -15,9 +15,13 @@ public interface UserService {
 	
 	Map<String, Object> authenticate(String id, String password);
 	
+	public void updateLikedVideos(String userId, String likedVideos);
+	
 	public void updateUserProfileImage(String userId, String imageUrl);
 	
 	public int checkIdExists(String id);
 	
 	public void updateSavedRoutine(User user);
+	
+	public Map<String, Object> getUserInfo(String id);
 }

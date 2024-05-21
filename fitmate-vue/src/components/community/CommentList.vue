@@ -55,7 +55,7 @@
           <h5>{{ child.writer }}</h5>
           <p>내용</p>
           <div v-if="child.editing">
-            <input type="text" v-model="updateComment" />
+            <input type="text" v-model="updateComment.content" />
             <button
               @click="
                 store.updateComment(child.id, updateComment),
@@ -123,14 +123,16 @@ const updateComment = ref({});
 const childComment = ref({
   communityId: route.params.id,
   content: "",
-  writer: userStore.loginUser.id,
+  writer: sessionStorage.getItem("id")
+    ? sessionStorage.getItem("id")
+    : userStore.loginUser.id,
   parent: null,
 });
 
 const setChildComment = function (parentId) {
   childComment.value.parent = parentId;
   childComment.value.content = "";
-  store.allCommentList.map((el) => {
+  store.nowCommentList.map((el) => {
     if (el.id === parentId) {
       el.childComment = true;
     }
