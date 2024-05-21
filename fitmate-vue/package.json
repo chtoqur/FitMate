@@ -11,12 +11,13 @@
   "dependencies": {
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^7.4.47",
+    "@tiptap/pm": "^2.4.0",
+    "@tiptap/starter-kit": "^2.4.0",
+    "@tiptap/vue-3": "^2.4.0",
     "axios": "^1.7.1",
-    "pageable": "^0.6.8",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "vue3-fullpage": "^0.2.0",
     "vuetify": "^3.6.6"
   },
   "devDependencies": {

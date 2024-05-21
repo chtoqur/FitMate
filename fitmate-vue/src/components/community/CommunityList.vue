@@ -34,7 +34,9 @@
           ></v-btn>
         </div>
         <div class="write-btn">
-          <v-btn class="ma-2"> 글작성 </v-btn>
+          <v-btn class="ma-2" @click="router.push('/writePost')">
+            글작성
+          </v-btn>
         </div>
       </div>
       <div></div>
