@@ -150,18 +150,18 @@ public class UserRestController {
 	}
 
 	@PostMapping("/{userId}/update-likedvideos/{communityId}")
-	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int videoId) {
+	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int communityId) {
 		String likedVideos = payload.get("likedVideos");
 		userService.updateLikedVideos(userId, likedVideos);
-		communityService.plusLikeCnt(videoId);
+		communityService.plusLikeCnt(communityId);
 		return ResponseEntity.ok().body("Liked videos updated successfully.");
 	}
 	
 	@PostMapping("/{userId}/update-likedcommunity/{communityId}")
-	public ResponseEntity<?> updateLikedCommunity(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int videoId) {
+	public ResponseEntity<?> updateLikedCommunity(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int communityId) {
 		String likedCommunity = payload.get("likedCommunity");
 		userService.updateLikedCommunity(userId, likedCommunity);
-		communityService.minusLikeCnt(videoId);
+		communityService.minusLikeCnt(communityId);
 		return ResponseEntity.ok().body("Liked community updated successfully.");
 	}
 

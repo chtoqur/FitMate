@@ -211,11 +211,11 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const likePost = async function (communityId) {
-    loginUser.value.likedCommunity.push(communityId);
+    loginUser.value.likedCommunity.push(parseInt(communityId));
     try {
       const likedCommunityJson = JSON.stringify(loginUser.value.likedCommunity);
       await axios.post(
-        `${REST_USER_API}/${loginUser.value.id}/updatelikedcommunity`,
+        `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity/${communityId}`,
         {
           likedCommunity: likedCommunityJson,
         }
@@ -236,7 +236,7 @@ export const useUserStore = defineStore("user", () => {
           loginUser.value.likedCommunity
         );
         await axios.post(
-          `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity`,
+          `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity/${communityId}`,
           {
             likedCommunity: likedCommunityJson,
           }
