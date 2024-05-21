@@ -18,6 +18,8 @@ public interface UserDao {
 
 	public int updateLikedVideos(User user);
 	
+	public int updateLikedCommunity(User user);
+	
 	public void updateSavedRoutine(User user);
 
 	public void updateUserProfileImage(@Param("userId") String userId, @Param("imageUrl") String imageUrl);

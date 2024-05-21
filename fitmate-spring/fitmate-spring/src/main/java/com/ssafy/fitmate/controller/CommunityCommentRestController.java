@@ -15,30 +15,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.fitmate.model.dto.CommunityComment;
 import com.ssafy.fitmate.model.service.CommunityCommentService;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import com.ssafy.fitmate.model.service.CommunityService;
 
 @RestController
 @RequestMapping("/community/comment")
-@Tag(name = "CommunityCommentRestController", description = "게시판 댓글 CRUD")
 public class CommunityCommentRestController {
 	private final CommunityCommentService commentService;
+	private final CommunityService communityService;
 
 	@Autowired
 	private ResourceLoader loader;
 	
 	@Autowired
-	public CommunityCommentRestController(CommunityCommentService commentService) {
+	public CommunityCommentRestController(CommunityCommentService commentService, CommunityService communityService) {
 		this.commentService = commentService;
+		this.communityService= communityService;
 	}
 
 	@GetMapping("")
-	@Operation(summary = "댓글 전체 조회", description = "댓글 전체 조회 가넝")
 	public ResponseEntity<?> list() {
 		List<CommunityComment> list = commentService.getCommentList(); // 검색 조회
 
@@ -48,9 +47,9 @@ public class CommunityCommentRestController {
 		return new ResponseEntity<List<CommunityComment>>(list, HttpStatus.OK);
 	}
 
-	@GetMapping("/{videoId}")
-	public ResponseEntity<?> detail(@PathVariable("videoId") int videoId) {
-		List<CommunityComment> community = commentService.getNowPostCommentList(videoId);
+	@GetMapping("/{id}")
+	public ResponseEntity<?> detail(@PathVariable("id") int id) {
+		List<CommunityComment> community = commentService.getNowPostCommentList(id);
 
 		return new ResponseEntity<>(community, HttpStatus.OK);
 	}
@@ -62,6 +61,7 @@ public class CommunityCommentRestController {
         String formattedDate = now.format(formatter);
         comment.setRegDate(formattedDate);
 		commentService.writeComment(comment);
+		communityService.plusCommentCnt(comment.getCommunityId());
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
@@ -72,31 +72,12 @@ public class CommunityCommentRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	// 게시글 삭제
 //	@Hidden
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable("id") int id) {
+	public ResponseEntity<Void> delete(@PathVariable("id") int id, @RequestParam int communityId) {
+		System.out.println(communityId);
 		commentService.removeComment(id);
+		communityService.minusCommentCnt(communityId);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-
-//	@PostMapping("/file1")
-//	public ResponseEntity<Void> fileUpload(@RequestParam("file") MultipartFile multipartFile) throws IllegalStateException, IOException {
-//
-//		if (multipartFile != null && multipartFile.getSize() > 0) {
-//			String fileName = multipartFile.getOriginalFilename();
-//			
-//			Resource resource = loader.getResource("classpath:/static/img");
-//			multipartFile.transferTo(new File(resource.getFile(), fileName));
-//		}
-//
-//		return new ResponseEntity<>(HttpStatus.OK);
-//	}
-	
-//	@PostMapping("/file2")
-//	public ResponseEntity<Void> fileUpload2(@RequestParam("file") MultipartFile multipartFile, @ModelAttribute CommunityComment community){
-//		
-//		commentService.filePost(multipartFile, community);
-//		return new ResponseEntity<>(HttpStatus.OK);
-//	}
 }

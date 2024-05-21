@@ -6,9 +6,6 @@ import com.ssafy.fitmate.model.dto.Community;
 import com.ssafy.fitmate.model.dto.SearchCondition;
 
 public interface CommunityDao {
-	// 전체 게시글을 조회
-	public List<Community> selectAll();
-
 	// ID에 해당하는 게시글 하나 가져오기
 	public Community selectOne(int id);
 
@@ -26,8 +23,17 @@ public interface CommunityDao {
 	
 	// 검색 기능
 	public List<Community> search(SearchCondition searchCondition);
-
-	//파일 이름, ID 등 저장
-	public void insertFile(Community community);
+	
+	// 댓글수 증가
+	public void plusCommentCnt(int id);
+	
+	// 댓글수 감소
+	public void minusCommentCnt(int id);
+	
+	// 댓글수 증가
+	public void plusLikeCnt(int id);
+		
+	// 댓글수 감소
+	public void minusLikeCnt(int id);
 
 }

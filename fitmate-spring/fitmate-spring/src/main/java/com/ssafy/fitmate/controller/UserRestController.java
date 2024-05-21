@@ -27,26 +27,24 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.fitmate.model.dto.User;
+import com.ssafy.fitmate.model.service.CommunityService;
 import com.ssafy.fitmate.model.service.UserService;
 import com.ssafy.fitmate.util.JwtUtil;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
-
 @RestController
 @RequestMapping("/user")
-@Tag(name = "UserRestController", description = "사용자 CRUD")
 //@CrossOrigin("*")
 public class UserRestController {
-	private static final String SUCCESS = "success";
-	private static final String Fail = "fail";
 
 	@Autowired
 	private JwtUtil jwtUtil;
 	private final UserService userService;
+	private final CommunityService communityService;
 
 	@Autowired
-	public UserRestController(UserService userService, JwtUtil jwtUtil) {
+	public UserRestController(UserService userService, JwtUtil jwtUtil, CommunityService communityService) {
 		this.userService = userService;
+		this.communityService = communityService;
 		this.jwtUtil = jwtUtil;
 	}
 
@@ -151,11 +149,20 @@ public class UserRestController {
 		return ResponseEntity.ok().body("saved Routine updated successfully.");
 	}
 
-	@PostMapping("/{userId}/update-likedvideos")
-	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload) {
+	@PostMapping("/{userId}/update-likedvideos/{communityId}")
+	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int videoId) {
 		String likedVideos = payload.get("likedVideos");
 		userService.updateLikedVideos(userId, likedVideos);
+		communityService.plusLikeCnt(videoId);
 		return ResponseEntity.ok().body("Liked videos updated successfully.");
+	}
+	
+	@PostMapping("/{userId}/update-likedcommunity/{communityId}")
+	public ResponseEntity<?> updateLikedCommunity(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int videoId) {
+		String likedCommunity = payload.get("likedCommunity");
+		userService.updateLikedCommunity(userId, likedCommunity);
+		communityService.minusLikeCnt(videoId);
+		return ResponseEntity.ok().body("Liked community updated successfully.");
 	}
 
 	public static String hashPassword(String password) {
