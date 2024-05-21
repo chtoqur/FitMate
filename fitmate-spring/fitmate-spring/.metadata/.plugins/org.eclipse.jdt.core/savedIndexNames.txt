@@ -23,10 +23,10 @@ INDEX VERSION 1.134+C:\Users\SSAFY\Desktop\FitMate\fitmate\fitmate-spring\fitmat
 1230942554.index
 979090194.index
 4131155196.index
-4132488446.index
+618952125.index
 1636972750.index
 3894941988.index
-618952125.index
+4132488446.index
 3749382601.index
 160018807.index
 2240048412.index
@@ -42,9 +42,9 @@ INDEX VERSION 1.134+C:\Users\SSAFY\Desktop\FitMate\fitmate\fitmate-spring\fitmat
 3940462980.index
 1822466775.index
 636441017.index
-2025293601.index
-1414637043.index
 2855485115.index
+1414637043.index
+2025293601.index
 1761926429.index
 1544833080.index
 3076046918.index
@@ -54,8 +54,8 @@ INDEX VERSION 1.134+C:\Users\SSAFY\Desktop\FitMate\fitmate\fitmate-spring\fitmat
 144948236.index
 1458565456.index
 551070211.index
-20506528.index
 2621828348.index
+20506528.index
 3477350650.index
 465534633.index
 1161516635.index
