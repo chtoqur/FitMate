@@ -53,12 +53,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(post, index) in store.postList" :key="index">
-            <td>{{ index + 1 }}</td>
+          <tr v-for="(post, index) in paginatedPosts" :key="index">
+            <td>{{ startIndex + index + 1 }}</td>
             <td>
-              <RouterLink :to="`/community/${post.id}`"
-                >{{ post.title }}
-              </RouterLink>
+              <RouterLink :to="`/community/${post.id}`">{{
+                post.title
+              }}</RouterLink>
             </td>
             <td>{{ post.writer }}</td>
             <td>{{ post.regDate.slice(0, 10) }}</td>
@@ -66,9 +66,7 @@
           </tr>
         </tbody>
       </v-table>
-    </div>
-    <div>
-      <v-row no-gutters align="center" justify="center">
+      <!-- <v-row no-gutters align="center" justify="center">
         <v-btn
           v-if="buttonDisplay"
           depressed
@@ -78,7 +76,7 @@
             { 'is-disabled': previousButtonDisabled },
           ]"
           :disabled="previousButtonDisabled"
-          @click="previous"
+          @click="prevPage"
         >
           <span class="mdi mdi-chevron-left"></span>
           이전
@@ -92,8 +90,8 @@
           >
             <button
               type="button"
-              :class="['pagination__btn', { 'is-active': value === number }]"
-              @click="change(number)"
+              :class="['pagination__btn', { 'is-active': curPage === number }]"
+              @click="changePage(number)"
             >
               {{ number }}
             </button>
@@ -109,15 +107,19 @@
             { 'is-disabled': nextButtonDisabled },
           ]"
           :disabled="nextButtonDisabled"
-          @click="next"
+          @click="nextPage"
         >
           다음 <span class="mdi mdi-chevron-right"></span>
         </v-btn>
-      </v-row>
+      </v-row> -->
       <v-pagination
-        :length="totalPageCount"
-        prev="clickPrev"
-        next="clickNext"
+        show-first-last-page
+        total-visible="5"
+        ellipsis="..."
+        :length="totalPages"
+        @prev="prevPage"
+        @next="nextPage"
+        @update:model-value="changePage"
       ></v-pagination>
     </div>
   </div>
@@ -139,59 +141,66 @@ const search = async function () {
   await store.searchPostList(searchCondition.value);
 };
 
-// 로우 관련 정보
-let rowCount = ref(0); // 전체 건수
+// 현재 페이지
+const curPage = ref(1);
 
-// 페이지네이션
-// 페이지 관련 정보
-let pageDisplayCount = 10; // 페이지 당 건수 (테이블에서 보여지는 최대 건수)
-let totalPageCount = ref(0); // 전체 페이지 넘버
-let curPage = ref(1); // 현재 페이지
-let page = ref(0); // 해당 변수 넘버에 따라서 페이지 동적 변화
+// 한 페이지당 포스트 수
+const postsPerPage = 10;
 
-// 섹션 관련 정보
-let curSection = 0; // 현재 섹션 (다음 버튼 = 증가, 이전 버튼 = 감소)
-let pagesPerSection = 5; // 섹션 당 페이지 수 (버튼 수와 동일)
-let totalSectionNum = 0; // 전체 섹션 개수
-
-// 총 페이지가 5개 이하면 이전/다음 버튼을 보여주지 않음
-const buttonDisplay = computed(() => totalPageCount.value > 5);
-
-// 현재 페이지의 그룹 번호 (현재 페이지 / 보여줄 페이지의 수)
-const currentPageGroup = computed(() =>
-  Math.ceil(curPage.value / pageDisplayCount)
+// 페이지 수 계산
+const totalPages = computed(() =>
+  Math.ceil(store.postList.length / postsPerPage)
 );
 
-// 마지막 페이지 번호
-const lastPageNumber = computed(() => {
-  const lastNumber = currentPageGroup.value * pageDisplayCount;
-  if (lastNumber > props.totalPageCount) return props.totalPageCount;
-  return lastNumber;
+// 시작 인덱스 계산
+const startIndex = computed(() => (curPage.value - 1) * postsPerPage);
+
+// 페이지네이션된 포스트 목록
+const paginatedPosts = computed(() =>
+  store.postList.slice(startIndex.value, startIndex.value + postsPerPage)
+);
+
+// 페이지 목록
+const pageList = computed(() => {
+  const pages = [];
+  for (let i = 1; i <= totalPages.value; i++) {
+    pages.push(i);
+  }
+  return pages;
 });
 
-// 첫번째 페이지 번호
-const firstPageNumber = computed(() => {
-  // 끝 번호가 26,27 이렇게 끝날 경우 페이지를 [26,27] 이렇게 보여줘야 하기에 존재하는 로직
-  if (lastPageNumber.value == props.totalPageCount) {
-    const multipleOfPageDisplayCount =
-      lastPageNumber.value % props.pageDisplayCount === 0;
-    return multipleOfPageDisplayCount
-      ? lastPageNumber.value - props.pageDisplayCount + 1
-      : lastPageNumber.value -
-          (lastPageNumber.value % props.pageDisplayCount) +
-          1;
+// 버튼 표시 여부
+const buttonDisplay = computed(() => totalPages.value > 1);
+
+// 이전 버튼 비활성화 여부
+const previousButtonDisabled = computed(() => curPage.value === 1);
+
+// 다음 버튼 비활성화 여부
+const nextButtonDisabled = computed(() => curPage.value === totalPages.value);
+
+// 페이지 변경 함수
+const changePage = (pageNumber) => {
+  if (pageNumber > 0 && pageNumber <= totalPages.value) {
+    curPage.value = pageNumber;
   }
-  return lastPageNumber.value - (props.pageDisplayCount - 1);
-});
+};
+
+// 이전 버튼 클릭 핸들러
+const prevPage = () => {
+  if (curPage.value > 1) {
+    curPage.value--;
+  }
+};
+
+// 다음 버튼 클릭 핸들러
+const nextPage = () => {
+  if (curPage.value < totalPages.value) {
+    curPage.value++;
+  }
+};
 
 onMounted(async () => {
-  try {
-    await store.getPostList();
-    rowCount.value = store.postList.length;
-    totalPageCount.value = Math.ceil(rowCount.value / pageDisplayCount);
-  } catch (error) {
-    console.error("Failed to fetch post list:", error);
-  }
+  await store.getPostList();
 });
 </script>
 
