@@ -34,7 +34,7 @@
               v-model="editReview.content"
               rows="2"
               aria-label="With textarea"
-            >{{ review.content }}</textarea>
+            >{{ editReview.content }}</textarea>
           </div>
         </div>
         <!-- 작성일 -->

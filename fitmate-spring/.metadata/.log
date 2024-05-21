@@ -1890,3 +1890,51 @@ org.eclipse.swt.SWTException: Graphic is disposed
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:651)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
+
+!ENTRY Activator 4 0 2024-05-21 09:17:38.649
+!MESSAGE DebugException: Launch configuration fitmate-spring - SpringSpringBootBoardRestApiApplication at file:/C:/Users/SSAFY/Documents/workspace/fitmate/fitmate/fitmate-spring/fitmate-spring/.metadata/.plugins/org.eclipse.debug.core/.launches/fitmate-spring%20-%20SpringSpringBootBoardRestApiApplication.launch does not exist.
+!STACK 1
+org.eclipse.debug.core.DebugException: Launch configuration fitmate-spring - SpringSpringBootBoardRestApiApplication at file:/C:/Users/SSAFY/Documents/workspace/fitmate/fitmate/fitmate-spring/fitmate-spring/.metadata/.plugins/org.eclipse.debug.core/.launches/fitmate-spring%20-%20SpringSpringBootBoardRestApiApplication.launch does not exist.
+	at org.eclipse.debug.internal.core.LaunchManager.createDebugException(LaunchManager.java:777)
+	at org.eclipse.debug.internal.core.LaunchManager.getInfo(LaunchManager.java:1251)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:487)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getAttribute(LaunchConfiguration.java:413)
+	at org.springframework.ide.eclipse.boot.launch.BootLaunchConfigurationDelegate.getEnableJmx(BootLaunchConfigurationDelegate.java:427)
+	at org.springframework.ide.eclipse.boot.dash.BootDashActivator$1.stateChanged(BootDashActivator.java:198)
+	at org.springframework.ide.eclipse.boot.dash.BootDashActivator$1.stateChanged(BootDashActivator.java:1)
+	at org.springframework.ide.eclipse.boot.dash.util.RunStateTracker.updateOwnerStatesAndFireEvents(RunStateTracker.java:216)
+	at org.springframework.ide.eclipse.boot.dash.util.RunStateTracker.processTerminated(RunStateTracker.java:267)
+	at org.springframework.ide.eclipse.boot.util.ProcessTracker.processTerminated(ProcessTracker.java:112)
+	at org.springframework.ide.eclipse.boot.util.ProcessTracker.handleDebugEvent(ProcessTracker.java:78)
+	at org.springframework.ide.eclipse.boot.util.ProcessTracker$1.handleDebugEvents(ProcessTracker.java:48)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1265)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1299)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:498)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.debug.core 4 5012 2024-05-21 09:17:38.649
+!MESSAGE Launch configuration fitmate-spring - SpringSpringBootBoardRestApiApplication at file:/C:/Users/SSAFY/Documents/workspace/fitmate/fitmate/fitmate-spring/fitmate-spring/.metadata/.plugins/org.eclipse.debug.core/.launches/fitmate-spring%20-%20SpringSpringBootBoardRestApiApplication.launch does not exist.
+
+!ENTRY Activator 4 0 2024-05-21 09:17:38.650
+!MESSAGE DebugException: Launch configuration fitmate-spring - SpringSpringBootBoardRestApiApplication at file:/C:/Users/SSAFY/Documents/workspace/fitmate/fitmate/fitmate-spring/fitmate-spring/.metadata/.plugins/org.eclipse.debug.core/.launches/fitmate-spring%20-%20SpringSpringBootBoardRestApiApplication.launch does not exist.
+!STACK 1
+org.eclipse.debug.core.DebugException: Launch configuration fitmate-spring - SpringSpringBootBoardRestApiApplication at file:/C:/Users/SSAFY/Documents/workspace/fitmate/fitmate/fitmate-spring/fitmate-spring/.metadata/.plugins/org.eclipse.debug.core/.launches/fitmate-spring%20-%20SpringSpringBootBoardRestApiApplication.launch does not exist.
+	at org.eclipse.debug.internal.core.LaunchManager.createDebugException(LaunchManager.java:777)
+	at org.eclipse.debug.internal.core.LaunchManager.getInfo(LaunchManager.java:1251)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getInfo(LaunchConfiguration.java:487)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.getAttribute(LaunchConfiguration.java:413)
+	at org.springframework.ide.eclipse.boot.launch.BootLaunchConfigurationDelegate.getAutoConnect(BootLaunchConfigurationDelegate.java:454)
+	at org.springframework.ide.eclipse.boot.dash.BootDashActivator$1.stateChanged(BootDashActivator.java:198)
+	at org.springframework.ide.eclipse.boot.dash.BootDashActivator$1.stateChanged(BootDashActivator.java:1)
+	at org.springframework.ide.eclipse.boot.dash.util.RunStateTracker.updateOwnerStatesAndFireEvents(RunStateTracker.java:216)
+	at org.springframework.ide.eclipse.boot.dash.util.RunStateTracker.processTerminated(RunStateTracker.java:267)
+	at org.springframework.ide.eclipse.boot.util.ProcessTracker.processTerminated(ProcessTracker.java:112)
+	at org.springframework.ide.eclipse.boot.util.ProcessTracker.handleDebugEvent(ProcessTracker.java:78)
+	at org.springframework.ide.eclipse.boot.util.ProcessTracker$1.handleDebugEvents(ProcessTracker.java:48)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.run(DebugPlugin.java:1265)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.debug.core.DebugPlugin$EventNotifier.dispatch(DebugPlugin.java:1299)
+	at org.eclipse.debug.core.DebugPlugin$EventDispatchJob.run(DebugPlugin.java:498)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.debug.core 4 5012 2024-05-21 09:17:38.650
+!MESSAGE Launch configuration fitmate-spring - SpringSpringBootBoardRestApiApplication at file:/C:/Users/SSAFY/Documents/workspace/fitmate/fitmate/fitmate-spring/fitmate-spring/.metadata/.plugins/org.eclipse.debug.core/.launches/fitmate-spring%20-%20SpringSpringBootBoardRestApiApplication.launch does not exist.
