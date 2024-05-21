@@ -12,6 +12,7 @@
     <button @click="store.login(user)">로그인</button>
     <br />
     <RouterLink to="/signup">Signup</RouterLink>
+    <RouterLink to="/loginAndSignup">loginAndSignup</RouterLink>
   </div>
 </template>
 

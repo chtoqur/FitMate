@@ -18,6 +18,7 @@ import ChangePwd from "@/components/user/ChangePwd.vue";
 import ChangeMyInfo from "@/components/user/ChangeMyInfo.vue";
 import CommunityWritePost from "@/components/community/CommunityWritePost.vue";
 import TheEditor from "@/components/common/TheEditor.vue";
+import LogInAndSignUpForm from "@/components/user/LogInAndSignUpForm.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -58,6 +59,11 @@ const router = createRouter({
       path: "/signup",
       name: "signup",
       component: SignupView,
+    },
+    {
+      path: "/loginAndSignup",
+      name: "loginAndSignup",
+      component: LogInAndSignUpForm
     },
     {
       path: "/routine",
