@@ -15,6 +15,7 @@ public class User {
 	private String address;
 	private String likedVideos;
 	private String savedRoutine;
+	private String likedCommunity;
 	private String img;
 
 	public User() {
@@ -38,7 +39,7 @@ public class User {
 
 
 	public User(String id, String password, String name, String nickname, String email, int age, String fitnessLevel,
-			String postCode, String address, String likedVideos, String savedRoutine) {
+			String postCode, String address, String likedVideos, String savedRoutine, String likedCommunity) {
 		super();
 		this.id = id;
 		this.password = password;
@@ -51,6 +52,7 @@ public class User {
 		this.address = address;
 		this.likedVideos = likedVideos;
 		this.savedRoutine = savedRoutine;
+		this.likedCommunity = likedCommunity;
 	}
 
 	public String getId() {
@@ -133,7 +135,14 @@ public class User {
 		this.likedVideos = likedVideos;
 	}
 	
-	
+	public String getLikedCommunity() {
+		return likedCommunity;
+	}
+
+	public void setLikedCommunity(String likedCommunity) {
+		this.likedCommunity = likedCommunity;
+	}
+
 	public String getSavedRoutine() {
 		return savedRoutine;
 	}

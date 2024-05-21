@@ -17,6 +17,8 @@ public interface UserService {
 	
 	public void updateLikedVideos(String userId, String likedVideos);
 	
+	public void updateLikedCommunity(String userId, String likedCommunity);
+	
 	public void updateUserProfileImage(String userId, String imageUrl);
 	
 	public int checkIdExists(String id);

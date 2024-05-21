@@ -7,7 +7,7 @@
 	<select id="selectAll">
 		SELECT id, name, nickname, email, age, fitness_level
 		AS fitnessLevel, post_code AS postCode, address, liked_videos AS
-		likedVideos, saved_routine AS savedRoutine
+		likedVideos, saved_routine AS savedRoutine, liked_community AS likedCommunity
 		FROM users
 	</select>
 
@@ -23,7 +23,7 @@
 		SELECT id,
 		name, nickname, email, age, fitness_level AS fitnessLevel, post_code
 		AS postCode, address, liked_videos AS likedVideos, saved_routine AS
-		savedRoutine, img
+		savedRoutine, liked_community AS likedCommunity, img
 		FROM users
 		WHERE id = #{id} AND password = #{password}
 	</select>
@@ -33,6 +33,7 @@
 		FROM users
 		WHERE id = #{id} AND password = #{password}
 	</select>
+	
 	<update id="changePassword" parameterType="Map">
 		UPDATE users
 		SET password=#{password}
@@ -51,7 +52,12 @@
 		UPDATE users
 		SET liked_videos=#{likedVideos}
 		WHERE id = #{id}
-
+	</update>
+	
+	<update id="updateLikedCommunity" parameterType="user">
+		UPDATE users
+		SET liked_community=#{likedCommunity}	
+		WHERE id = #{id}
 	</update>
 
 	<update id="updateSavedRoutine" parameterType="user">
@@ -75,7 +81,7 @@
 	<select id="findById" parameterType="String" resultType="User">
 		SELECT id, name, nickname, email, age, fitness_level AS fitnessLevel,
 		post_code AS postCode, address, liked_videos AS likedVideos,
-		saved_routine AS savedRoutine, img
+		saved_routine AS savedRoutine, liked_community AS likedCommunity, img
 		FROM users WHERE id = #{userId}
 	</select>
 

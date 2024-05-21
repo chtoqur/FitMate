@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
             result.put("address", user.getAddress());
             result.put("likedVideos", user.getLikedVideos());
             result.put("savedRoutine", user.getSavedRoutine());
-            result.put("savedRoutine", user.getSavedRoutine());
+            result.put("likedCommunity", user.getLikedCommunity());
         } else {
             result.put("message", "로그인 실패");
         }
@@ -74,7 +74,15 @@ public class UserServiceImpl implements UserService {
             userDao.updateLikedVideos(user);
         }
     }
-
+	
+	@Override
+    public void updateLikedCommunity(String userId, String likedCommunity) {
+        User user = userDao.findById(userId);
+        if (user != null) {
+            user.setLikedCommunity(likedCommunity);
+            userDao.updateLikedCommunity(user);
+        }
+    }
 
 	@Override
 	public void updateUserProfileImage(String userId, String imageUrl) {
@@ -126,6 +134,7 @@ public class UserServiceImpl implements UserService {
         result.put("address", user.getAddress());
         result.put("likedVideos", user.getLikedVideos());
         result.put("savedRoutine", user.getSavedRoutine());
+        result.put("likedCommunity", user.getLikedCommunity());
         return result;
     }
 
@@ -144,6 +153,7 @@ public class UserServiceImpl implements UserService {
         result.put("address", user.getAddress());
         result.put("likedVideos", user.getLikedVideos());
         result.put("savedRoutine", user.getSavedRoutine());
+        result.put("likedCommunity", user.getLikedCommunity());
         return result;
 	}
 

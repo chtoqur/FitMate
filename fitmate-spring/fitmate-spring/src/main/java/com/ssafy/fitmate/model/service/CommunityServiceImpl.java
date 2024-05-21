@@ -30,13 +30,12 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
-	public List<Community> getPostList() {
-		return communityDao.selectAll();
+	public List<Community> search(SearchCondition condition) {
+		return communityDao.search(condition);
 	}
 
 	@Override
 	public Community readPost(int id) {
-		System.out.println(id + "번 게시글을 읽어옵니다.");
 		communityDao.updateViewCnt(id);
 		return communityDao.selectOne(id);
 	}
@@ -44,57 +43,38 @@ public class CommunityServiceImpl implements CommunityService {
 	@Transactional
 	@Override
 	public void writePost(Community community) {
-//		board.setId(1000);
-		System.out.println("게시글 작성합니다.");
 		communityDao.insertPost(community);
-//		boardDao.insertBoard(board);
 	}
 
 	@Transactional
 	@Override
 	public void removePost(int id) {
-		System.out.println(id+"번 게시글을 삭제하겠습니다.");
 		communityDao.deletePost(id);
 	}
 
 	@Transactional
 	@Override
 	public void modifyPost(Community community) {
-		System.out.println("게시글 수정");
 		communityDao.updatePost(community);
 	}
-
+	
 	@Override
-	public List<Community> search(SearchCondition searchCondition) {
-		return communityDao.search(searchCondition);
+	public void plusCommentCnt(int videoId) {
+		communityDao.plusCommentCnt(videoId);
 	}
 
 	@Override
-	public void filePost(MultipartFile multipartFile, Community community) {
-		if (multipartFile != null && multipartFile.getSize() > 0) {
-			try {
-				String fileName = multipartFile.getOriginalFilename();
-				String fileId = UUID.randomUUID().toString();
-				
-//				community.setFileId(fileId);
-//				community.setFileName(fileName);
-				
-				Resource resource = resourceLoader.getResource("classpath:/static/img");
-				multipartFile.transferTo(new File(resource.getFile(), fileId));
-				
-				communityDao.insertPost(community);
-				communityDao.insertFile(community);
-				
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-			
-			
-			
-		}
+	public void minusCommentCnt(int videoId) {
+		communityDao.minusCommentCnt(videoId);
+	}
+	
+	@Override
+	public void plusLikeCnt(int videoId) {
+		communityDao.plusLikeCnt(videoId);
 	}
 
+	@Override
+	public void minusLikeCnt(int videoId) {
+		communityDao.minusLikeCnt(videoId);
+	}
 }
