@@ -29,6 +29,32 @@ export const useCommunityStore = defineStore("community", () => {
     }
   };
 
+  const searchPostList = async (searchCondition) => {
+    searchCondition = JSON.parse(JSON.stringify(searchCondition));
+    if (searchCondition.key === "전체") {
+      searchCondition.key = "none";
+    } else if (searchCondition.key === "제목") {
+      searchCondition.key = "title";
+    } else if (searchCondition.key === "작성자") {
+      searchCondition.key = "writer";
+    } else if (searchCondition.key === "글내용") {
+      searchCondition.key = "content";
+    }
+    try {
+      const response = await axios({
+        url: REST_COMMUNITY_API,
+        method: "GET",
+        params: {
+          key: searchCondition.key,
+          word: searchCondition.word,
+        },
+      });
+      postList.value = response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const getPostById = async (id) => {
     try {
       const response = await axios({
@@ -61,6 +87,7 @@ export const useCommunityStore = defineStore("community", () => {
 
   return {
     postList,
+    searchPostList,
     nowPost,
     createPost,
     getPostList,

@@ -13,6 +13,8 @@ export const useUserStore = defineStore("user", () => {
   const loginUser = ref({
     id: "",
     likedVideos: [],
+    savedRoutine: [],
+    likedCommunity: [],
   });
 
   const checkId = async (id) => {
@@ -64,6 +66,7 @@ export const useUserStore = defineStore("user", () => {
     user.img = user.image;
     user.likedVideos = JSON.stringify(user.likedVideos);
     user.savedRoutine = JSON.stringify(user.savedRoutine);
+    user.likedCommunity = JSON.stringify(user.likedCommunity);
     try {
       const response = await axios.put(`${REST_USER_API}`, user);
       await getUser(user.id);
@@ -82,6 +85,10 @@ export const useUserStore = defineStore("user", () => {
         router.push({ name: "home" });
       } else {
         loginUser.value.likedVideos = JSON.parse(loginUser.value.likedVideos);
+        loginUser.value.savedRoutine = JSON.parse(loginUser.value.savedRoutine);
+        loginUser.value.likedCommunity = JSON.parse(
+          loginUser.value.likedCommunity
+        );
       }
     } catch (err) {
       console.log(err);
@@ -98,6 +105,10 @@ export const useUserStore = defineStore("user", () => {
       } else {
         sessionStorage.setItem("access-token", response.data["access-token"]);
         loginUser.value.likedVideos = JSON.parse(loginUser.value.likedVideos);
+        loginUser.value.savedRoutine = JSON.parse(loginUser.value.savedRoutine);
+        loginUser.value.likedCommunity = JSON.parse(
+          loginUser.value.likedCommunity
+        );
         const token = response.data["access-token"].split(".");
         let id = JSON.parse(atob(token[1]))["id"];
         sessionStorage.setItem("id", id);
@@ -136,7 +147,7 @@ export const useUserStore = defineStore("user", () => {
     try {
       const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
       await axios.post(
-        `${REST_USER_API}/${loginUser.value.id}/updatelikedvideos`,
+        `${REST_USER_API}/${loginUser.value.id}/update-likedvideos/${videoId}`,
         {
           likedVideos: likedVideosJson,
         }
@@ -153,7 +164,7 @@ export const useUserStore = defineStore("user", () => {
       try {
         const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
         await axios.post(
-          `${REST_USER_API}/${loginUser.value.id}/updatelikedvideos`,
+          `${REST_USER_API}/${loginUser.value.id}/update-likedvideos/${videoId}`,
           {
             likedVideos: likedVideosJson,
           }
@@ -161,18 +172,79 @@ export const useUserStore = defineStore("user", () => {
       } catch (err) {
         console.log(err);
       }
-      console.log(loginUser.value.likedVideos);
     }
   };
 
-  const saveRoutine = function (routineId) {
+  const saveRoutine = async function (routineId) {
     loginUser.value.savedRoutine.push(routineId);
+    try {
+      const savedRoutineJson = JSON.stringify(loginUser.value.savedRoutine);
+      await axios.post(
+        `${REST_USER_API}/${loginUser.value.id}/update-routine`,
+        {
+          savedRoutine: savedRoutineJson,
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const deleteRoutine = function (routineId) {
-    loginUser.value.savedRoutine = loginUser.value.savedRoutine.filter(
-      (id) => id !== routineId
+  const deleteRoutine = async function (routineId) {
+    const idx = loginUser.value.savedRoutine.findIndex(
+      (id) => id === routineId
     );
+    if (idx !== -1) {
+      loginUser.value.savedRoutine.splice(idx, 1);
+      try {
+        const savedRoutineJson = JSON.stringify(loginUser.value.savedRoutine);
+        await axios.post(
+          `${REST_USER_API}/${loginUser.value.id}/update-routine`,
+          {
+            savedRoutine: savedRoutineJson,
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
+  const likePost = async function (communityId) {
+    loginUser.value.likedCommunity.push(communityId);
+    try {
+      const likedCommunityJson = JSON.stringify(loginUser.value.likedCommunity);
+      await axios.post(
+        `${REST_USER_API}/${loginUser.value.id}/updatelikedcommunity`,
+        {
+          likedCommunity: likedCommunityJson,
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const unlikePost = async function (communityId) {
+    const idx = loginUser.value.likedCommunity.findIndex(
+      (id) => id === communityId
+    );
+    if (idx !== -1) {
+      loginUser.value.likedCommunity.splice(idx, 1);
+      try {
+        const likedCommunityJson = JSON.stringify(
+          loginUser.value.likedCommunity
+        );
+        await axios.post(
+          `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity`,
+          {
+            likedCommunity: likedCommunityJson,
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
   };
 
   return {
@@ -190,5 +262,7 @@ export const useUserStore = defineStore("user", () => {
     unlikeVideo,
     saveRoutine,
     deleteRoutine,
+    likePost,
+    unlikePost,
   };
 });

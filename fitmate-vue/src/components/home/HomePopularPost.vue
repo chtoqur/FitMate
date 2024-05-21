@@ -14,7 +14,6 @@
           <div class="wrap-info">
             <span class="post-idx">{{ index + 1 }}</span>
             <div class="wrap-title">
-              <span class="mdi mdi-image" v-if="post.file.length !== 0"></span>
               <span class="post-title">{{ post.title }}</span>
             </div>
           </div>

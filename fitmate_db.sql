@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
     address VARCHAR(255),
     liked_videos TEXT,
     saved_routine TEXT,
+    liked_community TEXT,
     img VARCHAR(255)
 );
 
@@ -54,7 +55,6 @@ CREATE TABLE IF NOT EXISTS community (
     view_cnt INT,
     category VARCHAR(64),
     comment_cnt INT,
-    file VARCHAR(255),
     FOREIGN KEY (writer) REFERENCES users(id)
 );
 

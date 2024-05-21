@@ -66,7 +66,9 @@ export const useCommentStore = defineStore("comment", () => {
   const deleteComment = async (id, communityId) => {
     if (confirm("정말 삭제하시겠습니까?")) {
       try {
-        const response = await axios.delete(`${REST_COMMENT_API}/${id}`);
+        const response = await axios.delete(`${REST_COMMENT_API}/${id}`, {
+          params: { communityId: communityId },
+        });
         getNowCommentList(communityId);
       } catch (err) {
         console.log(err);

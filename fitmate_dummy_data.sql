@@ -1,16 +1,16 @@
 -- user 테이블 더미 데이터 삽입
-INSERT INTO users (id, password, name, nickname, email, age, fitness_level, post_code, address, liked_videos, saved_routine, img) VALUES
-('ssafy', '1234', 'ssafy', 'ssafy', 'ssafy@ssafy.com', '25', '중', '08760', '서울특별시 관악구 관천로 10길 34', '[1, 3, 5]', '[1, 3, 5]', 'ssafy.jpg'),
-('user1', 'password1', 'Alice', 'alice', 'alice@example.com', 25, '하', '12345', '123 Main St', '[1, 2]', '[1, 3, 5]', 'img1.jpg'),
-('user2', 'password2', 'Bob', 'bob', 'bob@example.com', 30, '중', '23456', '456 Oak St', '[2, 3]', '[2, 3]', 'img2.jpg'),
-('user3', 'password3', 'Charlie', 'charlie', 'charlie@example.com', 35, '상', '34567', '789 Pine St', '[3, 4]', '[2, 3]', 'img3.jpg'),
-('user4', 'password4', 'David', 'david', 'david@example.com', 40, '하', '45678', '101 Maple St', '[4, 5]', '[2, 3]', 'img4.jpg'),
-('user5', 'password5', 'Eve', 'eve', 'eve@example.com', 28, '중', '56789', '202 Birch St', '[5, 6]', '[2, 3]', 'img5.jpg'),
-('user6', 'password6', 'Frank', 'frank', 'frank@example.com', 33, '상', '67890', '303 Cedar St', '[6, 7]', '[2, 3]', 'img6.jpg'),
-('user7', 'password7', 'Grace', 'grace', 'grace@example.com', 27, '하', '78901', '404 Walnut St', '[7, 8]', '[2, 3]', 'img7.jpg'),
-('user8', 'password8', 'Hank', 'hank', 'hank@example.com', 32, '중', '89012', '505 Elm St', '[8, 9]', '[2, 3]', 'img8.jpg'),
-('user9', 'password9', 'Ivy', 'ivy', 'ivy@example.com', 26, '상', '90123', '606 Ash St', '[9, 10]', '[2, 3]', 'img9.jpg'),
-('user10', 'password10', 'Jack', 'jack', 'jack@example.com', 29, '하', '01234', '707 Beech St', '[10, 1]', '[2, 3]', 'img10.jpg');
+INSERT INTO users (id, password, name, nickname, email, age, fitness_level, post_code, address, liked_videos, saved_routine, liked_community, img) VALUES
+('ssafy', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'ssafy', 'ssafy', 'ssafy@ssafy.com', '25', '중', '08760', '서울특별시 관악구 관천로 10길 34', '[1, 3, 5]', '[1, 3, 5]', '[1, 3, 5]','ssafy.jpg'),
+('user1', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Alice', 'alice', 'alice@example.com', 25, '하', '12345', '123 Main St', '[1, 2]', '[1, 3, 5]', '[1, 3, 5]','img1.jpg'),
+('user2', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Bob', 'bob', 'bob@example.com', 30, '중', '23456', '456 Oak St', '[2, 3]', '[2, 3]', '[2, 3]','img2.jpg'),
+('user3', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Charlie', 'charlie', 'charlie@example.com', 35, '상', '34567', '789 Pine St', '[3, 4]', '[2, 3]', '[2, 3]', 'img3.jpg'),
+('user4', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'David', 'david', 'david@example.com', 40, '하', '45678', '101 Maple St', '[4, 5]', '[2, 3]', '[2, 3]', 'img4.jpg'),
+('user5', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Eve', 'eve', 'eve@example.com', 28, '중', '56789', '202 Birch St', '[5, 6]', '[2, 3]', '[2, 3]', 'img5.jpg'),
+('user6', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Frank', 'frank', 'frank@example.com', 33, '상', '67890', '303 Cedar St', '[6, 7]', '[2, 3]', '[2, 3]' ,'img6.jpg'),
+('user7', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Grace', 'grace', 'grace@example.com', 27, '하', '78901', '404 Walnut St', '[7, 8]', '[2, 3]', '[2, 3]' ,'img7.jpg'),
+('user8', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Hank', 'hank', 'hank@example.com', 32, '중', '89012', '505 Elm St', '[8, 9]', '[2, 3]', '[2, 3]', 'img8.jpg'),
+('user9', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Ivy', 'ivy', 'ivy@example.com', 26, '상', '90123', '606 Ash St', '[9, 10]', '[2, 3]', '[2, 3]', 'img9.jpg'),
+('user10', 'A6xnQhbz4Vx2HuGl4lXwZ5U2I8iziLRFnhP5eNfIRvQ=', 'Jack', 'jack', 'jack@example.com', 29, '하', '01234', '707 Beech St', '[10, 1]', '[2, 3]', '[2, 3]', 'img10.jpg');
 
 -- video 테이블 더미 데이터 삽입
 INSERT INTO video (title, part, description, thumbnail, channel_name, view_cnt, youtube_videoId)
@@ -41,17 +41,17 @@ INSERT INTO video_comment (video_id, writer, content, reg_date, parent) VALUES
 (2, 'user3', 'I felt the same!', '2024-05-12 11:00:00', 2);
 
 -- community 테이블 더미 데이터 삽입
-INSERT INTO community (title, writer, content, reg_date, like_cnt, view_cnt, category, comment_cnt, file) VALUES
-('Fitness Tips', 'user1', 'Share your best fitness tips', '2024-05-01 08:00:00', 10, 100, 'Tips', 5, 'file1.jpg'),
-('Healthy Eating', 'user2', 'Discuss healthy eating habits', '2024-05-02 09:00:00', 20, 200, 'Nutrition', 10, 'file2.jpg'),
-('Workout Routines', 'user3', 'Post your workout routines here', '2024-05-03 10:00:00', 15, 150, 'Workouts', 8, 'file3.jpg'),
-('Yoga Practices', 'user4', 'Yoga for mind and body', '2024-05-04 11:00:00', 25, 250, 'Yoga', 12, 'file4.jpg'),
-('Running Techniques', 'user5', 'Improve your running', '2024-05-05 12:00:00', 30, 300, 'Running', 20, 'file5.jpg'),
-('Gym Experiences', 'user6', 'Share your gym experiences', '2024-05-06 13:00:00', 18, 180, 'Gym', 7, 'file6.jpg'),
-('Home Workouts', 'user7', 'Workouts you can do at home', '2024-05-07 14:00:00', 22, 220, 'Home', 11, 'file7.jpg'),
-('Motivation', 'user8', 'Stay motivated to exercise', '2024-05-08 15:00:00', 35, 350, 'Motivation', 15, 'file8.jpg'),
-('Injury Prevention', 'user9', 'Prevent workout injuries', '2024-05-09 16:00:00', 28, 280, 'Health', 9, 'file9.jpg'),
-('Fitness Gadgets', 'user10', 'Best gadgets for fitness', '2024-05-10 17:00:00', 12, 120, 'Gadgets', 6, 'file10.jpg');
+INSERT INTO community (title, writer, content, reg_date, like_cnt, view_cnt, category, comment_cnt) VALUES
+('Fitness Tips', 'user1', 'Share your best fitness tips', '2024-05-01 08:00:00', 2, 100, 'Tips', 2),
+('Healthy Eating', 'user2', 'Discuss healthy eating habits', '2024-05-02 09:00:00', 9, 200, 'Nutrition', 2),
+('Workout Routines', 'user3', 'Post your workout routines here', '2024-05-03 10:00:00', 11, 150, 'Workouts', 1),
+('Yoga Practices', 'user4', 'Yoga for mind and body', '2024-05-04 11:00:00', 0, 250, 'Yoga', 1),
+('Running Techniques', 'user5', 'Improve your running', '2024-05-05 12:00:00', 2, 300, 'Running', 1),
+('Gym Experiences', 'user6', 'Share your gym experiences', '2024-05-06 13:00:00', 0, 180, 'Gym', 1),
+('Home Workouts', 'user7', 'Workouts you can do at home', '2024-05-07 14:00:00', 0, 220, 'Home', 1),
+('Motivation', 'user8', 'Stay motivated to exercise', '2024-05-08 15:00:00', 0, 350, 'Motivation', 1),
+('Injury Prevention', 'user9', 'Prevent workout injuries', '2024-05-09 16:00:00', 0, 280, 'Health', 1),
+('Fitness Gadgets', 'user10', 'Best gadgets for fitness', '2024-05-10 17:00:00', 0, 120, 'Gadgets', 1);
 
 -- community_comment 테이블 더미 데이터 삽입
 INSERT INTO community_comment (community_id, writer, content, reg_date, parent) VALUES
