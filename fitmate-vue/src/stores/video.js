@@ -95,7 +95,7 @@ export const useVideoStore = defineStore("video", () => {
   };
 
   const deleteReview = async (id, videoId) => {
-    if (confirm("정말 삭제하시겠습니까?")) {
+    if (confirm("댓글을 삭제하시겠습니까?")) {
       try {
         const response = await axios({
           url: `${REST_VIDEO_REVIEW_API}/${id}`,

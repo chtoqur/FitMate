@@ -23,16 +23,18 @@
         </div>
         <!-- 댓글 내용 -->
         <div class="cmt-content-area">
-          <span class="cmt-content">{{ review.content }}</span>
+          <span class="cmt-content"
+          :class="{ hidden: isEditAreaVisible }"
+          >{{ review.content }}</span>
           <!-- 수정 textarea hidden -->
-          <div class="cmt-edit-box hidden">
+          <div class="cmt-edit-box"
+          :class="{ hidden: !isEditAreaVisible }">
             <textarea
               class="form-control cmt-textarea"
+              v-model="editReview.content"
               rows="2"
               aria-label="With textarea"
-            >
-${comment.comments}</textarea
-            >
+            >{{ review.content }}</textarea>
           </div>
         </div>
         <!-- 작성일 -->
@@ -42,36 +44,79 @@ ${comment.comments}</textarea
         <!-- 버튼 영역 -->
         <div class="cmt-button-area">
           <!-- 일반 display -->
-          <div class="cmt-button-area-before">
+          <div class="cmt-button-area-before"
+          :class="{ hidden: isEditAreaVisible }">
             <!-- v-if 대댓글 아니면 답글 -->
-            <v-btn variant="tonal" v-if="review.parent == 0" size="small">
+            <v-btn variant="tonal" class="comment-btn" v-if="userStore.loginUser.id !== '' && review.parent == 0" size="small"
+              @click="toggleReplyArea(review.id)">
               답글
             </v-btn>
             <!-- v-if 작성자 본인이면 수정 + 삭제 -->
             <v-btn
+              class="comment-btn"
               variant="tonal"
               v-if="review.writer == userStore.loginUser.id"
               size="small"
+              @click="toggleEditArea(review.id)"
             >
               수정
             </v-btn>
             <v-btn
+              class="comment-btn"
               variant="tonal"
               v-if="review.writer == userStore.loginUser.id"
               size="small"
+              @click="store.deleteReview(review.id, review.videoId)"
             >
               삭제
             </v-btn>
           </div>
           <!-- 수정중 hidden -->
-          <div class="cmt-button-arera-after hidden">
-            <v-btn variant="tonal" size="small">취소</v-btn>
-            <v-btn variant="tonal" size="small">수정</v-btn>
+          <div class="cmt-button-arera-after"
+          :class="{ hidden: !isEditAreaVisible }">
+            <v-btn class="comment-btn" variant="tonal" size="small"
+            @click="isEditAreaVisible = !isEditAreaVisible"
+            >취소</v-btn>
+            <v-btn class="comment-btn" variant="tonal" size="small"
+            @click="updateReview"
+            >수정</v-btn>
+          </div>
+        </div>
+        <!-- 대댓글 영역 -->
+        <div
+          class="cmt-reply-area"
+          :class="{ hidden: !isReplyAreaVisible }"
+        >
+          <div class="full-reply-area">
+            <div class="icon-reply-box">
+              <span class="icon-reply"></span>
+            </div>
+            <div class="comment-section">
+              <div class="writer-info">
+                <span>
+                  <span><strong>{{ userStore.loginUser.id }}</strong></span>
+                </span>
+              </div>
+              <div class="cmt-content-area">
+                <div class="cmt-reply-edit-box">
+                  <textarea class="form-control cmt-reply-textarea" rows="3" aria-label="With textarea"></textarea>
+                </div>
+              </div>
+              <div class="cmt-reply-button-area" data-seq="${comment.seq}" data-regOrder="${comment.regOrder}" data-sortOrder="${comment.sortOrder}" data-replyTo="">
+                <div class="cmt-button-area-before">
+                  <v-btn variant="tonal" size="small" class="comment-btn"
+                    @click="createReplyReview"
+                  >
+                  등록</v-btn>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- <p v-else>{{ review.content }}</p>
+  </div>
+   <!-- <p v-else>{{ review.content }}</p>
     <button
       v-if="review.writer === userStore.loginUser.id && !review.editing"
       @click="setUpdateReview(review.id)"
@@ -90,42 +135,71 @@ ${comment.comments}</textarea
     >
       삭제
     </button> -->
-  </div>
 </template>
 
 <script setup>
+import { useRoute } from "vue-router";
 import { useVideoStore } from "@/stores/video";
 import { useUserStore } from "@/stores/user";
-import { defineProps, ref, onMounted } from "vue";
+import { defineProps, ref } from "vue";
 
+const route = useRoute();
 const store = useVideoStore();
 const userStore = useUserStore();
-const parentId = ref("");
+const isReplyAreaVisible = ref(false);
+const isEditAreaVisible = ref(false);
+
+const editReview = ref({
+  videoId: route.params.id,
+  writer: sessionStorage.getItem("id")
+    ? sessionStorage.getItem("id")
+    : userStore.loginUser.id,
+  content: "",
+  parent : -1
+});
+
+const replyReview = ref({
+  videoId: route.params.id,
+  writer: sessionStorage.getItem("id")
+    ? sessionStorage.getItem("id")
+    : userStore.loginUser.id,
+  content: "",
+  parent: -1
+});
 
 defineProps({
   review: Object,
 });
 
-const updateReview = ref({});
+const createReplyReview = () => {
+  store.createReview(replyReview.value);
+  review.value.content = "";
+}
 
-const setUpdateReview = function (id) {
-  store.videoReviewList.map((el) => {
-    if (el.id === id) {
-      updateReview.value = JSON.parse(JSON.stringify(el));
-      el.editing = true;
-    } else {
-      el.editing = false;
-    }
-  });
-};
+const updateReview = () => {
+  store.updateReview(editReview.value.videoId, editReview);
+  isEditAreaVisible.value = !isEditAreaVisible.value;
+}
+
+const toggleReplyArea = (parentId) => {
+  replyReview.value.parent = parentId;
+  isReplyAreaVisible.value = !isReplyAreaVisible.value;
+}
+
+const toggleEditArea = (parentId) => {
+  editReview.value.parent = parentId;
+  isEditAreaVisible.value = !isEditAreaVisible.value;
+}
 </script>
 
 <style scoped>
+textarea {
+  border: 1px solid rgb(189, 189, 189);
+  border-radius: 8px;
+}
 .comment-list {
   font-size: 14px;
   margin-bottom: 10px;
-  /* 답댓글 섹션 컬러 */
-  /* background-color: rgb(234, 234, 234); */
 }
 
 .full-comment-area {
@@ -187,12 +261,14 @@ const setUpdateReview = function (id) {
   resize: none;
   width: 100%;
   font-size: 14px;
+  padding: 5px;
 }
 
 .cmt-reply-textarea {
   resize: none;
   width: 100%;
   font-size: 14px;
+  padding: 10px;
 }
 
 .cmt-date {
@@ -218,10 +294,6 @@ const setUpdateReview = function (id) {
   margin-left: auto;
 }
 
-/* .cmt-edit-button-area {
-    margin-top: 5px;
-} */
-
 .writer-mark-icon {
   display: flex;
   height: 17px;
@@ -240,6 +312,10 @@ const setUpdateReview = function (id) {
   line-height: 17px;
   margin: 0;
   font-size: 12px;
+}
+
+.comment-btn {
+  margin-right: 5px;
 }
 
 #btnCmtEdit {
