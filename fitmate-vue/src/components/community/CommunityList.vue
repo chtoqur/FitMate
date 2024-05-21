@@ -27,7 +27,8 @@
           ></v-btn>
         </div>
         <div class="write-btn">
-          <v-btn class="ma-2">
+          <v-btn class="ma-2"
+          @click="router.push('/writePost')">
           글작성
           </v-btn>
         </div>
