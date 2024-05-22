@@ -174,7 +174,8 @@ onMounted(() => {
 }
 
 .saved-routine .svg {
-  fill: #ced8de;
+  fill: #ffc73a;
+  stroke: #ffc73a;
 }
 
 .title-desc {
@@ -228,6 +229,7 @@ onMounted(() => {
 
 .save:hover .svg {
   fill: #ced8de;
+  stroke: #ced8de;
 }
 
 .v-card-actions {
