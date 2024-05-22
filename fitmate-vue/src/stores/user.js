@@ -16,7 +16,7 @@ export const useUserStore = defineStore("user", () => {
     savedRoutine: [],
     likedCommunity: [],
     myPost: [],
-    myRecentPost: []
+    myRecentPost: [],
   });
 
   const checkId = async (id) => {
@@ -126,7 +126,11 @@ export const useUserStore = defineStore("user", () => {
   const logout = function () {
     loginUser.value = {
       id: "",
-      name: "",
+      likedVideos: [],
+      savedRoutine: [],
+      likedCommunity: [],
+      myPost: [],
+      myRecentPost: [],
     };
     sessionStorage.clear();
     router.push({ name: "home" });
