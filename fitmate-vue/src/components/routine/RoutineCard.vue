@@ -132,6 +132,7 @@ onMounted(() => {
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   /* background-image: url("@/assets/img/routine/1.jpg"); */
+  background-size: 270px;
   display: flex;
   align-items: top;
   justify-content: right;

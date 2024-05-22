@@ -6,7 +6,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 1,
       title: "허벅지 집중 루틴",
-      img: "url('src/assets/img/routine/1.jpg')",
+      img: "url('src/assets/img/routine/1.PNG')",
       level: 2,
       part: "하체",
       courses: [
@@ -45,7 +45,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 2,
       title: "어깨 집중 루틴",
-      img: "url('src/assets/img/routine/2.jpg')",
+      img: "url('src/assets/img/routine/2.PNG')",
       level: 2,
       part: "어깨",
       courses: [
@@ -78,7 +78,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 3,
       title: "하체 집중 루틴",
-      img: "",
+      img: "url('src/assets/img/routine/3.PNG')",
       level: 2,
       part: "하체",
       courses: [
@@ -111,8 +111,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 4,
       title: "복근 집중 루틴",
-      img: "",
-
+      img: "url('src/assets/img/routine/4.jpg')",
       level: 2,
       part: "복근",
       courses: [
@@ -145,6 +144,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 5,
       title: "프레임을 넓히는 등 루틴",
+      img: "url('src/assets/img/routine/5.PNG')",
       level: 3,
       part: "등",
       courses: [
@@ -177,6 +177,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 6,
       title: "힙업 하체 루틴",
+      img: "url('src/assets/img/routine/6.PNG')",
       level: 1,
       part: "하체",
       courses: [
@@ -209,6 +210,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 7,
       title: "단단한 코어를 위한 복근 루틴",
+      img: "url('src/assets/img/routine/7.PNG')",
       level: 1,
       part: "복근",
       courses: [
@@ -241,6 +243,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 8,
       title: "덤벨로 수행하는 하체 루틴",
+      img: "url('src/assets/img/routine/8.PNG')",
       level: 3,
       part: "하체",
       courses: [
@@ -273,6 +276,7 @@ export const useRoutineStore = defineStore("routine", () => {
     {
       id: 9,
       title: "팔 집중 루틴",
+      img: "url('src/assets/img/routine/9.PNG')",
       level: 1,
       part: "팔",
       courses: [
