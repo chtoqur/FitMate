@@ -20,6 +20,7 @@ import CommunityWritePost from "@/components/community/CommunityWritePost.vue";
 import TheEditor from "@/components/community/CommunityWritePost.vue";
 import LogInAndSignUpForm from "@/components/user/LogInAndSignUpForm.vue";
 import CommunityEditPost from "@/components/community/CommunityEditPost.vue";
+import MyPostList from "@/components/user/MyPostList.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -129,6 +130,11 @@ const router = createRouter({
           path: "/changemyinfo",
           name: "changeMyInfo",
           component: ChangeMyInfo,
+        },
+        {
+          path: "/mypost",
+          name: "myPost",
+          component: MyPostList,
         },
       ],
     },

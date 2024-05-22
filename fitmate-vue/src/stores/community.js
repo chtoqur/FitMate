@@ -14,10 +14,10 @@ export const useCommunityStore = defineStore("community", () => {
 
   const createPost = async (post) => {
     console.log(post);
-    try{
+    try {
       const response = await axios.post(REST_COMMUNITY_API, post);
       getPostList();
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
   };
@@ -48,6 +48,33 @@ export const useCommunityStore = defineStore("community", () => {
     try {
       const response = await axios({
         url: REST_COMMUNITY_API,
+        method: "GET",
+        params: {
+          key: searchCondition.key,
+          word: searchCondition.word,
+        },
+      });
+      postList.value = response.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const searchPostListByMe = async (searchCondition, userId) => {
+    console.log(userId);
+    searchCondition = JSON.parse(JSON.stringify(searchCondition));
+    if (searchCondition.key === "전체") {
+      searchCondition.key = "none";
+    } else if (searchCondition.key === "제목") {
+      searchCondition.key = "title";
+    } else if (searchCondition.key === "작성자") {
+      searchCondition.key = "writer";
+    } else if (searchCondition.key === "글내용") {
+      searchCondition.key = "content";
+    }
+    try {
+      const response = await axios({
+        url: `REST_COMMUNITY_API/${userId}`,
         method: "GET",
         params: {
           key: searchCondition.key,
@@ -93,6 +120,7 @@ export const useCommunityStore = defineStore("community", () => {
   return {
     postList,
     searchPostList,
+    searchPostListByMe,
     nowPost,
     createPost,
     getPostList,
