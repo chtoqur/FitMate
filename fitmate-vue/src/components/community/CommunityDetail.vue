@@ -51,9 +51,7 @@
         </div>
       </div>
       <div class="post-mid">
-        <div
-        v-html="store.nowPost.content">
-        </div>
+        <div v-html="store.nowPost.content"></div>
         <div class="post-react">
           <div class="comment-react">
             <button :class="{ liked: isLiked }" @click="toggleLike">
@@ -128,7 +126,12 @@
         <span class="mdi mdi-lead-pencil"></span>
         &nbsp;글쓰기
       </v-btn>
-      <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="router.push('/editPost/' + userStore.loginUser.id)">
+      <v-btn
+        :class="{ hidden: !isLoginUser }"
+        depressed
+        text
+        @click="router.push('/editPost/' + userStore.loginUser.id)"
+      >
         수정
       </v-btn>
       <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="previous">
@@ -176,7 +179,7 @@ const moveNextPost = () => {
     (post) => post.id === store.nowPost.id
   );
   const nextId = store.postList.at(nowIndex + 1).id;
-  store.getPostById(nextId);
+  store.getPostById(nextId, 1);
   router.push(`../community/${nextId}`);
 };
 
@@ -185,7 +188,7 @@ const movePrevPost = () => {
     (post) => post.id === store.nowPost.id
   );
   const nextId = store.postList.at(nowIndex - 1).id;
-  store.getPostById(nextId);
+  store.getPostById(nextId, 1);
   router.push(`../community/${nextId}`);
 };
 
@@ -200,7 +203,7 @@ const createComment = () => {
   comment.value.content = "";
 };
 
-const toggleLike = () => {
+const toggleLike = async () => {
   if (userStore.loginUser.id === "") {
     if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
       router.push({ name: "login" });
@@ -210,17 +213,19 @@ const toggleLike = () => {
 
   if (isLiked.value) {
     // 좋아요 취소
-    userStore.unlikePost(store.nowPost.id);
-    store.nowPost.likeCnt--;
+    await userStore.unlikePost(store.nowPost.id);
+    await store.getPostList();
+    await store.getPostById(route.params.id, 0);
   } else {
     // 좋아요 추가
-    userStore.likePost(store.nowPost.id);
-    store.nowPost.likeCnt++;
+    await userStore.likePost(store.nowPost.id);
+    await store.getPostList();
+    await store.getPostById(route.params.id, 0);
   }
 };
 
 onBeforeMount(() => {
-  store.getPostById(route.params.id);
+  store.getPostById(route.params.id, 1);
   commentStore.getNowCommentList(route.params.id);
 });
 </script>

@@ -4,17 +4,15 @@
     <div class="the-editor">
       <!-- 제목 -->
       <div class="editor-title">
-        <input type="text"
-        v-model="postTitle">
+        <input type="text" v-model="postTitle" />
       </div>
-      <div v-if="editor"
-      class="editor-tool">
+      <div v-if="editor" class="editor-tool">
         <button
           @click="editor.chain().focus().toggleBold().run()"
           :disabled="!editor.can().chain().focus().toggleBold().run()"
           :class="{ 'is-active': editor.isActive('bold') }"
         >
-        <span class="mdi mdi-format-bold"></span>
+          <span class="mdi mdi-format-bold"></span>
         </button>
         <button
           @click="editor.chain().focus().toggleItalic().run()"
@@ -24,9 +22,9 @@
           <span class="mdi mdi-format-italic"></span>
         </button>
         <button
-        @click="editor.chain().focus().toggleStrike().run()"
-        :disabled="!editor.can().chain().focus().toggleStrike().run()"
-        :class="{ 'is-active': editor.isActive('strike') }"
+          @click="editor.chain().focus().toggleStrike().run()"
+          :disabled="!editor.can().chain().focus().toggleStrike().run()"
+          :class="{ 'is-active': editor.isActive('strike') }"
         >
           <span class="mdi mdi-format-strikethrough"></span>
         </button>
@@ -100,7 +98,7 @@
         <button
           @click="editor.chain().focus().toggleCodeBlock().run()"
           :class="{ 'is-active': editor.isActive('codeBlock') }"
-          >
+        >
           <span class="mdi mdi-code-block-tags"></span>
         </button>
         <!-- <button
@@ -136,15 +134,15 @@
 </template>
 
 <script setup>
-import StarterKit from '@tiptap/starter-kit'
-import { Editor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from "@tiptap/starter-kit";
+import { Editor, EditorContent } from "@tiptap/vue-3";
 
-import { ref, onMounted, onBeforeMount } from 'vue';
+import { ref, onMounted, onBeforeMount } from "vue";
 import { useCommunityStore } from "@/stores/community";
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
 
 const store = useCommunityStore();
-const editor = ref(null)
+const editor = ref(null);
 const postTitle = ref("");
 const route = useRoute();
 
@@ -153,12 +151,12 @@ onMounted(() => {
   editor.value = new Editor({
     extensions: [StarterKit],
     content: store.nowPost.content,
-  })
-})
+  });
+});
 
 onBeforeMount(() => {
-  store.getPostById(route.params.id);
-})
+  store.getPostById(route.params.id, 0);
+});
 </script>
 <style scoped>
 .the-editor {
@@ -219,7 +217,7 @@ onBeforeMount(() => {
 .tiptap pre {
   background: #0d0d0d;
   color: #fff;
-  font-family: 'JetBrainsMono', monospace;
+  font-family: "JetBrainsMono", monospace;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
 }
@@ -246,6 +244,4 @@ onBeforeMount(() => {
   border-top: 2px solid rgba(13, 13, 13, 0.1);
   margin: 2rem 0;
 }
-
-
 </style>

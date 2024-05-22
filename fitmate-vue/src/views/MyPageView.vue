@@ -35,7 +35,9 @@
       <p>나의 활동</p>
       <div>
         <p>좋아요한 영상</p>
-        <RouterLink to="video/liked">더보기 -></RouterLink>
+        <RouterLink :to="{ name: 'videoList', query: { liked: true } }"
+          >더보기 -></RouterLink
+        >
         <div style="display: flex">
           <div v-for="video in videoStore.nowList" :key="video.id">
             <RouterLink :to="`/video/${video.id}`">
@@ -65,6 +67,7 @@
     <span> | </span>
     <RouterLink to="changemyinfo">내 정보 수정</RouterLink>
   </div>
+  <!-- <RouterView /> -->
 </template>
 
 <script setup>

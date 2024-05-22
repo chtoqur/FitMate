@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="video-list">
-      <div v-for="video in videoList" :key="video.id">
+      <div v-for="video in paginatedVideos" :key="video.id">
         <v-card class="mx-auto" max-width="360" height="300" hover>
           <v-card-item style="padding-bottom: 0">
             <RouterLink :to="`/video/${video.id}`" class="router-link">
@@ -94,23 +94,64 @@
         </v-card>
       </div>
     </div>
+    <v-pagination
+      show-first-last-page
+      total-visible="6"
+      ellipsis="..."
+      :length="totalPages"
+      prev
+      next
+      @update:model-value="changePage"
+    ></v-pagination>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useVideoStore } from "@/stores/video";
 import { useUserStore } from "@/stores/user";
 
 const store = useVideoStore();
+const route = useRoute();
 const router = useRouter();
 const userStore = useUserStore();
+
+// 현재 페이지
+const curPage = ref(1);
+
+// 한 페이지당 비디오 수
+const postsPerPage = 9;
+
+// 페이지 수 계산
+const totalPages = computed(() =>
+  Math.ceil(store.videoList.length / postsPerPage)
+);
+
+// 시작 인덱스 계산
+const startIndex = computed(() => (curPage.value - 1) * postsPerPage);
+
+// 페이지네이션된 비디오 목록
+const paginatedVideos = computed(() =>
+  store.videoList.slice(startIndex.value, startIndex.value + postsPerPage)
+);
+
+// 페이지 변경 함수
+const changePage = (pageNumber) => {
+  if (pageNumber > 0 && pageNumber <= totalPages.value) {
+    curPage.value = pageNumber;
+  }
+};
 
 onMounted(() => {
   store.getAllVideoList();
   store.getAllVideoReviewList();
   videoList.value = store.videoList;
+
+  if (route.query.liked === "true") {
+    isChecked.value = true;
+    selectPart();
+  }
 });
 
 const selectedParts = ref([]);

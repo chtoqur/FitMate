@@ -64,7 +64,7 @@ const router = createRouter({
     {
       path: "/loginAndSignup",
       name: "loginAndSignup",
-      component: LogInAndSignUpForm
+      component: LogInAndSignUpForm,
     },
     {
       path: "/routine",
@@ -101,40 +101,42 @@ const router = createRouter({
         {
           path: "/writePost",
           name: "writePost",
-          component: CommunityWritePost
+          component: CommunityWritePost,
         },
         {
           path: "/editPost/:id",
           name: "editPost",
-          component: CommunityEditPost
-        }
+          component: CommunityEditPost,
+        },
       ],
     },
     {
       path: "/mypage",
       name: "mypage",
       component: MyPageView,
-    },
-    {
-      path: "/changepwd",
-      name: "changePwd",
-      component: ChangePwd,
-    },
-    {
-      path: "/changemyinfo",
-      name: "changeMyInfo",
-      component: ChangeMyInfo,
+      children: [
+        {
+          path: "",
+          name: "mypage",
+          component: MyPageView,
+        },
+        {
+          path: "/changepwd",
+          name: "changePwd",
+          component: ChangePwd,
+        },
+        {
+          path: "/changemyinfo",
+          name: "changeMyInfo",
+          component: ChangeMyInfo,
+        },
+      ],
     },
     {
       path: "/exercise",
       name: "exercise",
       component: ExerciseDetail,
     },
-    {
-      path: "/editor",
-      name: "editor",
-      component: TheEditor
-    }
   ],
 });
 
