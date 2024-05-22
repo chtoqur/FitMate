@@ -215,7 +215,7 @@ export const useUserStore = defineStore("user", () => {
     try {
       const likedCommunityJson = JSON.stringify(loginUser.value.likedCommunity);
       await axios.post(
-        `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity/${communityId}`,
+        `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity/${communityId}/1`,
         {
           likedCommunity: likedCommunityJson,
         }
@@ -236,7 +236,7 @@ export const useUserStore = defineStore("user", () => {
           loginUser.value.likedCommunity
         );
         await axios.post(
-          `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity/${communityId}`,
+          `${REST_USER_API}/${loginUser.value.id}/update-likedcommunity/${communityId}/0`,
           {
             likedCommunity: likedCommunityJson,
           }
