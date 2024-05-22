@@ -119,9 +119,9 @@ const curPage = ref(1);
 // 한 페이지당 비디오 수
 const postsPerPage = 9;
 
-// 페이지 수 계산
+// 전체 비디오 수 계산
 const totalPages = computed(() =>
-  Math.ceil(store.videoList.length / postsPerPage)
+  Math.ceil(filteredVideos.value.length / postsPerPage)
 );
 
 // 시작 인덱스 계산
@@ -129,8 +129,25 @@ const startIndex = computed(() => (curPage.value - 1) * postsPerPage);
 
 // 페이지네이션된 비디오 목록
 const paginatedVideos = computed(() =>
-  store.videoList.slice(startIndex.value, startIndex.value + postsPerPage)
+  filteredVideos.value.slice(startIndex.value, startIndex.value + postsPerPage)
 );
+
+// 필터링된 비디오 목록
+const filteredVideos = computed(() => {
+  let videos = store.videoList;
+
+  if (selectedParts.value.length > 0) {
+    videos = videos.filter((video) => selectedParts.value.includes(video.part));
+  }
+
+  if (isChecked.value) {
+    videos = videos.filter((video) =>
+      userStore.loginUser.likedVideos.includes(video.id)
+    );
+  }
+
+  return videos;
+});
 
 // 페이지 변경 함수
 const changePage = (pageNumber) => {
