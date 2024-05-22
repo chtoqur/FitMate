@@ -1,11 +1,11 @@
 <template>
   <div id="nav-container">
-    <header>
+    <nav :class="{ 'nav-sticky': isSticky }">
       <div class="header-inner">
         <!-- logo -->
         <div class="nav-left">
           <RouterLink to="/" class="nav-left-el">
-            <span>Home</span>
+            <img src= '../../assets/img/logo.png' alt="" class="nav-logo">
           </RouterLink>
         </div>
         <!-- navigation -->
@@ -53,14 +53,42 @@
           </a>
         </div>
       </div>
-    </header>
+    </nav>
   </div>
 </template>
 
 <script setup>
 import { useUserStore } from "@/stores/user";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useRoute } from "vue-router";
 
 const store = useUserStore();
+const route = useRoute();
+
+const isSticky = ref(false);
+const isMainVue = computed(()=>{
+  return window.location.pathname == "/";
+})
+
+const handleScroll = () => {
+  isSticky.value = window.scrollY > 0;
+};
+
+const logoSrc = computed(()=>{
+  // return isSticky.value ? '../../assets/img/logo-dark.png' : '../../assets/img/logo.png';
+})
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // 컴포넌트가 마운트될 때 초기 스크롤 위치 설정
+  console.log(route.path);
+  console.log(window.location.pathname);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
+
 </script>
 
 <style scoped>
@@ -69,23 +97,28 @@ const store = useUserStore();
 }
 
 #nav-container {
+  position: fixed;
+  width: 100%;
   height: 100px;
   font-size: 17px;
   font-weight: 600;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgb(209, 209, 209);
+
+  z-index: 100;
 }
 
 .mdi {
   margin-right: 5px;
 }
 
-header {
+nav {
   height: 100%;
 }
 
 .header-inner {
   display: flex;
   height: 100%;
+  width: 100%;
   justify-content: space-between;
   margin: 0 19%;
 }
@@ -96,6 +129,10 @@ header {
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+.nav-logo {
+  width: 150px;
 }
 
 .nav-ul {
@@ -123,9 +160,10 @@ nav {
 .nav-left span,
 .nav-ul span,
 .nav-right span {
-  color: black;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   transition: color 0.3s ease;
+  letter-spacing: 2px;
 }
 
 .nav-right {
@@ -135,7 +173,8 @@ nav {
 .nav-left span:hover,
 .nav-ul span:hover,
 .nav-right span:hover {
-  color: rgb(118, 159, 205);
+  color: rgb(163, 200, 240);
+  stroke: rgb(163, 200, 240);
 }
 
 button {
@@ -150,14 +189,31 @@ button {
 
 /* sticky */
 
-.nav-sticky .nav-links {
+.nav-sticky {
   position: fixed;
-  /* width: 90%; */
+  height: 100px;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid rgb(183, 183, 183);
 
   /* 필터 코드 */
-  /* -webkit-backdrop-filter: saturate(180%) blur(15px);
--moz-backdrop-filter: saturate(180%) blur(15px);
--o-backdrop-filter: saturate(180%) blur(15px);
-backdrop-filter: saturate(180%) blur(15px); */
+  -webkit-backdrop-filter: saturate(180%) blur(15px);
+  -moz-backdrop-filter: saturate(180%) blur(15px);
+  -o-backdrop-filter: saturate(180%) blur(15px);
+  backdrop-filter: saturate(180%) blur(15px);
+}
+.nav-sticky .nav-left span,
+.nav-sticky .nav-ul span,
+.nav-sticky .nav-right span
+{
+  color: rgb(100, 100, 100);
+}
+
+.nav-sticky .nav-left span:hover,
+.nav-sticky .nav-ul span:hover,
+.nav-sticky .nav-right span:hover
+{
+  color: rgb(118, 177, 240);
+  stroke: rgb(134, 173, 213);
 }
 </style>

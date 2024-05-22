@@ -90,6 +90,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\연홍시\Documents\workspace\fitmate\fitmate-spring\fitmate-spring"/>
 			<item value="C:\Users\SSAFY\Documents\workspace\fitmate\fitmate\fitmate-spring\fitmate-spring"/>
 		</list>
 	</section>

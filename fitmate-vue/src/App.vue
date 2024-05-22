@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <TheHeaderNav class="header-nav" />
-    <RouterView class="router-view" />
+    <RouterView class="router-view"/>
     <TheFooter class="footer-section" />
   </div>
 </template>
@@ -66,6 +66,7 @@ onBeforeMount(async () => {
 
 .router-view {
   flex: 1;
+  margin-top: 100px;
 }
 
 .footer-section {

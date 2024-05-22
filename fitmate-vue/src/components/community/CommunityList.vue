@@ -1,9 +1,6 @@
 <template>
   <div class="community-container">
     <div>
-      <h3>CommunityList 화면</h3>
-    </div>
-    <div>
       <div class="community-tool">
         <div class="tool-left">
           <div class="search-condition">
