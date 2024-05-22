@@ -2,26 +2,28 @@
   <div>
     <v-container>
       <v-row justify="center" >
-          <v-col cols="12" sm="9">
+          <v-col cols="12" sm="6" h-100>
             <v-card class="elevation-6 mt-10"  >
              <v-window v-model="step">
                 <!-- 로그인 창 -->
                 <v-window-item :value="1">
                   <v-row>
                     <v-col cols="12" md="6">
-                      <v-card-text class="mt-12">
+                      <v-card-text class="mt-16">
                         <v-row justify="center">
                           <v-col cols="12" sm="8">
-                              로고 들어갈 자리
+                            <v-row justify="center">
+                              <img src="../../assets/img/logo-dark-crop.png" alt="" class="logo-img">
+                            </v-row>
                             <!-- 아이디 입력 -->
                             <v-text-field
                               label="아이디"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
-                              class="mt-16"
                               v-model="loginUser.id"
+                              class="mt-16"
                               @keyup.enter="store.login(loginUser)"
                             />
                             <!-- 비밀번호 입력 -->
@@ -29,7 +31,7 @@
                               label="비밀번호"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               type="password"
                               v-model="loginUser.password"
@@ -42,21 +44,23 @@
                               </v-col>
                             </v-row>
                             <!-- 로그인 처리 -->
-                            <v-btn color="blue" dark block tile
+                            <v-btn color="rgb(63, 114, 175)" dark block tile
+                            class="mt-6"
                             @click="store.login(loginUser)">로그인</v-btn>
                           </v-col>
                         </v-row>  
                       </v-card-text>
                     </v-col>
-                    <v-col cols="12" md="6" class="blue rounded-bl-xl" >
-                    <div style="  text-align: center; padding: 180px 0;">
-                      <v-card-text class="white--text" >
-                        <h3 class="text-center">아직 회원이 아니신가요?</h3>
-                        <h6
-                          class="text-center"
-                        >피트메이트와 함께 어쩌구 저쩌구<br>운동을 배워보세요</h6>
+                    <v-col cols="12" md="6" class="blue rounded-bl-xl login-right">
+                    <div style="text-align: center; padding: 170px 0;">
+                      <v-card-text class="white--text">
+                        <h3 class="text-center signup-msg">아직 회원이 아니신가요?</h3>
+                        <div class="signup-msg-sub">
+                          <span
+                          >Make your workout life better<br>피트메이트와 함께 운동을 배워보세요</span>
+                        </div>
                       </v-card-text>
-                      <div class="text-center">
+                      <div class="text-center mt-2">
                         <v-btn tile outlined dark @click="step++">회원가입</v-btn>
                       </div>
                       </div>
@@ -66,13 +70,15 @@
                 <!-- 회원가입 창 -->
                 <v-window-item :value="2">
                   <v-row >
-                    <v-col cols="12" md="6" class="blue rounded-br-xl">
-                      <div style=" text-align: center; padding: 180px 0;">
-                        <v-card-text class="white--text" >
-                          <h3 class="text-center ">이미 회원이신가요?</h3>
-                          <h6
+                    <v-col cols="12" md="6" class="blue rounded-br-xl signup-left">
+                      <div style=" text-align: center; padding: 180px 0;" class="msg-right">
+                        <v-card-text class="white--text mt-16" >
+                          <h3 class="text-center signup-msg">이미 회원이신가요?</h3>
+                          <div class="login-msg-sub">
+                            <span
                             class="text-center"
-                          >로그인 후 피트메이트의 어쩌구 저쩌구<br>기능들을 체험해보세요</h6>
+                            >로그인 후 피트메이트의 다양한<br>기능들을 체험해보세요</span>
+                          </div>
                         </v-card-text>
                         <!-- 로그인 창으로 전환 -->
                         <div class="text-center">
@@ -81,7 +87,7 @@
                       </div>
                     </v-col>
                     <v-col cols="12" md="6">
-                      <v-card-text class="mt-6">
+                      <v-card-text class="mt-6 mb-8">
                         <v-row justify="center">
                           <v-col cols="12" sm="8">
                             <!-- 이름 -->
@@ -93,7 +99,7 @@
                                   label="아이디"
                                   outlined
                                   dense
-                                  color="blue"
+                                  color="rgb(63, 114, 175)"
                                   autocomplete="false"
                                   class="mt-4"
                                   v-model="user.id"
@@ -113,7 +119,7 @@
                               label="이메일"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               v-model="user.email"
                             />
@@ -121,7 +127,7 @@
                               label="비밀번호"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               type="password"
                               v-model="user.password"
@@ -130,22 +136,22 @@
                               label="비밀번호 확인"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               type="password"
                               v-model="repPassword"
                             />
-                            <p v-if="isPassword && repPassword" style="color: green">
+                            <p v-if="isPassword && repPassword" style="color: rgb(63, 114, 175)">
                               비밀번호가 일치합니다.
                             </p>
-                            <p v-if="!isPassword && repPassword" style="color: red">
+                            <p v-if="!isPassword && repPassword" style="color: rgb(63, 114, 175)">
                               비밀번호가 일치하지 않습니다.
                             </p>
                             <v-text-field
                               label="닉네임"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               v-model="user.nickname"
                             />
@@ -153,7 +159,7 @@
                               label="이름"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               v-model="user.name"
                             />
@@ -161,7 +167,7 @@
                               label="연령"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               type="number"
                               v-model="user.age"
@@ -171,7 +177,7 @@
                               :items="['상', '중', '하']"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               v-model="user.fitnessLevel"
                             ></v-combobox>
                             <v-row>
@@ -181,7 +187,7 @@
                                   label="우편번호"
                                   outlined
                                   dense
-                                  color="blue"
+                                  color="rgb(63, 114, 175)"
                                   autocomplete="false"
                                   v-model="user.postCode"
                                   ></v-text-field>
@@ -196,7 +202,7 @@
                                 label="도로명 주소"
                                 outlined
                                 dense
-                                color="blue"
+                                color="rgb(63, 114, 175)"
                                 autocomplete="false"
                                 v-model="address"
                               />
@@ -205,11 +211,11 @@
                               label="상세 주소"
                               outlined
                               dense
-                              color="blue"
+                              color="rgb(63, 114, 175)"
                               autocomplete="false"
                               v-model="detailAddress"
                             />
-                          <v-btn color="blue" dark block tile
+                          <v-btn color="rgb(63, 114, 175)" dark block tile
                           @click="signUp">회원가입</v-btn>
                           </v-col>
                         </v-row>  
@@ -316,5 +322,35 @@ const user = ref({
 </script>
 
 <style scoped>
+.logo-img {
+  width: 200px;
+}
 
+.login-right {
+  background-color: rgb(63, 114, 175);
+  border-bottom-left-radius: 50%;
+  color: white;
+}
+
+.signup-msg {
+  font-size: 25px;
+}
+
+.signup-msg-sub {
+  margin-top: 10px;
+}
+
+.signup-left {
+  background-color: rgb(63, 114, 175);
+  border-bottom-right-radius: 35%;
+  color: white;
+}
+
+.msg-right {
+  margin-top: 100px
+}
+
+.login-msg-sub {
+  margin-top: 10px;
+}
 </style>
