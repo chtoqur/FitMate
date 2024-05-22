@@ -147,7 +147,7 @@ export const useUserStore = defineStore("user", () => {
     try {
       const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
       await axios.post(
-        `${REST_USER_API}/${loginUser.value.id}/update-likedvideos/${videoId}`,
+        `${REST_USER_API}/${loginUser.value.id}/update-likedvideos`,
         {
           likedVideos: likedVideosJson,
         }
@@ -164,7 +164,7 @@ export const useUserStore = defineStore("user", () => {
       try {
         const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
         await axios.post(
-          `${REST_USER_API}/${loginUser.value.id}/update-likedvideos/${videoId}`,
+          `${REST_USER_API}/${loginUser.value.id}/update-likedvideos`,
           {
             likedVideos: likedVideosJson,
           }

@@ -29,6 +29,9 @@ export const useCommunityStore = defineStore("community", () => {
         method: "GET",
       });
       postList.value = response.data;
+      postList.value = postList.value.sort(
+        (a, b) => new Date(b.regDate) - new Date(a.regDate)
+      );
     } catch (err) {
       console.log(err);
     }

@@ -34,9 +34,11 @@
           ></v-btn>
         </div>
         <div class="write-btn">
-          <v-btn class="ma-2"
-          v-if="userStore.loginUser.id !== ''"
-          @click="router.push('/writePost')">
+          <v-btn
+            class="ma-2"
+            v-if="userStore.loginUser.id !== ''"
+            @click="router.push('/writePost')"
+          >
             글작성
           </v-btn>
         </div>
@@ -178,5 +180,4 @@ onMounted(async () => {
   text-decoration: none;
   color: black;
 }
-
 </style>
