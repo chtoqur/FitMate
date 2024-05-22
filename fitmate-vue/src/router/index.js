@@ -21,6 +21,8 @@ import TheEditor from "@/components/community/CommunityWritePost.vue";
 import LogInAndSignUpForm from "@/components/user/LogInAndSignUpForm.vue";
 import CommunityEditPost from "@/components/community/CommunityEditPost.vue";
 import MyPostList from "@/components/user/MyPostList.vue";
+import MyPage from "@/components/user/MyPage.vue";
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

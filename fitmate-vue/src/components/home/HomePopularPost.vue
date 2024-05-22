@@ -9,8 +9,8 @@
         :key="post.id"
         class="popular-li"
       >
-        <!-- <RouterLink :to="`community/${post.id}`"> -->
-        <a href="#" class="popular-link">
+        <a href="#" class="popular-link"
+        >
           <div class="wrap-info">
             <span class="post-idx">{{ index + 1 }}</span>
             <div class="wrap-title">
@@ -26,7 +26,6 @@
             </span>
           </div>
         </a>
-        <!-- </RouterLink> -->
       </li>
     </ol>
   </div>
@@ -36,7 +35,9 @@
 import { ref, onBeforeMount, computed } from "vue";
 import { useHomeStore } from "@/stores/home";
 import { useCommunityStore } from "@/stores/community";
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const homeStore = useHomeStore();
 const communityStore = useCommunityStore();
 

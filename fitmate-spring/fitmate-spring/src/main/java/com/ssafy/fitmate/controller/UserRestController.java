@@ -150,6 +150,7 @@ public class UserRestController {
 
 	@PostMapping("/{userId}/update-likedvideos")
 	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload) {
+		System.out.println("123");
 		String likedVideos = payload.get("likedVideos");
 		userService.updateLikedVideos(userId, likedVideos);
 		return ResponseEntity.ok().body("Liked videos updated successfully.");
