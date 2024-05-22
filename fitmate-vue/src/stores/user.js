@@ -149,6 +149,7 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const likeVideo = async function (videoId) {
+    videoId = parseInt(videoId);
     loginUser.value.likedVideos.push(videoId);
     try {
       const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
@@ -164,6 +165,7 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const unlikeVideo = async function (videoId) {
+    videoId = parseInt(videoId);
     const idx = loginUser.value.likedVideos.findIndex((id) => id === videoId);
     if (idx !== -1) {
       loginUser.value.likedVideos.splice(idx, 1);
