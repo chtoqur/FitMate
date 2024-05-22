@@ -2,11 +2,28 @@
   <div>
     <div class="container">
       <div id="map"></div>
-      <ul>
-        <li v-for="gym in gyms" :key="gym.id" @click="goToGymDetail(gym.id)">
-          {{ gym.place_name }} - {{ gym.address_name }}
-        </li>
-      </ul>
+      <div v-if="gyms.length !== 0" class="near-title">
+        <h3>가까운 헬스장</h3>
+        <ul>
+          <li
+            v-for="(gym, index) in gyms"
+            :key="gym.id"
+            @click="goToGymDetail(gym.id)"
+            class="near-li"
+          >
+            <div class="gym-link">
+              <div class="wrap-info">
+                <span class="gym-idx">{{ index + 1 }}</span>
+                <div class="wrap-title">
+                  <span class="gym-title"
+                    >{{ gym.place_name }} - {{ gym.address_name }}</span
+                  >
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <button v-if="store.loginUser.id !== ''" @click="showPostCodeLocation">
       내 집 위치
@@ -230,11 +247,72 @@ const displayMarker = function (markerPositions) {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  text-align: left;
+  text-align: center;
+  margin-top: 50px;
 }
 
 #map {
   width: 500px;
   height: 400px;
+}
+
+h3 {
+  border: 1px solid black;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+h3:hover {
+  cursor: default;
+}
+
+.gym-link {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+}
+
+.near-li {
+  display: flex;
+  width: 500px;
+  border-bottom: 1px solid rgb(206, 205, 205);
+}
+
+.near-li:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.wrap-info {
+  display: flex;
+  width: 80%;
+}
+
+.wrap-title {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.gym-idx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 45px;
+}
+
+.gym-title {
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  height: 1.1em;
+  -webkit-box-orient: vertical;
+  white-space: initial;
 }
 </style>
