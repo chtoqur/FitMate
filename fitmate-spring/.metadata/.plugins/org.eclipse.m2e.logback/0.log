@@ -470,3 +470,56 @@
 2024-05-16 17:30:53,839 [Worker-98: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\FitMate_Back\Spring_13_SBB_API\src\test\resources
 2024-05-16 17:40:45,590 [Stop Help Server] INFO  org.eclipse.jetty.server.Server - Stopped oejs.Server@5f0d1617{STOPPING}[12.0.6,sto=0]
 2024-05-16 17:40:45,599 [Stop Help Server] INFO  o.e.jetty.server.AbstractConnector - Stopped ServerConnector@38b61bce{HTTP/1.1, (http/1.1)}{127.0.0.1:0}
+2024-05-22 09:07:52,122 [Worker-8: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-05-22 09:08:03,432 [Worker-4: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ssafy:fitmate-spring:0.0.1-SNAPSHOT @ C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\pom.xml.
+2024-05-22 09:08:05,614 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 09:08:05,631 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 09:08:05,645 [Worker-4: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 09:08:07,754 [Worker-10: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.ssafy:fitmate-spring:0.0.1-SNAPSHOT @ C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\pom.xml.
+2024-05-22 09:08:07,861 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 09:08:07,893 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 09:08:07,924 [Worker-3: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 09:28:53,588 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-12.0.6; built: 2024-01-30T02:43:24.387Z; git: 78ab6e6ba163f89cdd97f2ae0283fbb5e371cfaf; jvm 17.0.10+7
+2024-05-22 09:28:53,690 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started oeje8n.ContextHandler$CoreContextHandler@32696212{/help,/help,b=null,a=AVAILABLE,h=oeje8n.ContextHandler$CoreContextHandler$CoreToNestedHandler@42562813{STARTED}}
+2024-05-22 09:28:53,692 [Start Help Server] INFO  o.e.j.s.DefaultSessionIdManager - Session workerName=node0
+2024-05-22 09:28:53,745 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@5073d2d6{HTTP/1.1, (http/1.1)}{127.0.0.1:51283}
+2024-05-22 09:28:53,772 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started oejs.Server@33d417d{STARTING}[12.0.6,sto=0] @1267840ms
+2024-05-22 09:30:56,974 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 09:30:56,982 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 09:30:56,987 [Worker-20: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 10:31:31,013 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-05-22 10:31:31,017 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 10:31:31,020 [Worker-25: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:45:05,387 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:45:05,394 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:45:05,399 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:45:08,271 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:45:08,276 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:45:08,280 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:45:48,014 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:45:48,018 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:45:48,022 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:45:51,056 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:45:51,060 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:45:51,064 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:46:02,541 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:46:02,558 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:46:02,562 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:46:28,001 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:46:28,005 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:46:28,008 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:46:39,600 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:46:39,603 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:46:39,606 [Worker-22: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:46:44,131 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:46:44,136 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:46:44,147 [Worker-33: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:46:52,464 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:46:52,470 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:46:52,478 [Worker-30: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:47:04,819 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:47:04,823 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:47:04,826 [Worker-31: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources
+2024-05-22 11:47:10,717 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-22 11:47:10,724 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 11 resources from src\main\resources to target\classes
+2024-05-22 11:47:10,728 [Worker-32: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SSAFY\Desktop\fitmate-spring\fitmate-spring\src\test\resources

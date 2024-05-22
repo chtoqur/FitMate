@@ -20,8 +20,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/video")
-@Tag(name = "VideoRestController", description = "동영상 CR")
-//@CrossOrigin("*")
 public class VideoRestController {
 	private final VideoService videoService;
 	
@@ -31,7 +29,6 @@ public class VideoRestController {
 	}
 
 	@GetMapping("")
-	@Operation(summary = "동영상 전체 조회", description = "동영상 전체 조회 가넝")
 	public ResponseEntity<?> list() {
 		List<Video> list = videoService.getVideoList();
 

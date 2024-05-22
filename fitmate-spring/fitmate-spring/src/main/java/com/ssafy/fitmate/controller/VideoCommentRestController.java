@@ -25,12 +25,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/video/comment")
-@Tag(name = "VideoCommentRestController", description = "동영상 댓글 CRUD")
 public class VideoCommentRestController {
 	private final VideoCommentService commentService;
-
-	@Autowired
-	private ResourceLoader loader;
 	
 	@Autowired
 	public VideoCommentRestController(VideoCommentService commentService) {
@@ -38,7 +34,6 @@ public class VideoCommentRestController {
 	}
 
 	@GetMapping("")
-	@Operation(summary = "댓글 전체 조회", description = "댓글 전체 조회 가넝")
 	public ResponseEntity<?> list() {
 		List<VideoComment> list = commentService.getCommentList(); // 검색 조회
 
@@ -74,7 +69,6 @@ public class VideoCommentRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	// 게시글 삭제
 //	@Hidden
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable("id") int id) {

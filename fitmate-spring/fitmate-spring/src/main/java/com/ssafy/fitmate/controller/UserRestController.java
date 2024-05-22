@@ -33,7 +33,6 @@ import com.ssafy.fitmate.util.JwtUtil;
 
 @RestController
 @RequestMapping("/user")
-//@CrossOrigin("*")
 public class UserRestController {
 
 	@Autowired
@@ -75,27 +74,27 @@ public class UserRestController {
 
 		return new ResponseEntity<>(result, status);
 	}
-	
+
 	@PutMapping("")
-	public ResponseEntity<Map<String, Object>> changeUserInfo(@RequestBody User user){
+	public ResponseEntity<Map<String, Object>> changeUserInfo(@RequestBody User user) {
 		System.out.println(user);
 		Map<String, Object> result = userService.changeUserInfo(user);
 		HttpStatus status = result.containsKey("id") ? HttpStatus.ACCEPTED : HttpStatus.UNAUTHORIZED;
 
 		return new ResponseEntity<>(result, status);
 	}
-	
+
 	@GetMapping("/checkpw")
-	public boolean checkPassword(@RequestParam String id, @RequestParam String pw){
+	public boolean checkPassword(@RequestParam String id, @RequestParam String pw) {
 		System.out.println("패스워드 체크 함수");
 		System.out.println("돌았다 리턴값은");
 		System.out.println(userService.checkPassword(id, pw) > 0);
 		pw = hashPassword(pw);
 		return userService.checkPassword(id, pw) > 0;
 	}
-	
+
 	@PutMapping("/changepw")
-	public ResponseEntity<?> changePassword(@RequestBody User user){
+	public ResponseEntity<?> changePassword(@RequestBody User user) {
 		System.out.println("그래서 비밀번호 바꾸는 함수 돌았다");
 		user.setPassword(hashPassword(user.getPassword()));
 		userService.changePassword(user.getId(), user.getPassword());
@@ -149,19 +148,23 @@ public class UserRestController {
 		return ResponseEntity.ok().body("saved Routine updated successfully.");
 	}
 
-	@PostMapping("/{userId}/update-likedvideos/{communityId}")
-	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int communityId) {
+	@PostMapping("/{userId}/update-likedvideos")
+	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload) {
 		String likedVideos = payload.get("likedVideos");
 		userService.updateLikedVideos(userId, likedVideos);
-		communityService.plusLikeCnt(communityId);
 		return ResponseEntity.ok().body("Liked videos updated successfully.");
 	}
-	
-	@PostMapping("/{userId}/update-likedcommunity/{communityId}")
-	public ResponseEntity<?> updateLikedCommunity(@PathVariable String userId, @RequestBody Map<String, String> payload, @PathVariable int communityId) {
+
+	@PostMapping("/{userId}/update-likedcommunity/{communityId}/{isPlus}")
+	public ResponseEntity<?> updateLikedCommunity(@PathVariable String userId, @RequestBody Map<String, String> payload,
+			@PathVariable int communityId, @PathVariable int isPlus) {
 		String likedCommunity = payload.get("likedCommunity");
 		userService.updateLikedCommunity(userId, likedCommunity);
-		communityService.minusLikeCnt(communityId);
+		if (isPlus == 0) {
+			communityService.minusLikeCnt(communityId);
+		} else {
+			communityService.plusLikeCnt(communityId);
+		}
 		return ResponseEntity.ok().body("Liked community updated successfully.");
 	}
 

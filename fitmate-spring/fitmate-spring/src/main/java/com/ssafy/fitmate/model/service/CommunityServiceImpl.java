@@ -1,16 +1,10 @@
 package com.ssafy.fitmate.model.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.fitmate.model.dao.CommunityDao;
 import com.ssafy.fitmate.model.dto.Community;
@@ -21,12 +15,9 @@ public class CommunityServiceImpl implements CommunityService {
 
 	private final CommunityDao communityDao;
 	
-	private final ResourceLoader resourceLoader;
-
 	@Autowired
-	public CommunityServiceImpl(CommunityDao communityDao, ResourceLoader resourceLoader) {
+	public CommunityServiceImpl(CommunityDao communityDao) {
 		this.communityDao = communityDao;
-		this.resourceLoader = resourceLoader;
 	}
 
 	@Override

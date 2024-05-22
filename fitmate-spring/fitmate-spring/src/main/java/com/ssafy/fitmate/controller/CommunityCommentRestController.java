@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,9 +26,6 @@ import com.ssafy.fitmate.model.service.CommunityService;
 public class CommunityCommentRestController {
 	private final CommunityCommentService commentService;
 	private final CommunityService communityService;
-
-	@Autowired
-	private ResourceLoader loader;
 	
 	@Autowired
 	public CommunityCommentRestController(CommunityCommentService commentService, CommunityService communityService) {

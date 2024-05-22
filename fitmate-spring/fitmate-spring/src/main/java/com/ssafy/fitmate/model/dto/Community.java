@@ -2,7 +2,6 @@ package com.ssafy.fitmate.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "게시글 DTO")
 public class Community {
 	private int id;
 	private String title;
@@ -13,9 +12,6 @@ public class Community {
 	private int viewCnt;
 	private String category;
 	private int commentCnt;
-	private String file;
-//	private String fileId;
-//	private String fileName;
 
 	public Community() {
 	}
@@ -27,7 +23,7 @@ public class Community {
 	}
 
 	public Community(int id, String title, String content, String writer, String regDate, int likeCnt, int viewCnt,
-			String category, int commentCnt, String file) {
+			String category, int commentCnt) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -38,31 +34,6 @@ public class Community {
 		this.viewCnt = viewCnt;
 		this.category = category;
 		this.commentCnt = commentCnt;
-		this.file = file;
-	}
-
-//	public String getFileId() {
-//		return fileId;
-//	}
-//
-//	public void setFileId(String fileId) {
-//		this.fileId = fileId;
-//	}
-//
-//	public String getFileName() {
-//		return fileName;
-//	}
-//
-//	public void setFileName(String fileName) {
-//		this.fileName = fileName;
-//	}
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
 	}
 
 	public int getId() {
@@ -136,14 +107,4 @@ public class Community {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
-	@Override
-	public String toString() {
-		return "Community [id=" + id + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regDate="
-				+ regDate + ", likeCnt=" + likeCnt + ", viewCnt=" + viewCnt + ", category=" + category + ", commentCnt="
-				+ commentCnt + ", file=" + file + "]";
-	}
-
-	
-
 }

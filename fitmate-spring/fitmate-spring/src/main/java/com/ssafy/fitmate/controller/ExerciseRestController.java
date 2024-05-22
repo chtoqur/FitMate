@@ -16,7 +16,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/excercise")
-@Tag(name = "ExerciseRestController", description = "운동 CR")
 public class ExerciseRestController {
 	private final ExerciseService exerciseService;
 	

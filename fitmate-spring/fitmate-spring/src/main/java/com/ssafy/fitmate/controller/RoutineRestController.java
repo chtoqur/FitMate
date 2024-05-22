@@ -16,7 +16,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/routine")
-@Tag(name = "RoutineRestController", description = "루틴 CR")
 public class RoutineRestController {
 	private final RoutineService routineService;
 	

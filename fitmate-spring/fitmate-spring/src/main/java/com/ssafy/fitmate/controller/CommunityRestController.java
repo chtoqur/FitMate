@@ -3,8 +3,6 @@ package com.ssafy.fitmate.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,28 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.ssafy.fitmate.model.dto.Community;
 import com.ssafy.fitmate.model.dto.SearchCondition;
 import com.ssafy.fitmate.model.service.CommunityService;
 
 import io.swagger.v3.oas.annotations.Hidden;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/community")
-//@CrossOrigin("*")
 public class CommunityRestController {
 	private final CommunityService communityService;
-
-	@Autowired
-	private ResourceLoader loader;
-	
 	
 	@Autowired
 	public CommunityRestController(CommunityService communityService) {
@@ -66,7 +54,6 @@ public class CommunityRestController {
 		return new ResponseEntity<Community>(community, HttpStatus.CREATED);
 	}
 
-//	@PutMapping("/board")
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> update(@PathVariable("id") int id, @RequestBody Community community) {
 		community.setId(id);
