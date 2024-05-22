@@ -1,5 +1,7 @@
 package com.ssafy.fitmate.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,13 @@ public class CommunityRestController {
 	}
 
 	@PostMapping("")
-	public ResponseEntity<Community> write(@ModelAttribute Community community) {
+	public ResponseEntity<Community> write(@RequestBody Community community) {
+		LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = now.format(formatter);
+        community.setRegDate(formattedDate);
+		community.setCategory("");
+		System.out.println(community);
 		communityService.writePost(community);
 		return new ResponseEntity<Community>(community, HttpStatus.CREATED);
 	}

@@ -12,9 +12,14 @@ export const useCommunityStore = defineStore("community", () => {
 
   const nowPost = ref({});
 
-  const createPost = function (post) {
-    post.regDate = new Date().toLocaleString();
-    postList.value.push(post);
+  const createPost = async (post) => {
+    console.log(post);
+    try{
+      const response = await axios.post(REST_COMMUNITY_API, post);
+      getPostList();
+    } catch(err){
+      console.log(err);
+    }
   };
 
   const getPostList = async () => {

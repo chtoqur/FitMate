@@ -34,7 +34,9 @@
           ></v-btn>
         </div>
         <div class="write-btn">
-          <v-btn class="ma-2" @click="router.push('/writePost')">
+          <v-btn class="ma-2"
+          v-if="userStore.loginUser.id !== ''"
+          @click="router.push('/writePost')">
             글작성
           </v-btn>
         </div>
@@ -81,10 +83,12 @@
 
 <script setup>
 import { useCommunityStore } from "@/stores/community";
+import { useUserStore } from "@/stores/user";
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
 const store = useCommunityStore();
+const userStore = useUserStore();
 const router = useRouter();
 const searchCondition = ref({
   key: "전체",
@@ -174,4 +178,5 @@ onMounted(async () => {
   text-decoration: none;
   color: black;
 }
+
 </style>
