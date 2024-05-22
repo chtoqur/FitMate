@@ -17,8 +17,9 @@ import ExerciseDetail from "@/components/exercise/ExerciseDetail.vue";
 import ChangePwd from "@/components/user/ChangePwd.vue";
 import ChangeMyInfo from "@/components/user/ChangeMyInfo.vue";
 import CommunityWritePost from "@/components/community/CommunityWritePost.vue";
-import TheEditor from "@/components/common/TheEditor.vue";
+import TheEditor from "@/components/community/CommunityWritePost.vue";
 import LogInAndSignUpForm from "@/components/user/LogInAndSignUpForm.vue";
+import CommunityEditPost from "@/components/community/CommunityEditPost.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -101,6 +102,11 @@ const router = createRouter({
           path: "/writePost",
           name: "writePost",
           component: CommunityWritePost
+        },
+        {
+          path: "/editPost/:id",
+          name: "editPost",
+          component: CommunityEditPost
         }
       ],
     },

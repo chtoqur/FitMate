@@ -35,8 +35,8 @@
         </div>
       </div>
       <div class="post-mid">
-        <div>
-          {{ store.nowPost.content }}
+        <div
+        v-html="store.nowPost.content">
         </div>
         <div class="post-react">
           <div class="comment-react">
@@ -117,7 +117,7 @@
         <span class="mdi mdi-lead-pencil"></span>
         &nbsp;글쓰기
       </v-btn>
-      <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="previous">
+      <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="router.push('/editPost/' + userStore.loginUser.id)">
         수정
       </v-btn>
       <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="previous">

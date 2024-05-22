@@ -5,7 +5,6 @@
       <!-- 제목 -->
       <div class="editor-title">
         <input type="text"
-        placeholder="제목을 입력하세요."
         v-model="postTitle">
       </div>
       <div v-if="editor"
@@ -130,64 +129,37 @@
         </button>
       </div>
       <div class="editor-content">
-        <editor-content
-        :editor="editor"
-        />
-      </div>
-      <div>
-        <button @click="writePost">등록하기</button>
+        <editor-content :editor="editor" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-// tiptap
 import StarterKit from '@tiptap/starter-kit'
 import { Editor, EditorContent } from '@tiptap/vue-3'
-import Placeholder from '@tiptap/extension-placeholder'
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onBeforeMount } from 'vue';
 import { useCommunityStore } from "@/stores/community";
-import { useUserStore } from '@/stores/user';
 import { useRoute } from 'vue-router';
 
 const store = useCommunityStore();
-const userStore = useUserStore();
 const editor = ref(null)
 const postTitle = ref("");
 const route = useRoute();
 
-const writePost = () => {
-  if (editor.value) {
-    const htmlContent = editor.value.getHTML();
-    const post = {
-      title: postTitle.value,
-      writer: userStore.loginUser.id,
-      content: htmlContent,
-      likeCnt: 0,
-      viewCnt: 0,
-      category: "",
-      comment_cnt: 0
-    }
-    store.createPost(post);
-    console.log(post);
-  }
-}
-
 onMounted(() => {
+  postTitle.value = store.nowPost.title;
   editor.value = new Editor({
-    extensions: [
-      StarterKit,
-      Placeholder.configure({
-        placeholder: 'Write something …',
-      })
-    ],
-    content: null,
+    extensions: [StarterKit],
+    content: store.nowPost.content,
   })
 })
-</script>
 
+onBeforeMount(() => {
+  store.getPostById(route.params.id);
+})
+</script>
 <style scoped>
 .the-editor {
   height: 100%;
@@ -275,11 +247,5 @@ onMounted(() => {
   margin: 2rem 0;
 }
 
-.tiptap p.is-editor-empty:first-child::before {
-  color: #adb5bd;
-  content: attr(data-placeholder);
-  float: left;
-  height: 0;
-  pointer-events: none;
-}
+
 </style>

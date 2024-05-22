@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
-    <entry loc="C:\Program Files\Java\jdk-17" stamp="1692941699408"/>
-    <entry loc="C:\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858" stamp="1706320773833"/>
-    <entry loc="C:\1학기\Java\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre" stamp="1713320363233"/>
-    <entry loc="C:\1학기\Java\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143" stamp="1713320363983"/>
-<<<<<<< HEAD
-    <entry loc="C:\Users\user\Desktop\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858" stamp="1704891178332"/>
-    <entry loc="C:\Program Files\BellSoft\LibericaJDK-17" stamp="1704890454248"/>
-    <entry loc="C:\Users\user\Desktop\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858\jre" stamp="1704891177974"/>
-=======
+    <entry loc="C:\1학기\Java\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858" stamp="1716165629683"/>
     <entry loc="C:\Program Files\BellSoft\LibericaJDK-17" stamp="1716165595800"/>
->>>>>>> origin/iseo_3
-    <entry loc="C:\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858\jre" stamp="1706320773731"/>
+    <entry loc="C:\1학기\Java\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858\jre" stamp="1716165629526"/>
 </dirs>

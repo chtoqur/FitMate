@@ -34,7 +34,9 @@
           ></v-btn>
         </div>
         <div class="write-btn">
-          <v-btn class="ma-2" @click="router.push('/writePost')">
+          <v-btn class="ma-2"
+          v-if="userStore.loginUser.id !== ''"
+          @click="router.push('/writePost')">
             글작성
           </v-btn>
         </div>
@@ -66,52 +68,6 @@
           </tr>
         </tbody>
       </v-table>
-      <!-- <v-row no-gutters align="center" justify="center">
-        <v-btn
-          v-if="buttonDisplay"
-          depressed
-          text
-          :class="[
-            'pagination__previous-btn',
-            { 'is-disabled': previousButtonDisabled },
-          ]"
-          :disabled="previousButtonDisabled"
-          @click="prevPage"
-        >
-          <span class="mdi mdi-chevron-left"></span>
-          이전
-        </v-btn>
-        <span class="pagination__divider ml-2 mr-4" v-if="buttonDisplay"></span>
-        <ul class="pagination__inner">
-          <li
-            class="pagination__btn-con"
-            v-for="number in pageList"
-            :key="number"
-          >
-            <button
-              type="button"
-              :class="['pagination__btn', { 'is-active': curPage === number }]"
-              @click="changePage(number)"
-            >
-              {{ number }}
-            </button>
-          </li>
-        </ul>
-        <span class="pagination__divider ml-4 mr-2" v-if="buttonDisplay"></span>
-        <v-btn
-          v-if="buttonDisplay"
-          depressed
-          text
-          :class="[
-            'pagination__next-btn',
-            { 'is-disabled': nextButtonDisabled },
-          ]"
-          :disabled="nextButtonDisabled"
-          @click="nextPage"
-        >
-          다음 <span class="mdi mdi-chevron-right"></span>
-        </v-btn>
-      </v-row> -->
       <v-pagination
         show-first-last-page
         total-visible="5"
@@ -127,10 +83,12 @@
 
 <script setup>
 import { useCommunityStore } from "@/stores/community";
+import { useUserStore } from "@/stores/user";
 import { onMounted, ref, computed } from "vue";
 import { useRouter } from "vue-router";
 
 const store = useCommunityStore();
+const userStore = useUserStore();
 const router = useRouter();
 const searchCondition = ref({
   key: "전체",
@@ -252,4 +210,5 @@ onMounted(async () => {
   text-decoration: none;
   color: black;
 }
+
 </style>
