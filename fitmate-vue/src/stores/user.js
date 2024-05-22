@@ -15,6 +15,8 @@ export const useUserStore = defineStore("user", () => {
     likedVideos: [],
     savedRoutine: [],
     likedCommunity: [],
+    myPost: [],
+    myRecentPost: []
   });
 
   const checkId = async (id) => {
@@ -147,7 +149,7 @@ export const useUserStore = defineStore("user", () => {
     try {
       const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
       await axios.post(
-        `${REST_USER_API}/${loginUser.value.id}/update-likedvideos/${videoId}`,
+        `${REST_USER_API}/${loginUser.value.id}/update-likedvideos`,
         {
           likedVideos: likedVideosJson,
         }
@@ -164,7 +166,7 @@ export const useUserStore = defineStore("user", () => {
       try {
         const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
         await axios.post(
-          `${REST_USER_API}/${loginUser.value.id}/update-likedvideos/${videoId}`,
+          `${REST_USER_API}/${loginUser.value.id}/update-likedvideos`,
           {
             likedVideos: likedVideosJson,
           }
@@ -245,6 +247,15 @@ export const useUserStore = defineStore("user", () => {
         console.log(err);
       }
     }
+  };
+
+  const getMyPosts = async () => {
+    await communityStore.getPostList();
+    popularPostList.value = communityStore.postList
+      .sort((postA, postB) => {
+        return postB.commentCnt - postA.commentCnt;
+      })
+      .slice(0, 5);
   };
 
   return {

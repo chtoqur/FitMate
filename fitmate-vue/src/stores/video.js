@@ -12,6 +12,7 @@ export const useVideoStore = defineStore("video", () => {
   const video = ref({});
 
   const nowList = ref([]);
+  
 
   const getAllVideoList = async () => {
     try {

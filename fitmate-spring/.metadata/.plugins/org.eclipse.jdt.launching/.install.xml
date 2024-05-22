@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
-<<<<<<< HEAD
-    <entry loc="C:\1학기\Java\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143\jre" stamp="1713320363233"/>
-    <entry loc="C:\1학기\Java\sts-4.22.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.10.v20240120-1143" stamp="1713320363983"/>
-    <entry loc="C:\Program Files\BellSoft\LibericaJDK-17" stamp="1709600311405"/>
-=======
     <entry loc="C:\1학기\Java\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858" stamp="1716165629683"/>
     <entry loc="C:\Program Files\BellSoft\LibericaJDK-17" stamp="1716165595800"/>
     <entry loc="C:\1학기\Java\sts-4.21.0.RELEASE\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.9.v20231028-0858\jre" stamp="1716165629526"/>
->>>>>>> origin/iseo
 </dirs>
