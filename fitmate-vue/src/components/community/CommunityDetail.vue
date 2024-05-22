@@ -1,11 +1,27 @@
 <template>
   <div class="post-container">
     <div class="post-top-btn">
-      <v-btn depressed text @click="previous" class="prev-post-btn">
+      <v-btn
+        depressed
+        text
+        @click="movePrevPost"
+        class="prev-post-btn"
+        v-if="
+          store.postList.findIndex((post) => post.id === store.nowPost.id) > 0
+        "
+      >
         <span class="mdi mdi-chevron-up"></span>
         이전글
       </v-btn>
-      <v-btn depressed text @click="previous">
+      <v-btn
+        depressed
+        text
+        @click="moveNextPost"
+        v-if="
+          store.postList.findIndex((post) => post.id === store.nowPost.id) <
+          store.postList.length
+        "
+      >
         <span class="mdi mdi-chevron-down"></span>
         다음글
       </v-btn>
@@ -155,6 +171,24 @@ const comment = ref({
   content: "",
 });
 
+const moveNextPost = () => {
+  const nowIndex = store.postList.findIndex(
+    (post) => post.id === store.nowPost.id
+  );
+  const nextId = store.postList.at(nowIndex + 1).id;
+  store.getPostById(nextId);
+  router.push(`../community/${nextId}`);
+};
+
+const movePrevPost = () => {
+  const nowIndex = store.postList.findIndex(
+    (post) => post.id === store.nowPost.id
+  );
+  const nextId = store.postList.at(nowIndex - 1).id;
+  store.getPostById(nextId);
+  router.push(`../community/${nextId}`);
+};
+
 const createComment = () => {
   if (userStore.loginUser.id === "") {
     if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
@@ -164,16 +198,6 @@ const createComment = () => {
   }
   commentStore.createComment(comment.value);
   comment.value.content = "";
-};
-
-const likePost = () => {
-  if (userStore.loginUser.id === "") {
-    if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
-      router.push({ name: "login" });
-    }
-    return;
-  }
-  userStore.likePost();
 };
 
 const toggleLike = () => {

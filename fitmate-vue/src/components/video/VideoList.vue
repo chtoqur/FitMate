@@ -53,7 +53,9 @@
               <v-card-title class="vcard-title">
                 {{ video.title }}
               </v-card-title>
-              <v-card-subtitle> 운동 부위 : {{ video.part }} </v-card-subtitle>
+              <v-card-subtitle>
+                {{ video.channelName }} - 운동 부위 : {{ video.part }}
+              </v-card-subtitle>
             </RouterLink>
           </v-card-item>
           <v-card-actions style="padding-top: 0">
