@@ -42,14 +42,24 @@ public class CommunityRestController {
 		}
 		return new ResponseEntity<List<Community>>(list, HttpStatus.OK);
 	}
+	
+	@GetMapping("/{userId}")
+	public ResponseEntity<?> myList(@ModelAttribute SearchCondition condition, @PathVariable("userId") String userId) {
+		List<Community> list = communityService.mySearch(condition, userId);
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Community> detail(@PathVariable("id") int id) {
-		Community community = communityService.readPost(id);
+		if (list == null || list.size() == 0) {
+			return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Community>>(list, HttpStatus.OK);
+	}
+
+	@GetMapping("/{id}/{cnt}")
+	public ResponseEntity<Community> detail(@PathVariable("id") int id, @PathVariable("cnt") int cnt) {
+		Community community = communityService.readPost(id, cnt);
 
 		return new ResponseEntity<Community>(community, HttpStatus.OK);
 	}
-
+	
 	@PostMapping("")
 	public ResponseEntity<Community> write(@RequestBody Community community) {
 		LocalDateTime now = LocalDateTime.now();

@@ -9,7 +9,7 @@ import com.ssafy.fitmate.model.dto.SearchCondition;
 
 public interface CommunityService {
 	// 게시글 상세조회
-	public Community readPost(int id);
+	public Community readPost(int id, int cnt);
 
 	// 게시글 작성
 	public void writePost(Community community);
@@ -22,6 +22,9 @@ public interface CommunityService {
 
 	// 게시글 검색
 	public List<Community> search(SearchCondition searchCondition);
+	
+	// 게시글 검색
+	public List<Community> mySearch(SearchCondition searchCondition, String userId);
 	
 	// 댓글수 증가
 	public void plusCommentCnt(int videoId);

@@ -1,6 +1,7 @@
 package com.ssafy.fitmate.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ssafy.fitmate.model.dto.Community;
 import com.ssafy.fitmate.model.dto.SearchCondition;
@@ -23,6 +24,9 @@ public interface CommunityDao {
 	
 	// 검색 기능
 	public List<Community> search(SearchCondition searchCondition);
+	
+	// 검색 기능
+	public List<Community> mySearch(Map<String, String> search);
 	
 	// 댓글수 증가
 	public void plusCommentCnt(int id);

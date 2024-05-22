@@ -1,6 +1,8 @@
 package com.ssafy.fitmate.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +26,22 @@ public class CommunityServiceImpl implements CommunityService {
 	public List<Community> search(SearchCondition condition) {
 		return communityDao.search(condition);
 	}
+	
+	@Override
+	public List<Community> mySearch(SearchCondition condition, String userId) {
+		Map<String, String> search = new HashMap<>();
+		search.put("key", condition.getKey());
+		search.put("word", condition.getWord());
+		search.put("userId", userId);
+		return communityDao.mySearch(search);
+	}
+
 
 	@Override
-	public Community readPost(int id) {
-		communityDao.updateViewCnt(id);
+	public Community readPost(int id, int cnt) {
+		if(cnt == 1) {
+			communityDao.updateViewCnt(id);
+		}
 		return communityDao.selectOne(id);
 	}
 
