@@ -66,59 +66,13 @@
           </tr>
         </tbody>
       </v-table>
-      <!-- <v-row no-gutters align="center" justify="center">
-        <v-btn
-          v-if="buttonDisplay"
-          depressed
-          text
-          :class="[
-            'pagination__previous-btn',
-            { 'is-disabled': previousButtonDisabled },
-          ]"
-          :disabled="previousButtonDisabled"
-          @click="prevPage"
-        >
-          <span class="mdi mdi-chevron-left"></span>
-          이전
-        </v-btn>
-        <span class="pagination__divider ml-2 mr-4" v-if="buttonDisplay"></span>
-        <ul class="pagination__inner">
-          <li
-            class="pagination__btn-con"
-            v-for="number in pageList"
-            :key="number"
-          >
-            <button
-              type="button"
-              :class="['pagination__btn', { 'is-active': curPage === number }]"
-              @click="changePage(number)"
-            >
-              {{ number }}
-            </button>
-          </li>
-        </ul>
-        <span class="pagination__divider ml-4 mr-2" v-if="buttonDisplay"></span>
-        <v-btn
-          v-if="buttonDisplay"
-          depressed
-          text
-          :class="[
-            'pagination__next-btn',
-            { 'is-disabled': nextButtonDisabled },
-          ]"
-          :disabled="nextButtonDisabled"
-          @click="nextPage"
-        >
-          다음 <span class="mdi mdi-chevron-right"></span>
-        </v-btn>
-      </v-row> -->
       <v-pagination
         show-first-last-page
-        total-visible="5"
+        total-visible="6"
         ellipsis="..."
         :length="totalPages"
-        @prev="prevPage"
-        @next="nextPage"
+        prev
+        next
         @update:model-value="changePage"
       ></v-pagination>
     </div>
@@ -160,42 +114,10 @@ const paginatedPosts = computed(() =>
   store.postList.slice(startIndex.value, startIndex.value + postsPerPage)
 );
 
-// 페이지 목록
-const pageList = computed(() => {
-  const pages = [];
-  for (let i = 1; i <= totalPages.value; i++) {
-    pages.push(i);
-  }
-  return pages;
-});
-
-// 버튼 표시 여부
-const buttonDisplay = computed(() => totalPages.value > 1);
-
-// 이전 버튼 비활성화 여부
-const previousButtonDisabled = computed(() => curPage.value === 1);
-
-// 다음 버튼 비활성화 여부
-const nextButtonDisabled = computed(() => curPage.value === totalPages.value);
-
 // 페이지 변경 함수
 const changePage = (pageNumber) => {
   if (pageNumber > 0 && pageNumber <= totalPages.value) {
     curPage.value = pageNumber;
-  }
-};
-
-// 이전 버튼 클릭 핸들러
-const prevPage = () => {
-  if (curPage.value > 1) {
-    curPage.value--;
-  }
-};
-
-// 다음 버튼 클릭 핸들러
-const nextPage = () => {
-  if (curPage.value < totalPages.value) {
-    curPage.value++;
   }
 };
 
