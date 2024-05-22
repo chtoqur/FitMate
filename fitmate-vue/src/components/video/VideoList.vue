@@ -82,13 +82,9 @@
             ></v-btn>
             <v-btn
               color="medium-emphasis"
-              icon="mdi-bookmark"
-              size="small"
-            ></v-btn>
-            <v-btn
-              color="medium-emphasis"
               icon="mdi-share-variant"
               size="small"
+              @click="copyURL(video.youtubeVideoId)"
             ></v-btn>
           </v-card-actions>
         </v-card>
@@ -199,6 +195,11 @@ const selectPart = () => {
       userStore.loginUser.likedVideos.includes(el.id)
     );
   }
+};
+
+const copyURL = (videoId) => {
+  navigator.clipboard.writeText(`https://www.youtube.com/watch?v=${videoId}`);
+  alert("클립보드에 복사 완료!");
 };
 </script>
 
