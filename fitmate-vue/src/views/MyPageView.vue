@@ -2,7 +2,6 @@
   <div>
     <RouterView />
   </div>
-  <!-- <RouterView /> -->
 </template>
 
 <script setup></script>

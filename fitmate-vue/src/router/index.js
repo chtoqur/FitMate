@@ -121,7 +121,7 @@ const router = createRouter({
         {
           path: "",
           name: "mypage",
-          component: MyPageView,
+          component: MyPage,
         },
         {
           path: "/changepwd",
