@@ -62,7 +62,11 @@
               text="시작하기"
               @click="navigateToDetail(routine.id)"
             ></v-btn>
-            <v-btn color="rgb(63, 114, 175)" text="공유하기"></v-btn>
+            <v-btn
+              color="rgb(63, 114, 175)"
+              text="공유하기"
+              @click="copyURL(routine.id)"
+            ></v-btn>
           </v-card-actions>
         </div>
       </div>
@@ -104,6 +108,11 @@ const saveRoutine = (id) => {
       userStore.saveRoutine(id);
     }
   }
+};
+
+const copyURL = (routineId) => {
+  navigator.clipboard.writeText(`http://localhost:5173/routine/${routineId}`);
+  alert("클립보드에 복사 완료!");
 };
 
 onMounted(() => {
