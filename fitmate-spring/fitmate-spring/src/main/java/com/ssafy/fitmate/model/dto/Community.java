@@ -10,7 +10,6 @@ public class Community {
 	private String regDate;
 	private int likeCnt;
 	private int viewCnt;
-	private String category;
 	private int commentCnt;
 
 	public Community() {
@@ -22,8 +21,7 @@ public class Community {
 		this.content = content;
 	}
 
-	public Community(int id, String title, String content, String writer, String regDate, int likeCnt, int viewCnt,
-			String category, int commentCnt) {
+	public Community(int id, String title, String content, String writer, String regDate, int likeCnt, int viewCnt, int commentCnt) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -32,7 +30,6 @@ public class Community {
 		this.regDate = regDate;
 		this.likeCnt = likeCnt;
 		this.viewCnt = viewCnt;
-		this.category = category;
 		this.commentCnt = commentCnt;
 	}
 
@@ -98,13 +95,5 @@ public class Community {
 
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
 	}
 }

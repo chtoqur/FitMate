@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="routine-title">
-      <h4>부위와 난이도를 선택해 <br>
+      <h4>
+        부위와 난이도를 선택해 <br />
         오늘의 루틴을 시작해보세요
       </h4>
     </div>
@@ -18,39 +19,70 @@
       </div>
       <div class="routine-level">
         <div class="rating">
-          <input type="radio" id="star-3" name="star-radio" value="star-3"
-            @click="selectLevel(3)" v-model="selectedLevel">
+          <input
+            type="radio"
+            id="star-3"
+            name="star-radio"
+            value="star-3"
+            @click="selectLevel(3)"
+            v-model="selectedLevel"
+          />
           <label for="star-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                pathLength="360"
+                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+              ></path>
+            </svg>
           </label>
-          <input type="radio" id="star-2" name="star-radio" value="star-2"
-            @click="selectLevel(2)" v-model="selectedLevel">
+          <input
+            type="radio"
+            id="star-2"
+            name="star-radio"
+            value="star-2"
+            @click="selectLevel(2)"
+            v-model="selectedLevel"
+          />
           <label for="star-2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                pathLength="360"
+                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+              ></path>
+            </svg>
           </label>
-          <input type="radio" id="star-1" name="star-radio" value="star-1"
-            @click="selectLevel(1)" v-model="selectedLevel">
+          <input
+            type="radio"
+            id="star-1"
+            name="star-radio"
+            value="star-1"
+            @click="selectLevel(1)"
+            v-model="selectedLevel"
+          />
           <label for="star-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path pathLength="360" d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                pathLength="360"
+                d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+              ></path>
+            </svg>
           </label>
         </div>
       </div>
     </div>
     <div class="routine-card">
-      <div
-        v-for="routine in routineList" :key="routine.id"
-      >
-        <RoutineCard :routine="routine"/>
+      <div v-for="routine in routineList" :key="routine.id">
+        <RoutineCard :routine="routine" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
-import { useRouter } from 'vue-router';
-import { useRoutineStore } from '@/stores/routine';
-import { useUserStore } from '@/stores/user';
+import { ref, onMounted, computed, watch } from "vue";
+import { useRouter } from "vue-router";
+import { useRoutineStore } from "@/stores/routine";
+import { useUserStore } from "@/stores/user";
 import RoutineCard from "@/components/routine/RoutineCard.vue";
 
 const router = useRouter();
@@ -62,28 +94,40 @@ const selectedParts = ref([]);
 const selectedLevel = ref("");
 
 const selectPart = () => {
-  if (selectedParts.value.length === 0 && selectedLevel.value === "") { // 부위 미선택 && 난이도 미선택: 전체 출력
+  if (selectedParts.value.length === 0 && selectedLevel.value === "") {
+    // 부위 미선택 && 난이도 미선택: 전체 출력
     routineList.value = store.routineList;
-  } else if (selectedParts.value.length !== 0 && selectedLevel.value === ""){ // 부위 선택 && 난이도 미선택
-    routineList.value = store.routineList.filter((el) => selectedParts.value.includes(el.part));
-  } else if (selectedParts.value.length !== 0 && selectLevel.value !== "") { // 부위 선택 && 난이도 선택
-    routineList.value = store.routineList.filter((el) => el.level == selectedLevel.value.charAt(5)).filter((el) => selectedParts.value.includes(el.part));
-  } else { // 부위 미선택 && 난이도 선택
-    routineList.value = store.routineList.filter((el) => el.level == selectedLevel.value.charAt(5)).filter((el) => el.part == defaultTxt.value);
+  } else if (selectedParts.value.length !== 0 && selectedLevel.value === "") {
+    // 부위 선택 && 난이도 미선택
+    routineList.value = store.routineList.filter((el) =>
+      selectedParts.value.includes(el.part)
+    );
+  } else if (selectedParts.value.length !== 0 && selectLevel.value !== "") {
+    // 부위 선택 && 난이도 선택
+    routineList.value = store.routineList
+      .filter((el) => el.level == selectedLevel.value.charAt(5))
+      .filter((el) => selectedParts.value.includes(el.part));
+  } else {
+    // 부위 미선택 && 난이도 선택
+    routineList.value = store.routineList
+      .filter((el) => el.level == selectedLevel.value.charAt(5))
+      .filter((el) => el.part == defaultTxt.value);
   }
-}
+};
 
-const selectLevel = function(level) {
+const selectLevel = function (level) {
   if (selectedParts.value.length == 0) {
     routineList.value = store.routineList.filter((el) => el.level == level);
   } else {
-    routineList.value = store.routineList.filter((el) => el.level == level).filter((el) => selectedParts.value.includes(el.part));
+    routineList.value = store.routineList
+      .filter((el) => el.level == level)
+      .filter((el) => selectedParts.value.includes(el.part));
   }
-}
+};
 
 onMounted(() => {
   routineList.value = store.routineList;
-})
+});
 </script>
 
 <style scoped>
