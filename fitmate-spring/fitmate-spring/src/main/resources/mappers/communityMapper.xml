@@ -14,6 +14,15 @@
 		</if>
 	</select>
 	
+	<!-- 내 게시글 조회 -->
+	<select id="mySearch" resultType="community" parameterType="Map">
+		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, category, comment_cnt AS commentCnt
+		FROM community
+		<if test="key != 'none'">
+			WHERE writer = #{userId} AND ${key} LIKE concat('%', #{word}, '%')
+		</if>
+	</select>
+	
 	<!-- 상세 게시글 조회 -->
 	<select id="selectOne" resultType="community" parameterType="int">
 		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, category, comment_cnt AS commentCnt
