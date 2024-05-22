@@ -117,7 +117,7 @@ export const useCommunityStore = defineStore("community", () => {
       try {
         const response = await axios.delete(`${REST_COMMUNITY_API}/${id}`);
         await getPostList();
-        router.push({ path: "community" });
+        router.push({ name: "communityList" });
       } catch (err) {
         console.log(err);
       }
