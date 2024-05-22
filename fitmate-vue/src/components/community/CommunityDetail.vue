@@ -9,7 +9,9 @@
         <span class="mdi mdi-chevron-down"></span>
         다음글
       </v-btn>
-      <v-btn depressed text @click="goToList()"> 목록으로 </v-btn>
+      <v-btn depressed text @click="router.push('/community')">
+        > 목록으로
+      </v-btn>
     </div>
     <div class="post-content">
       <div class="post-top">
@@ -24,7 +26,7 @@
                 {{ store.nowPost.writer }}
               </span>
             </div>
-            <div>
+            <div class="post-info-detail">
               {{ store.nowPost.regDate }} &nbsp; 조회
               {{ store.nowPost.viewCnt }}
             </div>
@@ -38,7 +40,7 @@
         </div>
         <div class="post-react">
           <div class="comment-react">
-            <button>
+            <button :class="{ liked: isLiked }" @click="toggleLike">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -115,8 +117,12 @@
         <span class="mdi mdi-lead-pencil"></span>
         &nbsp;글쓰기
       </v-btn>
-      <v-btn depressed text @click="previous"> 수정 </v-btn>
-      <v-btn depressed text @click="previous"> 삭제 </v-btn>
+      <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="previous">
+        수정
+      </v-btn>
+      <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="previous">
+        삭제
+      </v-btn>
     </div>
   </div>
 </template>
@@ -127,7 +133,7 @@ import CommentThread from "./CommentThread.vue";
 import { useCommunityStore } from "@/stores/community";
 import { useCommentStore } from "@/stores/comment";
 import { useUserStore } from "@/stores/user";
-import { onBeforeMount, ref } from "vue";
+import { computed, onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
@@ -135,6 +141,16 @@ const router = useRouter();
 const store = useCommunityStore();
 const commentStore = useCommentStore();
 const userStore = useUserStore();
+
+const isLiked = computed(() => {
+  return userStore.loginUser.likedCommunity.some(
+    (id) => id === store.nowPost.id
+  );
+});
+
+const isLoginUser = computed(() => {
+  return userStore.loginUser.id === store.nowPost.writer;
+});
 
 const comment = ref({
   communityId: route.params.id,
@@ -155,8 +171,31 @@ const createComment = () => {
   comment.value.content = "";
 };
 
-const goToList = () => {
-  router.push({ name: "communityList" });
+const likePost = () => {
+  if (userStore.loginUser.id === "") {
+    if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
+      router.push({ name: "login" });
+    }
+    return;
+  }
+  userStore.likePost();
+};
+
+const toggleLike = () => {
+  if (userStore.loginUser.id === "") {
+    if (confirm("이 기능은 회원만 사용할 수 있습니다.\n로그인 하시겠습니까?")) {
+      router.push({ name: "login" });
+    }
+    return;
+  }
+
+  if (isLiked.value) {
+    // 좋아요 취소
+    userStore.unlikePost(store.nowPost.id);
+  } else {
+    // 좋아요 추가
+    userStore.likePost(store.nowPost.id);
+  }
 };
 
 onBeforeMount(() => {
@@ -183,7 +222,12 @@ onBeforeMount(() => {
 }
 
 .post-info {
+  margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.post-info-detail {
+  line-height: 25px;
 }
 
 hr {
@@ -287,16 +331,20 @@ hr {
   margin: 20px 0;
 }
 
+.hidden {
+  display: none;
+}
+
 /* 좋아요 버튼 */
 .post-react {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 수평 중앙 정렬 */
   height: 100px;
-  border: 1px solid blue;
 }
 
 .comment-react {
-  margin: 0;
   display: flex;
-  justify-content: center;
   padding: 5px;
   background-color: #f1f1f1;
   border-radius: 5px;
@@ -377,5 +425,12 @@ hr {
     transform: scale(2);
     opacity: 0;
   }
+}
+
+.liked svg,
+.liked svg path {
+  color: #f5356e;
+  fill: #f5356e;
+  stroke: #f5356e;
 }
 </style>

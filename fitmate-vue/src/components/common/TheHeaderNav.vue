@@ -31,7 +31,7 @@
         <!-- login/logout / mypage -->
         <div class="nav-right">
           <RouterLink
-            to="/login"
+            to="/loginAndSignup"
             v-if="store.loginUser.id === ''"
             class="nav-right-el"
           >
