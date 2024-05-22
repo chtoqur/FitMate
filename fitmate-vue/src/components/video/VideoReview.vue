@@ -150,7 +150,7 @@
             </div>
           </div>
         </div>
-        <div v-for="childReview in store.videoReviewList">
+        <div v-for="childReview in store.videoReviewList" :key="childReview">
           <VideoReview
             v-if="childReview.parent === review.id"
             :key="childReview.id"

@@ -82,7 +82,7 @@
             <div class="comment-list-wrap">
               <div id="comment-list">
                 <span
-                  >영상 댓글
+                  >댓글
                   <span class="comment-count">{{
                     commentStore.nowCommentList.length
                   }}</span>
@@ -134,7 +134,12 @@
       >
         수정
       </v-btn>
-      <v-btn :class="{ hidden: !isLoginUser }" depressed text @click="previous">
+      <v-btn
+        :class="{ hidden: !isLoginUser }"
+        depressed
+        text
+        @click="deletePost()"
+      >
         삭제
       </v-btn>
     </div>
@@ -180,6 +185,7 @@ const moveNextPost = () => {
   );
   const nextId = store.postList.at(nowIndex + 1).id;
   store.getPostById(nextId, 1);
+  commentStore.getNowCommentList(nextId);
   router.push(`../community/${nextId}`);
 };
 
@@ -189,6 +195,7 @@ const movePrevPost = () => {
   );
   const nextId = store.postList.at(nowIndex - 1).id;
   store.getPostById(nextId, 1);
+  commentStore.getNowCommentList(nextId);
   router.push(`../community/${nextId}`);
 };
 
@@ -222,6 +229,10 @@ const toggleLike = async () => {
     await store.getPostList();
     await store.getPostById(route.params.id, 0);
   }
+};
+
+const deletePost = async () => {
+  await store.deletePost(route.params.id);
 };
 
 onBeforeMount(() => {
