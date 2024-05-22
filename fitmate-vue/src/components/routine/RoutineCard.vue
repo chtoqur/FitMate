@@ -145,7 +145,6 @@ onMounted(() => {
   display: flex;
   align-items: top;
   justify-content: right;
-  border: 1px solid rgb(97, 137, 201);
 }
 
 .save {
