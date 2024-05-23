@@ -8,15 +8,6 @@
     </div>
     <div class="video-select">
       <div class="video-part">
-        <!-- <v-combobox
-          v-model="selectedParts"
-          @update:modelValue="selectPart"
-          :items="['어깨', '팔', '가슴', '복근', '등', '하체']"
-          label="I use chips"
-          chips
-          multiple
-          variant="solo"
-        ></v-combobox> -->
         <v-combobox
           multiple
           label="운동 부위를 선택하세요"

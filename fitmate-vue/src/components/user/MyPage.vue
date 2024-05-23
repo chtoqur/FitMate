@@ -117,10 +117,10 @@
               <li
                 v-for="(post, index) in userStore.loginUser.myRecentPost"
                 :key="index"
-                class="popular-li"
+                class="post-li"
               >
-                <!-- <RouterLink :to="`community/${post.id}`"> -->
-                <a href="#" class="popular-link">
+                <RouterLink :to="`community/${post.id}`"
+                class="post-link">
                   <div class="wrap-info">
                     <span class="post-idx">{{ index + 1 }}</span>
                     <div class="wrap-title">
@@ -135,8 +135,7 @@
                       </span>
                     </span>
                   </div>
-                </a>
-                <!-- </RouterLink> -->
+                </RouterLink>
               </li>
             </ol>
           </div>
@@ -391,6 +390,7 @@ onBeforeMount(async () => {
   margin-top: 15px;
   overflow: auto;
   overflow-y: hidden;
+  width: 100%;
 }
 
 .video-list img {
@@ -425,4 +425,66 @@ onBeforeMount(async () => {
   display: flex;
   margin-left: auto;
 }
+
+.post-li {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid rgb(206, 205, 205);
+}
+
+.post-li:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.post-link {
+  display: flex;
+  height: 50px;
+  width: 580px;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+}
+
+.wrap-info {
+  display: flex;
+  width: 80%;
+}
+
+.post-idx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  width: 45px;
+}
+
+.wrap-title {
+  display: flex;
+}
+
+.post-title {
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  height: 1.1em;
+  -webkit-box-orient: vertical;
+  white-space: initial;
+}
+
+.wrap-cmt {
+  display: flex;
+  justify-content: end;
+  font-size: 12px;
+  margin-left: 4px;
+  margin-right: 10px;
+}
+
+.post-cmt-cnt {
+  color: red;
+  font-weight: bold;
+}
+ 
 </style>

@@ -57,10 +57,6 @@ onBeforeMount(async () => {
 </script>
 
 <style scoped>
-*::-webkit-scrollbar {
-  display: none;
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
