@@ -55,6 +55,9 @@ export const useCommunityStore = defineStore("community", () => {
         },
       });
       postList.value = response.data;
+      postList.value = postList.value.sort(
+        (a, b) => new Date(b.regDate) - new Date(a.regDate)
+      );
     } catch (err) {
       console.log(err);
     }
@@ -81,6 +84,9 @@ export const useCommunityStore = defineStore("community", () => {
         },
       });
       postList.value = response.data;
+      postList.value = postList.value.sort(
+        (a, b) => new Date(b.regDate) - new Date(a.regDate)
+      );
     } catch (err) {
       console.log(err);
     }
