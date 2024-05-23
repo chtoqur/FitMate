@@ -24,11 +24,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> getUserList() {
-		return userDao.selectAll();
-	}
-
-	@Override
 	public int signup(User user) {
 		return userDao.insertUser(user);
 	}

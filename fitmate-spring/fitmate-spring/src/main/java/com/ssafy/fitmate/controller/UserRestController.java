@@ -77,7 +77,6 @@ public class UserRestController {
 
 	@PutMapping("")
 	public ResponseEntity<Map<String, Object>> changeUserInfo(@RequestBody User user) {
-		System.out.println(user);
 		Map<String, Object> result = userService.changeUserInfo(user);
 		HttpStatus status = result.containsKey("id") ? HttpStatus.ACCEPTED : HttpStatus.UNAUTHORIZED;
 
@@ -86,16 +85,12 @@ public class UserRestController {
 
 	@GetMapping("/checkpw")
 	public boolean checkPassword(@RequestParam String id, @RequestParam String pw) {
-		System.out.println("패스워드 체크 함수");
-		System.out.println("돌았다 리턴값은");
-		System.out.println(userService.checkPassword(id, pw) > 0);
 		pw = hashPassword(pw);
 		return userService.checkPassword(id, pw) > 0;
 	}
 
 	@PutMapping("/changepw")
 	public ResponseEntity<?> changePassword(@RequestBody User user) {
-		System.out.println("그래서 비밀번호 바꾸는 함수 돌았다");
 		user.setPassword(hashPassword(user.getPassword()));
 		userService.changePassword(user.getId(), user.getPassword());
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -150,7 +145,6 @@ public class UserRestController {
 
 	@PostMapping("/{userId}/update-likedvideos")
 	public ResponseEntity<?> updateLikedVideos(@PathVariable String userId, @RequestBody Map<String, String> payload) {
-		System.out.println("123");
 		String likedVideos = payload.get("likedVideos");
 		userService.updateLikedVideos(userId, likedVideos);
 		return ResponseEntity.ok().body("Liked videos updated successfully.");

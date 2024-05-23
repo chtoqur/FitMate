@@ -15,7 +15,7 @@ import com.ssafy.fitmate.model.service.ExerciseService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("/excercise")
+@RequestMapping("/exercise")
 public class ExerciseRestController {
 	private final ExerciseService exerciseService;
 	

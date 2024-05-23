@@ -71,7 +71,6 @@ public class CommunityCommentRestController {
 //	@Hidden
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> delete(@PathVariable("id") int id, @RequestParam int communityId) {
-		System.out.println(communityId);
 		commentService.removeComment(id);
 		communityService.minusCommentCnt(communityId);
 		return new ResponseEntity<Void>(HttpStatus.OK);

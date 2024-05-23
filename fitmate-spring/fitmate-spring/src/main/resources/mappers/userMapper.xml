@@ -2,14 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- 네임스페이스에 DAO 풀패키지명을 작성 -->
 <mapper namespace="com.ssafy.fitmate.model.dao.UserDao">
-	<select id="selectAll">
-		SELECT id, name, nickname, email, age, fitness_level
-		AS fitnessLevel, post_code AS postCode, address, liked_videos AS
-		likedVideos, saved_routine AS savedRoutine, liked_community AS likedCommunity
-		FROM users
-	</select>
 
 	<insert id="insertUser" parameterType="User">
 		INSERT INTO users

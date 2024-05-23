@@ -66,7 +66,6 @@ public class CommunityRestController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDate = now.format(formatter);
         community.setRegDate(formattedDate);
-		System.out.println(community);
 		communityService.writePost(community);
 		return new ResponseEntity<Community>(community, HttpStatus.CREATED);
 	}

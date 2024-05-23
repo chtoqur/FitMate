@@ -8,8 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import com.ssafy.fitmate.model.dto.User;
 
 public interface UserDao {
-	public List<User> selectAll();
-
 	public int insertUser(User user);
 
 	public User selectOne(Map<String, String> info);

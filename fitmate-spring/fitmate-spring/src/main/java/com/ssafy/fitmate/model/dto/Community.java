@@ -1,7 +1,5 @@
 package com.ssafy.fitmate.model.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-
 public class Community {
 	private int id;
 	private String title;
