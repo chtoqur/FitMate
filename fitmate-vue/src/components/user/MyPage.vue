@@ -6,7 +6,7 @@
         <!-- 사진 -->
         <div class="img-section">
           <img
-            :src="`http://localhost:8080${profilePictureUrl}`"
+            :src="profilePictureUrl"
             alt="프로필사진"
             @click="showModal = true"
             class="user-picture"
@@ -119,8 +119,7 @@
                 :key="index"
                 class="post-li"
               >
-                <RouterLink :to="`community/${post.id}`"
-                class="post-link">
+                <RouterLink :to="`community/${post.id}`" class="post-link">
                   <div class="wrap-info">
                     <span class="post-idx">{{ index + 1 }}</span>
                     <div class="wrap-title">
@@ -246,7 +245,9 @@ const closeModal = () => {
 };
 
 const profilePictureUrl = computed(() => {
-  return userStore.loginUser.image ? userStore.loginUser.image : "";
+  return userStore.loginUser.image
+    ? "http://localhost:8080" + userStore.loginUser.image
+    : "src/assets/img/user/default_profile.png";
 });
 
 // const openFileSelector = () => {
@@ -492,5 +493,4 @@ onBeforeMount(async () => {
   color: red;
   font-weight: bold;
 }
- 
 </style>

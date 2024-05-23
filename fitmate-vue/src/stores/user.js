@@ -115,7 +115,7 @@ export const useUserStore = defineStore("user", () => {
         let id = JSON.parse(atob(token[1]))["id"];
         sessionStorage.setItem("id", id);
         alert("로그인 성공");
-        router.back();
+        router.push({ name: "home" });
       }
     } catch (err) {
       console.log(err);
@@ -140,7 +140,6 @@ export const useUserStore = defineStore("user", () => {
     try {
       const response = await axios.post(`${REST_USER_API}/signup`, user);
       alert("회원가입 성공!");
-      router.push({ name: "login" });
     } catch (error) {
       console.error("Error signing up:", error);
       alert("회원가입 실패");

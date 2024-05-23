@@ -353,6 +353,7 @@ const signUp = function () {
     alert("주소를 입력해주세요.");
   } else {
     store.signUp(user.value);
+    step.value = 1;
   }
 };
 

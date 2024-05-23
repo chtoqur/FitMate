@@ -9,7 +9,7 @@
 		VALUES
 		(#{id}, #{password}, #{name}, #{nickname}, #{email}, #{age},
 		#{fitnessLevel}, #{postCode}, #{address}, #{likedVideos},
-		#{savedRoutine}, #{img})
+		#{savedRoutine}, #{likedCommunity}, #{img})
 	</insert>
 
 	<select id="selectOne" parameterType="Map" resultType="User">
