@@ -160,25 +160,6 @@
       </div>
     </div>
   </div>
-  <!-- <p v-else>{{ review.content }}</p>
-    <button
-      v-if="review.writer === userStore.loginUser.id && !review.editing"
-      @click="setUpdateReview(review.id)"
-    >
-      수정
-    </button>
-    <button
-      v-if="review.writer === userStore.loginUser.id && review.editing"
-      @click="review.editing = false"
-    >
-      취소
-    </button>
-    <button
-      v-if="review.writer === userStore.loginUser.id"
-      @click="store.deleteReview(review.id, review.videoId)"
-    >
-      삭제
-    </button> -->
 </template>
 
 <script setup>
@@ -253,6 +234,7 @@ textarea {
 .full-comment-area {
   display: flex;
   width: 100%;
+  margin-top: 10px;
 }
 
 .full-reply-area {

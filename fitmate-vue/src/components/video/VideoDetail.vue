@@ -38,13 +38,13 @@
         </div>
         <!-- 우측 댓글 창 -->
         <div id="detail-right">
-          <!-- <div class="register-box input-group">
+          <div class="register-box input-group">
             <div class="register-comment">
               <span class="mdi mdi-message-processing-outline">&nbsp;댓글</span>
               <textarea
                 class="register-textarea"
                 placeholder="내용을 입력하세요."
-                rows="2"
+                rows="1"
                 aria-label="With textarea"
                 v-model="review.content"
               ></textarea>
@@ -54,7 +54,7 @@
                 </v-btn>
               </div>
             </div>
-          </div> -->
+          </div>
           <div class="comment-list-container">
             <div class="comment-list-wrap">
               <div id="comment-list">
@@ -206,6 +206,7 @@ const toggleLike = (event) => {
 .register-box {
   width: 100%;
   height: 20%;
+  margin-bottom: 20px;
 }
 
 .register-comment {
@@ -214,6 +215,10 @@ const toggleLike = (event) => {
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 10px;
+}
+
+.register-textarea {
+  font-size: 14px;
 }
 
 .register-textarea:focus {
@@ -254,11 +259,15 @@ const toggleLike = (event) => {
   display: flex;
   width: 100%;
   height: 80%;
+  overflow-y: auto; /* 세로 스크롤바 추가 */
+  box-sizing: border-box; /* 패딩 포함하여 전체 크기 조정 */
 }
 
 .comment-list-wrap {
   width: 100%;
   margin-top: 20px;
+  max-height: 100%; /* 부모 컨테이너 높이에 맞춤 */
+  overflow-y: auto; /* 세로 스크롤바 추가 */
 }
 
 hr {
