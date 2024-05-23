@@ -28,8 +28,7 @@
 		likeCnt, view_cnt AS viewCnt, comment_cnt AS commentCnt
 		FROM community
 		<if test="key != 'none'">
-			WHERE writer = #{userId} AND ${key} LIKE concat('%',
-			#{word}, '%')
+			WHERE writer = #{userId} AND ${key} LIKE concat('%', #{word}, '%')
 		</if>
 	</select>
 
@@ -46,7 +45,7 @@
 	<insert id="insertPost" parameterType="Community">
 		INSERT INTO community
 		(title, writer, content, reg_date, like_cnt, view_cnt, comment_cnt)
-		VALUES (#{title}, #{writer}, #{content}, now(), 0, 0, #{category}, 0);
+		VALUES (#{title}, #{writer}, #{content}, now(), 0, 0, 0);
 	</insert>
 
 	<!-- 게시글 삭제 -->
