@@ -87,6 +87,7 @@ export const useCommunityStore = defineStore("community", () => {
   };
 
   const getPostById = async (id, viewCnt) => {
+    id = parseInt(id);
     try {
       const response = await axios({
         url: `${REST_COMMUNITY_API}/${id}/${viewCnt}`,

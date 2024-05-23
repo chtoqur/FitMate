@@ -149,13 +149,14 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { ref, onMounted } from "vue";
 import { useCommunityStore } from "@/stores/community";
 import { useUserStore } from "@/stores/user";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const store = useCommunityStore();
 const userStore = useUserStore();
 const editor = ref(null);
 const postTitle = ref("");
 const route = useRoute();
+const router = useRouter();
 
 const writePost = () => {
   if (editor.value) {
@@ -169,6 +170,8 @@ const writePost = () => {
       comment_cnt: 0,
     };
     store.createPost(post);
+    alert("게시글이 등록되었습니다.");
+    router.push({ name: "communityList" });
   }
 };
 

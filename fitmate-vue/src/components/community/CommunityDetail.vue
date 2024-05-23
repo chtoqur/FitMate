@@ -127,7 +127,7 @@
         :class="{ hidden: !isLoginUser }"
         depressed
         text
-        @click="router.push('/editPost/' + userStore.loginUser.id)"
+        @click="router.push('/editPost/' + route.params.id)"
       >
         수정
       </v-btn>
