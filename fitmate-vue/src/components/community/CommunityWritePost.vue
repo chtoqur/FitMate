@@ -133,8 +133,17 @@
       <div class="editor-content">
         <editor-content :editor="editor" />
       </div>
-      <div>
-        <button @click="writePost">등록하기</button>
+      <div class="btn-box">
+        <v-btn variant="outlined" class="ma-2" @click="writePost">
+          등록하기
+        </v-btn>
+        <v-btn
+          variant="outlined"
+          class="ma-2"
+          @click="router.push('/communityList')"
+        >
+          목록으로
+        </v-btn>
       </div>
     </div>
   </div>
@@ -170,8 +179,6 @@ const writePost = () => {
       comment_cnt: 0,
     };
     store.createPost(post);
-    alert("게시글이 등록되었습니다.");
-    router.push({ name: "communityList" });
   }
 };
 
@@ -202,6 +209,8 @@ onMounted(() => {
 }
 
 .editor-title {
+  font-size: 32px;
+  font-weight: bold;
   height: 35px;
   margin-bottom: 20px;
 }
@@ -281,5 +290,14 @@ onMounted(() => {
   float: left;
   height: 0;
   pointer-events: none;
+}
+
+.editor-content {
+  margin-bottom: 50px;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 정렬 */
 }
 </style>
