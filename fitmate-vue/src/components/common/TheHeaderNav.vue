@@ -5,11 +5,7 @@
         <!-- logo -->
         <div class="nav-left">
           <RouterLink to="/" class="nav-left-el">
-            <<<<<<< HEAD
             <img :src="logoSrc" alt="" class="nav-logo" />
-            =======
-            <img src="../../assets/img/logo.png" alt="" class="nav-logo" />
-            >>>>>>> kanghyun0523
           </RouterLink>
         </div>
         <!-- navigation -->

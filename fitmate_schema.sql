@@ -53,7 +53,6 @@ CREATE TABLE IF NOT EXISTS community (
     reg_date DATETIME,
     like_cnt INT,
     view_cnt INT,
-    category VARCHAR(64),
     comment_cnt INT,
     FOREIGN KEY (writer) REFERENCES users(id)
 );
@@ -66,7 +65,7 @@ CREATE TABLE IF NOT EXISTS community_comment (
     content TEXT,
     reg_date DATETIME,
     parent INT,
-    FOREIGN KEY (community_id) REFERENCES community(id),
+    FOREIGN KEY (community_id) REFERENCES community(id) ON DELETE CASCADE,
     FOREIGN KEY (writer) REFERENCES users(id)
 );
 
