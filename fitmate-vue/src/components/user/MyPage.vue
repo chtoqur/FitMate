@@ -17,19 +17,6 @@
             @change="onFileChange"
             style="display: none"
           />
-          <div v-if="showModal" class="modal">
-            <div class="modal-content">
-              <span class="close" @click="closeModal">&times;</span>
-              <input type="file" @change="onFileChange" ref="fileInput" />
-              <img
-                v-if="previewImage"
-                :src="previewImage"
-                alt="Profile Preview"
-              />
-              <button @click="saveProfilePicture">저장</button>
-              <button @click="closeModal">취소</button>
-            </div>
-          </div>
         </div>
         <!-- 프로필 우측 -->
         <div>
@@ -58,28 +45,59 @@
           </div>
         </div>
       </div>
-      <!--  -->
+      
+      <!-- 모달 다이얼로그 -->
+      <v-dialog v-model="showModal" max-width="600px">
+        <v-card>
+          <v-card-title>
+            <div class="modal-top">
+              <span>프로필 사진 수정</span>
+              <v-btn icon @click="closeModal"
+              class="close-modal">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </div>
+          </v-card-title>
+          <v-card-text>
+            <v-file-input
+              label="파일 선택"
+              @change="onFileChange"
+              ref="fileInput"
+            ></v-file-input>
+            <v-img
+              v-if="previewImage"
+              :src="previewImage"
+              aspect-ratio="1"
+              class="mt-4"
+              max-height="200px"
+            ></v-img>
+          </v-card-text>
+          <v-card-actions
+          class="btn-bottom">
+            <v-btn color="rgb(63, 114, 175)" @click="saveProfilePicture">저장</v-btn>
+            <v-btn text @click="closeModal">취소</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+      <!-- 나의 활동 -->
       <div class="mylog">
         <div class="mylog-title">
           <span>나의 활동</span>
-          <!-- <span class="mdi mdi-chevron-up"></span> -->
         </div>
         <div class="mylog-video">
           <div class="video-menu">
             <span class="menu-liked">좋아요한 영상</span>
-            <v-btn rounded="xl" size="small" @click="navigateToLikeVideo"
-              >모두 보기</v-btn
-            >
+            <v-btn rounded="xl" size="small" @click="navigateToLikeVideo">
+              모두 보기
+            </v-btn>
           </div>
-          <!-- 비디오 나열 -->
           <div class="video-list">
-            <!-- 비디오 -->
             <div v-for="video in videoStore.nowList" :key="video.id">
               <RouterLink :to="`/video/${video.id}`">
                 <img :src="video.thumbnail" />
               </RouterLink>
               <div class="video-title">
-                <!-- 제목 -->
                 <div class="title-box">
                   <div class="v-title">
                     <span>{{ video.title }}</span>
@@ -89,7 +107,6 @@
                   </div>
                 </div>
                 <div class="video-tooltip">
-                  <!-- 삭제 -->
                   <v-btn
                     icon="mdi-delete"
                     size="x-small"
@@ -97,22 +114,17 @@
                   ></v-btn>
                 </div>
               </div>
-              <div>
-                <!-- 채널이름 -->
-              </div>
             </div>
           </div>
         </div>
         <div class="mylog-post">
           <div class="post-menu">
             <span class="menu-liked">작성한 글</span>
-            <v-btn rounded="xl" size="small" @click="navigateToWritePost"
-              >모두 보기</v-btn
-            >
+            <v-btn rounded="xl" size="small" @click="navigateToWritePost">
+              모두 보기
+            </v-btn>
           </div>
-          <!-- 비디오 나열 -->
           <div class="video-list">
-            <!-- 비디오 -->
             <ol>
               <li
                 v-for="(post, index) in userStore.loginUser.myRecentPost"
@@ -250,11 +262,6 @@ const profilePictureUrl = computed(() => {
     : "src/assets/img/user/default_profile.png";
 });
 
-// const openFileSelector = () => {
-//   if (!fileInput.value) return;
-//   fileInput.value.click();
-// };
-
 onBeforeMount(async () => {
   await videoStore.getAllVideoList();
   await communityStore.getPostList();
@@ -265,26 +272,21 @@ onBeforeMount(async () => {
       videoStore.nowList.push(video);
     }
   });
-  // 1. 사용자의 게시글을 모아 myPost 배열에 저장
   userStore.loginUser.myPost = [];
   communityStore.postList.forEach((post) => {
     if (userStore.loginUser.id === post.writer) {
       userStore.loginUser.myPost.push(post);
     }
-    // 2. myPost 배열의 길이가 6개 이상인지 확인
     if (userStore.loginUser.myPost.length >= 6) {
-      // 3. myPost 배열을 post.regDate 기준으로 내림차순 정렬
       userStore.loginUser.myPost.sort(
         (a, b) => new Date(b.regDate) - new Date(a.regDate)
       );
-      // 4. 최신 5개 게시글을 myRecentPost에 저장
       userStore.loginUser.myRecentPost = userStore.loginUser.myPost.slice(0, 5);
     } else {
-      // myPost 배열의 길이가 6개 미만일 경우, myRecentPost에 빈 배열 저장
       userStore.loginUser.myRecentPost = userStore.loginUser.myPost;
     }
   });
-});
+})
 </script>
 
 <style scoped>
@@ -492,5 +494,19 @@ onBeforeMount(async () => {
 .post-cmt-cnt {
   color: red;
   font-weight: bold;
+}
+
+.modal-top {
+  display: flex;
+  padding: 10px;
+}
+
+.close-modal {
+  margin-left: auto;
+}
+
+.btn-bottom {
+  padding: 10px;
+  margin-bottom: 10px;
 }
 </style>
