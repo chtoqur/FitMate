@@ -92,11 +92,12 @@
               <div
                 v-for="comment in commentStore.nowCommentList"
                 :key="comment.id"
+                class="cmt-detail"
               >
                 <CommentThread
-                  v-if="comment.parent === 0"
-                  :key="comment.id"
-                  :comment="comment"
+                v-if="comment.parent === 0"
+                :key="comment.id"
+                :comment="comment"
                 />
               </div>
             </div>
@@ -298,6 +299,7 @@ hr {
 .register-box {
   width: 100%;
   height: 20%;
+  margin-top: 20px;
 }
 
 .register-comment {
@@ -340,6 +342,7 @@ hr {
 #comment-list {
   font-size: 19px;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .comment-list-container {
@@ -378,6 +381,7 @@ hr {
   align-items: center;
   justify-content: center; /* 수평 중앙 정렬 */
   height: 100px;
+  margin-top: 40px;
 }
 
 .comment-react {

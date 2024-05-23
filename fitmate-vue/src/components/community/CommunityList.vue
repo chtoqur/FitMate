@@ -168,6 +168,10 @@ onMounted(async () => {
   margin-bottom: 20px;
 }
 
+.post-table {
+  margin-bottom: 40px;
+}
+
 .post-table th,
 .post-table td {
   vertical-align: middle;

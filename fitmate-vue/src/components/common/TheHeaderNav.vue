@@ -1,11 +1,11 @@
 <template>
   <div id="nav-container">
-    <nav :class="{ 'nav-sticky': isSticky }">
+    <nav :class="{ 'nav-sticky': isSticky, 'main-vue' : isMainVue }">
       <div class="header-inner">
         <!-- logo -->
         <div class="nav-left">
           <RouterLink to="/" class="nav-left-el">
-            <img src= '../../assets/img/logo.png' alt="" class="nav-logo">
+            <img :src="logoSrc" alt="" class="nav-logo">
           </RouterLink>
         </div>
         <!-- navigation -->
@@ -60,29 +60,36 @@
 <script setup>
 import { useUserStore } from "@/stores/user";
 import { ref, onMounted, onUnmounted, computed } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const store = useUserStore();
 const route = useRoute();
+const router = useRouter();
 
 const isSticky = ref(false);
-const isMainVue = computed(()=>{
-  return window.location.pathname == "/";
-})
+const currentPath = ref(window.location.pathname);
+
+const isMainVue = computed(() => currentPath.value === "/");
+
+const updateCurrentPath = () => {
+  currentPath.value = window.location.pathname;
+};
+
+router.afterEach(() => {
+  updateCurrentPath();
+});
 
 const handleScroll = () => {
   isSticky.value = window.scrollY > 0;
 };
 
-const logoSrc = computed(()=>{
-  // return isSticky.value ? '../../assets/img/logo-dark.png' : '../../assets/img/logo.png';
-})
+const logoSrc = computed(() => {
+  return isMainVue.value ? (isSticky.value ? 'src/assets/img/logo-dark.png' : 'src/assets/img/logo.png') : 'src/assets/img/logo-dark.png';
+});
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
   handleScroll(); // 컴포넌트가 마운트될 때 초기 스크롤 위치 설정
-  console.log(route.path);
-  console.log(window.location.pathname);
 });
 
 onUnmounted(() => {
@@ -103,7 +110,6 @@ onUnmounted(() => {
   font-size: 17px;
   font-weight: 600;
   border-bottom: 1px solid rgb(209, 209, 209);
-
   z-index: 100;
 }
 
@@ -160,7 +166,7 @@ nav {
 .nav-left span,
 .nav-ul span,
 .nav-right span {
-  color: rgb(255, 255, 255);
+  color: rgb(53, 53, 53);
   text-decoration: none;
   transition: color 0.3s ease;
   letter-spacing: 2px;
@@ -187,6 +193,14 @@ button {
   color: rgb(118, 159, 205);
 }
 
+.main-vue .nav-left span,
+.main-vue .nav-ul span,
+.main-vue .nav-right span
+{
+  color: rgb(255, 255, 255);
+}
+
+
 /* sticky */
 
 .nav-sticky {
@@ -206,7 +220,7 @@ button {
 .nav-sticky .nav-ul span,
 .nav-sticky .nav-right span
 {
-  color: rgb(100, 100, 100);
+  color: rgb(53, 53, 53);
 }
 
 .nav-sticky .nav-left span:hover,

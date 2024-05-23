@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5em;
-  margin-top: 100px;
+  margin-top: 60px;
 
   background-color: rgb(245, 245, 245);
 }

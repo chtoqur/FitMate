@@ -115,7 +115,7 @@ export const useUserStore = defineStore("user", () => {
         let id = JSON.parse(atob(token[1]))["id"];
         sessionStorage.setItem("id", id);
         alert("로그인 성공");
-        router.push({ name: "home" });
+        router.back();
       }
     } catch (err) {
       console.log(err);

@@ -167,7 +167,6 @@ const writePost = () => {
       content: htmlContent,
       likeCnt: 0,
       viewCnt: 0,
-      category: "",
       comment_cnt: 0
     }
     store.createPost(post);

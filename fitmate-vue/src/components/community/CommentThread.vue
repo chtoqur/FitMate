@@ -256,6 +256,7 @@ textarea {
 .full-comment-area {
   display: flex;
   width: 100%;
+  margin-top: 10px;
 }
 
 .full-reply-area {
@@ -286,6 +287,7 @@ textarea {
 
 .comment-section {
   width: 100%;
+  margin-top: 5px;
 }
 
 .cmt-content-area {

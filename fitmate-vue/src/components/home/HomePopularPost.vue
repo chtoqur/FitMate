@@ -9,8 +9,8 @@
         :key="post.id"
         class="popular-li"
       >
-        <a href="#" class="popular-link"
-        >
+          <RouterLink :to="`/community/${post.id}`"
+          class="popular-link">
           <div class="wrap-info">
             <span class="post-idx">{{ index + 1 }}</span>
             <div class="wrap-title">
@@ -25,7 +25,7 @@
               </span>
             </span>
           </div>
-        </a>
+        </RouterLink>
       </li>
     </ol>
   </div>

@@ -39,7 +39,7 @@
                             />
                             <!-- 비밀번호 찾기 -->
                             <v-row>
-                              <v-col cols="12" sm="8">
+                              <v-col cols="12" sm="12">
                                 <span class="caption blue--text">비밀번호를 잊어버리셨나요?</span>
                               </v-col>
                             </v-row>

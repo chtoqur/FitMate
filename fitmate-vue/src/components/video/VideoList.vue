@@ -117,7 +117,7 @@ const userStore = useUserStore();
 const curPage = ref(1);
 
 // 한 페이지당 비디오 수
-const postsPerPage = 9;
+const postsPerPage = 6;
 
 // 전체 비디오 수 계산
 const totalPages = computed(() =>
@@ -277,6 +277,7 @@ ul {
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
+  margin-bottom: 50px;
 }
 
 .router-link {
