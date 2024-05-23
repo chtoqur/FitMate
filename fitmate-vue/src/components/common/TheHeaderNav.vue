@@ -5,7 +5,7 @@
         <!-- logo -->
         <div class="nav-left">
           <RouterLink to="/" class="nav-left-el">
-            <img src= '../../assets/img/logo.png' alt="" class="nav-logo">
+            <img src="../../assets/img/logo.png" alt="" class="nav-logo" />
           </RouterLink>
         </div>
         <!-- navigation -->
@@ -66,29 +66,26 @@ const store = useUserStore();
 const route = useRoute();
 
 const isSticky = ref(false);
-const isMainVue = computed(()=>{
+const isMainVue = computed(() => {
   return window.location.pathname == "/";
-})
+});
 
 const handleScroll = () => {
   isSticky.value = window.scrollY > 0;
 };
 
-const logoSrc = computed(()=>{
+const logoSrc = computed(() => {
   // return isSticky.value ? '../../assets/img/logo-dark.png' : '../../assets/img/logo.png';
-})
+});
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener("scroll", handleScroll);
   handleScroll(); // 컴포넌트가 마운트될 때 초기 스크롤 위치 설정
-  console.log(route.path);
-  console.log(window.location.pathname);
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener("scroll", handleScroll);
 });
-
 </script>
 
 <style scoped>
@@ -204,15 +201,13 @@ button {
 }
 .nav-sticky .nav-left span,
 .nav-sticky .nav-ul span,
-.nav-sticky .nav-right span
-{
+.nav-sticky .nav-right span {
   color: rgb(100, 100, 100);
 }
 
 .nav-sticky .nav-left span:hover,
 .nav-sticky .nav-ul span:hover,
-.nav-sticky .nav-right span:hover
-{
+.nav-sticky .nav-right span:hover {
   color: rgb(118, 177, 240);
   stroke: rgb(134, 173, 213);
 }
