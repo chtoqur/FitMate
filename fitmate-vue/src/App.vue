@@ -77,7 +77,4 @@ onBeforeMount(async () => {
   margin-top: 100px;
 }
 
-.footer-section {
-  height: 100px;
-}
 </style>

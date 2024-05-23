@@ -1,9 +1,16 @@
 <template>
   <div class="footer-container">
-    <a href="#">개인정보처리방침</a>
-    <a href="#">이용약관</a>
-    <a href="#">오시는 길</a>
-    <span>ⓒ SSAFY 이강현, 최이서</span>
+    <div class="footer-wrap">
+      <div class="footer-name">
+        <img src="../../assets/img/logo-dark-crop.png" alt="">
+      </div>
+      <div class="footer-rights">
+        ⓒ SSAFY Lee Kanghyun, Choi Iseo ALL RIGHTS RESERVED.
+      </div>
+      <div class="footer-policy">
+        개인정보처리방침
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,17 +22,34 @@
 .footer-container {
   display: flex;
   width: 100%;
-  height: 100px;
-  justify-content: center;
+  height: 200px;
   align-items: center;
   gap: 0.5em;
   margin-top: 60px;
-
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(247, 247, 247);
 }
 
-a {
-  text-decoration: none;
-  color: black;
+.footer-wrap {
+  margin: 0 19%;
+}
+
+.footer-name {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.footer-name img {
+  width: 130px;
+}
+
+.footer-rights {
+  font-size: 14px;
+  color: rgb(99, 99, 99);
+  margin-bottom: 10px;
+}
+
+.footer-policy {
+  color: rgb(92, 92, 92);
+  font-weight: 600;
 }
 </style>
