@@ -92,8 +92,10 @@
 <script setup>
 import { useUserStore } from "@/stores/user";
 import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
 
 const store = useUserStore();
+const router = useRouter();
 
 const step = ref(1);
 
