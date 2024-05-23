@@ -40,6 +40,7 @@ public class CommunityCommentServiceImpl implements CommunityCommentService{
 	@Override
 	public void removeComment(int id) {
 		commentDao.deleteComment(id);
+		commentDao.deleteChildComment(id);
 	}
 
 }

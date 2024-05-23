@@ -69,6 +69,7 @@ export const useCommentStore = defineStore("comment", () => {
           params: { communityId: communityId },
         });
         getNowCommentList(communityId);
+        console.log(nowCommentList.value);
       } catch (err) {
         console.log(err);
       }

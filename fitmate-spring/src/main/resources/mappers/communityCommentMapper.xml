@@ -30,4 +30,9 @@
 		WHERE id = #{id}
 	</delete>
 	
+	<delete id="deleteChildComment" parameterType="int">
+		DELETE FROM community_comment
+		WHERE parent = #{id}
+	</delete>
+	
 </mapper>

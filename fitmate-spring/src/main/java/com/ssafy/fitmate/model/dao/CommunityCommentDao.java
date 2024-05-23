@@ -19,4 +19,6 @@ public interface CommunityCommentDao {
 	
 	public int deleteComment(int id);
 	
+	public int deleteChildComment(int id);
+	
 }
