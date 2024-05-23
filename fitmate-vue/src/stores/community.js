@@ -13,7 +13,6 @@ export const useCommunityStore = defineStore("community", () => {
   const nowPost = ref({});
 
   const createPost = async (post) => {
-    console.log(post);
     try {
       const response = await axios.post(REST_COMMUNITY_API, post);
       getPostList();
@@ -62,7 +61,6 @@ export const useCommunityStore = defineStore("community", () => {
   };
 
   const searchPostListByMe = async (searchCondition, userId) => {
-    console.log(userId);
     searchCondition = JSON.parse(JSON.stringify(searchCondition));
     if (searchCondition.key === "전체") {
       searchCondition.key = "none";

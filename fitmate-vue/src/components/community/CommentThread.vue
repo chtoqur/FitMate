@@ -219,7 +219,6 @@ defineProps({
 });
 
 const createReplyReview = () => {
-  console.log(replyComment.value);
   store.createComment(replyComment.value);
   replyComment.value.content = "";
   isReplyAreaVisible.value = !isReplyAreaVisible.value;

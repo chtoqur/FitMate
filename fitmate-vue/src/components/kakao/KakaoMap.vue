@@ -182,11 +182,6 @@ onMounted(() => {
   }
 });
 
-// onMounted(() => {
-//   searchNearbyGyms();
-//   console.log(gyms.value);
-// });
-
 const myMarkerPosition = ref([[37.501294, 127.039604]]);
 
 const markers = ref([]);

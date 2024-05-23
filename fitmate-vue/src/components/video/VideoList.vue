@@ -171,14 +171,6 @@ const selectedParts = ref([]);
 const isChecked = ref(false);
 const videoList = ref([]);
 
-// const isLiked = (videoId) => {
-//   console.log(likeBtn);
-//   if (userStore.loginUser.id !== '') {
-//     likeBtn.classList.remove("text-medium-emphasis");
-//   }
-//   return userStore.loginUser.likedVideos.includes(videoId);
-// }
-
 const handleCheckboxClick = (event) => {
   if (userStore.loginUser.id === "") {
     event.preventDefault();

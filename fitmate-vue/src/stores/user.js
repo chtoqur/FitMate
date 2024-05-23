@@ -137,7 +137,6 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const signUp = async (user) => {
-    console.log(user);
     try {
       const response = await axios.post(`${REST_USER_API}/signup`, user);
       alert("회원가입 성공!");

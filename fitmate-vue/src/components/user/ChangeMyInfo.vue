@@ -142,7 +142,6 @@ onMounted(async () => {
 const postOpen = () => {
   new daum.Postcode({
     oncomplete: function (data) {
-      // console.log(data);
       user.value.postCode = data.zonecode;
       address.value = data.address;
     },

@@ -114,15 +114,6 @@ const copyURL = (routineId) => {
   navigator.clipboard.writeText(`http://localhost:5173/routine/${routineId}`);
   alert("클립보드에 복사 완료!");
 };
-
-onMounted(() => {
-  // if (userStore.loginUser.id !== '' && userStore.loginUser.savedRoutine.length !== 0) {
-  //   if (userStore.loginUser.savedRoutine.includes(props.routine.id)) {
-  //     console.log(userStore.loginUser.savedRoutine);
-  //     document.querySelector('.svg').classList.add('saved-routine');
-  //   }
-  // }
-});
 </script>
 
 <style scoped>
