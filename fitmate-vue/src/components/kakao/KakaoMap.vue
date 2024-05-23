@@ -315,7 +315,4 @@ h3:hover {
   -webkit-box-orient: vertical;
   white-space: initial;
 }
-
-.near-title {
-}
 </style>
