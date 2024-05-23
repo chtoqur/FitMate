@@ -219,6 +219,7 @@ defineProps({
 const createReplyReview = () => {
   store.createReview(replyReview.value);
   replyReview.value.content = "";
+  isReplyAreaVisible.value = !isReplyAreaVisible.value;
 };
 
 const updateReview = () => {

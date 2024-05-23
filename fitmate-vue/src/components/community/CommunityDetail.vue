@@ -95,9 +95,9 @@
                 class="cmt-detail"
               >
                 <CommentThread
-                v-if="comment.parent === 0"
-                :key="comment.id"
-                :comment="comment"
+                  v-if="comment.parent === 0"
+                  :key="comment.id"
+                  :comment="comment"
                 />
               </div>
             </div>
@@ -123,10 +123,6 @@
       </div>
     </div>
     <div class="post-bottom-btn">
-      <v-btn depressed text @click="router.push('/writePost')">
-        <span class="mdi mdi-lead-pencil"></span>
-        &nbsp;글쓰기
-      </v-btn>
       <v-btn
         :class="{ hidden: !isLoginUser }"
         depressed

@@ -106,7 +106,7 @@
         <div class="mylog-post">
           <div class="post-menu">
             <span class="menu-liked">작성한 글</span>
-            <v-btn rounded="xl" size="small" @click="navigateToLikeVideo"
+            <v-btn rounded="xl" size="small" @click="navigateToWritePost"
               >모두 보기</v-btn
             >
           </div>
@@ -192,6 +192,12 @@ const navigateToChangePwd = () => {
 const navigateToLikeVideo = () => {
   setTimeout(() => {
     router.push({ path: "video", query: { liked: true } });
+  }, 260);
+};
+
+const navigateToWritePost = () => {
+  setTimeout(() => {
+    router.push({ path: "community", query: { write: true } });
   }, 260);
 };
 

@@ -36,6 +36,7 @@
             v-if="userStore.loginUser.id !== ''"
             @click="router.push('/writePost')"
           >
+            <span class="mdi mdi-lead-pencil"></span>
             글작성
           </v-btn>
         </div>
@@ -84,10 +85,11 @@
 import { useCommunityStore } from "@/stores/community";
 import { useUserStore } from "@/stores/user";
 import { onMounted, ref, computed } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const store = useCommunityStore();
 const userStore = useUserStore();
+const route = useRoute();
 const router = useRouter();
 const searchCondition = ref({
   key: "제목",
@@ -126,6 +128,12 @@ const changePage = (pageNumber) => {
 
 onMounted(async () => {
   await store.getPostList();
+
+  if (route.query.write === "true") {
+    searchCondition.value.key = "작성자";
+    searchCondition.value.word = sessionStorage.getItem("id");
+    search();
+  }
 });
 </script>
 
