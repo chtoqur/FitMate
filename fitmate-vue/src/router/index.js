@@ -3,7 +3,6 @@ import HomeView from "../views/HomeView.vue";
 import VideoView from "../views/VideoView.vue";
 import VideoList from "../components/video/VideoList.vue";
 import VideoDetail from "../components/video/VideoDetail.vue";
-import VideoLiked from "../components/video/VideoLiked.vue";
 import LoginView from "../views/LoginView.vue";
 import SignupView from "../views/SignupView.vue";
 import RoutineView from "../views/RoutineView.vue";
@@ -22,7 +21,6 @@ import LogInAndSignUpForm from "@/components/user/LogInAndSignUpForm.vue";
 import CommunityEditPost from "@/components/community/CommunityEditPost.vue";
 import MyPostList from "@/components/user/MyPostList.vue";
 import MyPage from "@/components/user/MyPage.vue";
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,11 +44,6 @@ const router = createRouter({
           path: ":id",
           name: "videoDetail",
           component: VideoDetail,
-        },
-        {
-          path: "liked",
-          name: "videoLiked",
-          component: VideoLiked,
         },
       ],
     },

@@ -28,7 +28,7 @@
                   @click="toggleLike"
                   class="button-like"
                 >
-                  <span class="mdi mdi-heart" style="margin-left: 0" @click="">
+                  <span class="mdi mdi-heart" style="margin-left: 0">
                     &nbsp;Like
                   </span>
                 </button>
@@ -66,7 +66,7 @@
                 </span>
               </div>
               <hr />
-              <div v-for="review in store.videoReviewList">
+              <div v-for="review in store.videoReviewList" :key="review.id">
                 <VideoReview
                   v-if="review.parent === 0"
                   :key="review.id"
@@ -83,7 +83,7 @@
 
 <script setup>
 import { useRoute, useRouter } from "vue-router";
-import { onMounted, ref } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 import { useVideoStore } from "@/stores/video";
 import { useUserStore } from "@/stores/user";
 import VideoReview from "./VideoReview.vue";
@@ -100,12 +100,18 @@ const review = ref({
     : userStore.loginUser.id,
   content: "",
 });
-const isLiked = ref(false);
 
-onMounted(() => {
+const isLiked = computed(() => {
+  return userStore.loginUser.likedVideos.includes(parseInt(route.params.id));
+});
+
+onBeforeMount(async () => {
   store.getVideo(route.params.id);
   store.getReviewList(route.params.id);
-  console.log(store.videoReviewList);
+  const id = sessionStorage.getItem("id");
+  if (id !== null) {
+    await userStore.getUser(id);
+  }
 });
 
 const createReview = function () {
@@ -127,9 +133,12 @@ const toggleLike = (event) => {
     }
     return;
   }
-  if (confirm("찜 목록에 추가하시겠습니까?")) {
-    userStore.likeVideo(store.video.id);
-    isLiked.value = !isLiked.value;
+  if (isLiked.value) {
+    userStore.unlikeVideo(route.params.id);
+  } else {
+    if (confirm("찜 목록에 추가하시겠습니까?")) {
+      userStore.likeVideo(route.params.id);
+    }
   }
 };
 </script>

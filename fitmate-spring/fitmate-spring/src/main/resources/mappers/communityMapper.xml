@@ -7,7 +7,7 @@
 	
 	<!-- 전체 게시글 조회 -->
 	<select id="search" resultType="community" parameterType="SearchCondition">
-		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, category, comment_cnt AS commentCnt
+		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, comment_cnt AS commentCnt
 		FROM community
 		<if test="key != 'none'">
 			WHERE ${key} LIKE concat('%', #{word}, '%')
@@ -16,7 +16,7 @@
 	
 	<!-- 내 게시글 조회 -->
 	<select id="mySearch" resultType="community" parameterType="Map">
-		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, category, comment_cnt AS commentCnt
+		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, comment_cnt AS commentCnt
 		FROM community
 		<if test="key != 'none'">
 			WHERE writer = #{userId} AND ${key} LIKE concat('%', #{word}, '%')
@@ -25,14 +25,14 @@
 	
 	<!-- 상세 게시글 조회 -->
 	<select id="selectOne" resultType="community" parameterType="int">
-		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, category, comment_cnt AS commentCnt
+		SELECT id, title, content, writer, reg_date AS regDate, like_cnt AS likeCnt, view_cnt AS viewCnt, comment_cnt AS commentCnt
 		FROM community
 		WHERE id = #{id};
 	</select>
 	
 	<!-- 게시글 등록 -->
 	<insert id="insertPost" parameterType="Community">
-		INSERT INTO community (title, writer, content, reg_date, like_cnt, view_cnt, category, comment_cnt)
+		INSERT INTO community (title, writer, content, reg_date, like_cnt, view_cnt, comment_cnt)
 		VALUES (#{title}, #{writer}, #{content}, now(), 0, 0, #{category}, 0);
 	</insert>
 

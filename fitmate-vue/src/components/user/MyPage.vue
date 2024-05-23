@@ -191,7 +191,7 @@ const navigateToChangePwd = () => {
 
 const navigateToLikeVideo = () => {
   setTimeout(() => {
-    router.push({ path: "video/liked" });
+    router.push({ path: "video", query: { liked: true } });
   }, 260);
 };
 

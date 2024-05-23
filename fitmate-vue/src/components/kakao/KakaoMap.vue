@@ -36,10 +36,6 @@
     <button @click="initMap">내위치</button>
     <span> | </span>
     <button @click="searchNearbyGyms">내위치 주변 헬스장 찾기</button>
-    <span> | </span>
-    <button @click="displayMarker(myMarkerPosition)">즐겨찾기 마커 표시</button>
-    <span> | </span>
-    <button @click="displayMarker([])">즐겨찾기 마커 해제</button>
   </div>
 </template>
 
@@ -56,9 +52,9 @@ const initMap = function () {
   let myCenter = new kakao.maps.LatLng(37.501294, 127.039604);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
-      myCenter = new kakao.maps.LatLng(lat, lon);
+      // const lat = position.coords.latitude;
+      // const lon = position.coords.longitude;
+      // myCenter = new kakao.maps.LatLng(lat, lon);
       new kakao.maps.Marker({
         map,
         position: myCenter,

@@ -16,7 +16,7 @@ export const useUserStore = defineStore("user", () => {
     savedRoutine: [],
     likedCommunity: [],
     myPost: [],
-    myRecentPost: []
+    myRecentPost: [],
   });
 
   const checkId = async (id) => {
@@ -126,7 +126,11 @@ export const useUserStore = defineStore("user", () => {
   const logout = function () {
     loginUser.value = {
       id: "",
-      name: "",
+      likedVideos: [],
+      savedRoutine: [],
+      likedCommunity: [],
+      myPost: [],
+      myRecentPost: [],
     };
     sessionStorage.clear();
     router.push({ name: "home" });
@@ -145,6 +149,7 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const likeVideo = async function (videoId) {
+    videoId = parseInt(videoId);
     loginUser.value.likedVideos.push(videoId);
     try {
       const likedVideosJson = JSON.stringify(loginUser.value.likedVideos);
@@ -160,6 +165,7 @@ export const useUserStore = defineStore("user", () => {
   };
 
   const unlikeVideo = async function (videoId) {
+    videoId = parseInt(videoId);
     const idx = loginUser.value.likedVideos.findIndex((id) => id === videoId);
     if (idx !== -1) {
       loginUser.value.likedVideos.splice(idx, 1);

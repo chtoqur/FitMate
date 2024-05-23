@@ -39,9 +39,7 @@ export const useCommunityStore = defineStore("community", () => {
 
   const searchPostList = async (searchCondition) => {
     searchCondition = JSON.parse(JSON.stringify(searchCondition));
-    if (searchCondition.key === "전체") {
-      searchCondition.key = "none";
-    } else if (searchCondition.key === "제목") {
+    if (searchCondition.key === "제목") {
       searchCondition.key = "title";
     } else if (searchCondition.key === "작성자") {
       searchCondition.key = "writer";
@@ -105,18 +103,26 @@ export const useCommunityStore = defineStore("community", () => {
     }
   };
 
-  const updatePost = function (post) {
-    postList.value.map((el) => {
-      if (el.id === post.id) {
-        el = post;
-      }
-    });
+  const updatePost = async (id, post) => {
+    try {
+      const response = await axios.put(`${REST_COMMUNITY_API}/${id}`, post);
+      getPostById(id);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const deletePost = function (id) {
-    const idx = postList.value.findIndex((post) => post.id === id);
-    if (idx !== -1) {
-      postList.value.splice(idx, 1);
+  const deletePost = async (id) => {
+    if (confirm("정말 삭제하시겠습니까?")) {
+      try {
+        const response = await axios.delete(`${REST_COMMUNITY_API}/${id}`);
+        await getPostList();
+        router.push({ name: "communityList" });
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      return;
     }
   };
 

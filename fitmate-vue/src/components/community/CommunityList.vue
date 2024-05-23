@@ -5,7 +5,7 @@
         <div class="tool-left">
           <div class="search-condition">
             <v-combobox
-              :items="['전체', '제목', '작성자', '글내용']"
+              :items="['제목', '작성자', '글내용']"
               v-model="searchCondition.key"
               variant="solo"
               density="compact"
@@ -90,7 +90,7 @@ const store = useCommunityStore();
 const userStore = useUserStore();
 const router = useRouter();
 const searchCondition = ref({
-  key: "전체",
+  key: "제목",
   word: "",
 });
 
