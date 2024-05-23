@@ -179,6 +179,8 @@ const writePost = () => {
       comment_cnt: 0,
     };
     store.createPost(post);
+    alert("게시글이 등록되었습니다.");
+    router.push("/community");
   }
 };
 

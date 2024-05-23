@@ -92,9 +92,6 @@ export const useCommunityStore = defineStore("community", () => {
       const response = await axios({
         url: `${REST_COMMUNITY_API}/${id}/${viewCnt}`,
         method: "GET",
-        headers: {
-          "access-token": sessionStorage.getItem("access-token"),
-        },
       });
       nowPost.value = response.data;
     } catch (err) {
@@ -105,7 +102,7 @@ export const useCommunityStore = defineStore("community", () => {
   const updatePost = async (id, post) => {
     try {
       const response = await axios.put(`${REST_COMMUNITY_API}/${id}`, post);
-      getPostById(id);
+      getPostById(id, 0);
     } catch (err) {
       console.log(err);
     }

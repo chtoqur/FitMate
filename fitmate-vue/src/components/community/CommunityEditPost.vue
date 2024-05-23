@@ -147,7 +147,7 @@ const updatePost = () => {
     };
     store.updatePost(route.params.id, post);
     alert("게시글이 수정되었습니다.");
-    router.push({ name: "communityList" });
+    router.push(`/community/${route.params.id}`);
   }
 };
 
