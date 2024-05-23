@@ -188,6 +188,7 @@ const handleCheckboxClick = (event) => {
   } else {
     // 로그인 상태
     isChecked.value = event.target.checked;
+    changePage(1);
     selectPart();
   }
 };

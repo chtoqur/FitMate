@@ -260,7 +260,6 @@ onBeforeMount(async () => {
     }
   });
   // 1. 사용자의 게시글을 모아 myPost 배열에 저장
-  console.log(userStore.loginUser);
   userStore.loginUser.myPost = [];
   communityStore.postList.forEach((post) => {
     if (userStore.loginUser.id === post.writer) {

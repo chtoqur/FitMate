@@ -53,7 +53,6 @@ onBeforeMount(async () => {
       }
     });
   }
-  console.log(routineStore.routineList);
 });
 </script>
 

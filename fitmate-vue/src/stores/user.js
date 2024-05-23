@@ -57,7 +57,7 @@ export const useUserStore = defineStore("user", () => {
     try {
       const response = await axios.put(`${REST_USER_API}/changepw`, user);
       alert("비밀번호 변경 성공!");
-      router.push({ name: "mypage" });
+      router.push({ name: "myInfo" });
     } catch (error) {
       console.log(error);
       return true;
@@ -73,7 +73,7 @@ export const useUserStore = defineStore("user", () => {
       const response = await axios.put(`${REST_USER_API}`, user);
       await getUser(user.id);
       alert("내 정보 변경 성공!");
-      router.push({ name: "mypage" });
+      router.push({ name: "myInfo" });
     } catch (error) {
       console.log(error);
     }

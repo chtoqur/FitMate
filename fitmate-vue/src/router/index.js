@@ -3,8 +3,6 @@ import HomeView from "../views/HomeView.vue";
 import VideoView from "../views/VideoView.vue";
 import VideoList from "../components/video/VideoList.vue";
 import VideoDetail from "../components/video/VideoDetail.vue";
-import LoginView from "../views/LoginView.vue";
-import SignupView from "../views/SignupView.vue";
 import RoutineView from "../views/RoutineView.vue";
 import RoutineList from "../components/routine/RoutineList.vue";
 import RoutineDetail from "../components/routine/RoutineDetail.vue";
@@ -46,16 +44,6 @@ const router = createRouter({
           component: VideoDetail,
         },
       ],
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: LoginView,
-    },
-    {
-      path: "/signup",
-      name: "signup",
-      component: SignupView,
     },
     {
       path: "/loginAndSignup",
@@ -113,7 +101,7 @@ const router = createRouter({
       children: [
         {
           path: "",
-          name: "mypage",
+          name: "myInfo",
           component: MyPage,
         },
         {
