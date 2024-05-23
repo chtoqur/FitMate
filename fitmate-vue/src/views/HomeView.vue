@@ -102,7 +102,7 @@ onMounted(() => {
 
 .main-msg-sub span, .main-msg span {
   display: flex;
-  font-size: 8rem;
+  font-size: 5rem;
   font-weight: bold;
   color: #f0fdff;
   letter-spacing: 0.3rem;
@@ -110,7 +110,7 @@ onMounted(() => {
 }
 
 .msg-c {
-  line-height: 150px;
+  line-height: 100px;
 }
 
 @keyframes text-fadein {
