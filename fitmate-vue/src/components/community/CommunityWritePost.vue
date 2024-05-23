@@ -140,7 +140,7 @@
         <v-btn
           variant="outlined"
           class="ma-2"
-          @click="router.push('/communityList')"
+          @click="router.push('/community')"
         >
           목록으로
         </v-btn>
