@@ -13,30 +13,34 @@
         <span v-if="showMsgC" class="msg-c">당신의 fitness mate, <br>FitMate</span>
       </div>
     </section>
-    <section>
+    <section id="section-mid">
       <div class="animated-title">
         <div class="track">
-          <div class="content">&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;moho design template glad</div>
+          <div class="content">&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER&nbsp;MAKE YOUR WORKOUT LIFE BETTER</div>
         </div>
       </div>
-      <div>
-        <span>인기글과 동영상에서 트렌드를 확인하세요</span>
+      <div class="home-subtitle">
+        <p>인기글과 동영상에서</p>
+        <p>트렌드를 확인해보세요.</p>
       </div>
-      <div class="section-2">
+      <div class="section-mid">
         <div class="rank-section">
           <HomePopularPost />
         </div>
-        <div>
+        <div class="mid-video">
           <HomeRankedVideo />
         </div>
       </div>
     </section>
-    <section>
-      <div></div>
+    <section id="section-gym">
+      <div class="gym-subtitle">
+        <p>피트메이트와 함께</p>
+        <p>주변 헬스장에서 시작하세요.</p>
+      </div>
+      <div>
+        <KakaoMap />
+      </div>
     </section>
-    <div>
-      <KakaoMap />
-    </div>
   </div>
 </template>
 
@@ -54,12 +58,6 @@ const marqueeContainer = ref(null);
 
 const animate = () => {
   offset.value -= speed;
-  const marqueeWidth = marqueeContainer.value.offsetWidth;
-  const contentWidth = marqueeContainer.value.querySelector('.marquee-inner').offsetWidth / repeatCount;
-  
-  if (offset.value <= -contentWidth) {
-    offset.value = 0;
-  }
   requestAnimationFrame(animate);
 };
 
@@ -111,11 +109,19 @@ onUnmounted(() => {
   }
 }
 
-.section-2 {
+.section-mid {
   display: flex;
   justify-content: space-between;
   margin: 0 19%;
   height: 400px;
+}
+
+.rank-section {
+  width: 47%;
+}
+
+.mid-video {
+  width: 44%;
 }
 
 .main-msg-sub {
@@ -166,13 +172,64 @@ onUnmounted(() => {
     opacity: 0;
   }
 }
-.animated-title {font-size:60px; font-family:'Raleway',Sans-serif; font-weight:300; position: relative; width: 100%;max-width:100%; height: auto; padding:100px 0; overflow-x: hidden; overflow-y: hidden; }
-.animated-title .track {position: absolute; white-space: nowrap;will-change: transform;animation: marquee 60s linear infinite; }
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+
+.section-mid {
+  margin-bottom: 200px;
 }
-@media (hover: hover) and (min-width: 700px){
-.animated-title .content {-webkit-transform: translateY(calc(100% - 8rem)); transform: translateY(calc(100% - 8rem));}
+
+.animated-title {
+  position: relative;
+  width: 100%;
+  max-width:100%;
+  height: auto;
+  font-size:60px;
+  font-weight:300;
+  padding:100px 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  color: rgb(196, 209, 235);
+}
+
+.animated-title .track {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 60s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (hover: hover) and (min-width: 700px) {
+  .animated-title .content {
+    -webkit-transform: translateY(calc(100% - 8rem));
+    transform: translateY(calc(100% - 8rem));
+  }
+}
+
+#section-gym {
+  margin-bottom: 100px;
+}
+
+.home-subtitle {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 55px;
+  margin-bottom: 50px;
+}
+
+.gym-subtitle {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 55px;
+  margin-bottom: 70px;
 }
 </style>

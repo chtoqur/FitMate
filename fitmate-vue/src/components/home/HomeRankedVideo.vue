@@ -7,12 +7,12 @@
       <v-carousel
         v-if="homeStore.rankedVideos && homeStore.rankedVideos.length"
         hide-delimiters
-        height="300px"
+        height="290px"
       >
         <v-carousel-item v-for="(video, i) in homeStore.rankedVideos" :key="i">
           <div class="d-flex fill-height justify-center align-center">
             <iframe
-              width="500px"
+              width="520px"
               height="300px"
               :src="`https://www.youtube.com/embed/${video.youtubeVideoId}`"
               title="YouTube video player"
@@ -43,6 +43,7 @@ onBeforeMount(async () => {
 .ranked-container {
   margin-top: 50px;
 }
+
 .ranked-title {
   display: flex;
   height: 30px;
@@ -68,4 +69,5 @@ onBeforeMount(async () => {
 .v-carousel {
   height: 300px;
 }
+
 </style>

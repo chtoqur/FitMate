@@ -164,6 +164,12 @@ nav {
 nav {
   display: flex;
   align-items: center;
+  
+  /* 필터 코드 */
+  -webkit-backdrop-filter: saturate(180%) blur(15px);
+  -moz-backdrop-filter: saturate(180%) blur(15px);
+  -o-backdrop-filter: saturate(180%) blur(15px);
+  backdrop-filter: saturate(180%) blur(15px);
 }
 
 .nav-left span,

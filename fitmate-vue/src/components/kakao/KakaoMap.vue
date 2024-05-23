@@ -2,45 +2,45 @@
   <div>
     <div class="container">
       <div id="map"></div>
-      <div v-if="gyms.length !== 0" class="near-title">
-        <h3>가까운 헬스장</h3>
-        <ul>
-          <li
-            v-for="(gym, index) in gyms"
-            :key="gym.id"
-            @click="goToGymDetail(gym.id)"
-            class="near-li"
-          >
-            <div class="gym-link">
-              <div class="wrap-info">
-                <span class="gym-idx">{{ index + 1 }}</span>
-                <div class="wrap-title">
-                  <span class="gym-title"
-                    >{{ gym.place_name }} - {{ gym.address_name }}</span
-                  >
+      <div id="map-tool">
+        <div id="map-toolbtn">
+          <v-btn
+          class="btn-nearhome"
+          v-if="store.loginUser.id !== ''"
+          @click="searchGymsByPostCode"
+          rounded="xl" size="default">집 주변 헬스장 검색</v-btn>
+          <v-btn
+          @click="searchNearbyGyms"
+          rounded="xl" size="default">내위치 주변 헬스장 검색</v-btn>
+        </div>
+        <div v-if="gyms.length !== 0" class="near-title">
+          <ul>
+            <li
+              v-for="(gym, index) in gyms"
+              :key="gym.id"
+              @click="goToGymDetail(gym.id)"
+              class="near-li"
+            >
+              <div class="gym-link">
+                <div class="wrap-info">
+                  <span class="gym-idx">{{ index + 1 }}</span>
+                  <div class="wrap-title">
+                    <span class="gym-title"
+                      >{{ gym.place_name }} - {{ gym.address_name }}</span
+                    >
+                  </div>
                 </div>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <button v-if="store.loginUser.id !== ''" @click="showPostCodeLocation">
-      내 집 위치
-    </button>
-    <span v-if="store.loginUser.id !== ''"> | </span>
-    <button v-if="store.loginUser.id !== ''" @click="searchGymsByPostCode">
-      내 집 주변 헬스장 찾기
-    </button>
-    <span v-if="store.loginUser.id !== ''"> | </span>
-    <button @click="initMap">내위치</button>
-    <span> | </span>
-    <button @click="searchNearbyGyms">내위치 주변 헬스장 찾기</button>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref, toRaw } from "vue";
+import { onMounted, ref, toRaw, onActivated } from "vue";
 import { useUserStore } from "@/stores/user";
 
 const store = useUserStore();
@@ -83,8 +83,8 @@ const initMap = function () {
 const searchNearbyGyms = function () {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
+      const lat = 37.501294;
+      const lon = 127.039604;
       const coords = new kakao.maps.LatLng(lat, lon);
 
       const places = new kakao.maps.services.Places();
@@ -206,6 +206,7 @@ onMounted(() => {
   }
 });
 
+
 const myMarkerPosition = ref([[37.501294, 127.039604]]);
 
 const markers = ref([]);
@@ -241,15 +242,29 @@ const displayMarker = function (markerPositions) {
 <style scoped>
 .container {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-between;
   text-align: center;
+  margin: 0 19%;
   margin-top: 50px;
 }
 
 #map {
   width: 500px;
   height: 400px;
+}
+
+#map-tool {
+  width: 44%;
+}
+
+#map-toolbtn {
+  display: flex;
+  width: 100%;
+  height: 60px;
+}
+
+.btn-nearhome {
+  margin-right: 10px;
 }
 
 h3 {
@@ -270,6 +285,14 @@ h3:hover {
   align-items: center;
   color: black;
   text-decoration: none;
+}
+
+.near-h3 {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 20px;
 }
 
 .near-li {
@@ -310,5 +333,8 @@ h3:hover {
   height: 1.1em;
   -webkit-box-orient: vertical;
   white-space: initial;
+}
+
+.near-title {
 }
 </style>
