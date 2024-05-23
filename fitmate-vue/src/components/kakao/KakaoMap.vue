@@ -5,13 +5,16 @@
       <div id="map-tool">
         <div id="map-toolbtn">
           <v-btn
-          class="btn-nearhome"
-          v-if="store.loginUser.id !== ''"
-          @click="searchGymsByPostCode"
-          rounded="xl" size="default">집 주변 헬스장 검색</v-btn>
-          <v-btn
-          @click="searchNearbyGyms"
-          rounded="xl" size="default">내위치 주변 헬스장 검색</v-btn>
+            class="btn-nearhome"
+            v-if="store.loginUser.id !== ''"
+            @click="searchGymsByPostCode"
+            rounded="xl"
+            size="default"
+            >집 주변 헬스장 검색</v-btn
+          >
+          <v-btn @click="searchNearbyGyms" rounded="xl" size="default"
+            >내위치 주변 헬스장 검색</v-btn
+          >
         </div>
         <div v-if="gyms.length !== 0" class="near-title">
           <ul>
@@ -164,24 +167,19 @@ const goToGymDetail = function (gymId) {
   window.open(url, "_blank");
 };
 
-onMounted(() => {
-  if (window.kakao && window.kakao.maps) {
-    searchNearbyGyms();
-  } else {
-    const script = document.createElement("script");
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
-      import.meta.env.VITE_KAKAO_API_KEY
-    }&libraries=services`;
-    script.addEventListener("load", () => {
-      kakao.maps.load(() => {
-        initMap();
-        searchNearbyGyms();
-      });
+onBeforeMount(() => {
+  const script = document.createElement("script");
+  script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${
+    import.meta.env.VITE_KAKAO_API_KEY
+  }&libraries=services`;
+  script.addEventListener("load", () => {
+    kakao.maps.load(() => {
+      initMap();
+      searchNearbyGyms();
     });
-    document.head.appendChild(script);
-  }
+  });
+  document.head.appendChild(script);
 });
-
 
 const myMarkerPosition = ref([[37.501294, 127.039604]]);
 
