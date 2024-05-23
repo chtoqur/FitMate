@@ -1,11 +1,15 @@
 <template>
   <div id="nav-container">
-    <nav :class="{ 'nav-sticky': isSticky, 'main-vue' : isMainVue }">
+    <nav :class="{ 'nav-sticky': isSticky, 'main-vue': isMainVue }">
       <div class="header-inner">
         <!-- logo -->
         <div class="nav-left">
           <RouterLink to="/" class="nav-left-el">
-            <img :src="logoSrc" alt="" class="nav-logo">
+            <<<<<<< HEAD
+            <img :src="logoSrc" alt="" class="nav-logo" />
+            =======
+            <img src="../../assets/img/logo.png" alt="" class="nav-logo" />
+            >>>>>>> kanghyun0523
           </RouterLink>
         </div>
         <!-- navigation -->
@@ -84,18 +88,21 @@ const handleScroll = () => {
 };
 
 const logoSrc = computed(() => {
-  return isMainVue.value ? (isSticky.value ? 'src/assets/img/logo-dark.png' : 'src/assets/img/logo.png') : 'src/assets/img/logo-dark.png';
+  return isMainVue.value
+    ? isSticky.value
+      ? "src/assets/img/logo-dark.png"
+      : "src/assets/img/logo.png"
+    : "src/assets/img/logo-dark.png";
 });
 
 onMounted(() => {
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener("scroll", handleScroll);
   handleScroll(); // 컴포넌트가 마운트될 때 초기 스크롤 위치 설정
 });
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener("scroll", handleScroll);
 });
-
 </script>
 
 <style scoped>
@@ -195,11 +202,9 @@ button {
 
 .main-vue .nav-left span,
 .main-vue .nav-ul span,
-.main-vue .nav-right span
-{
+.main-vue .nav-right span {
   color: rgb(255, 255, 255);
 }
-
 
 /* sticky */
 
@@ -218,15 +223,13 @@ button {
 }
 .nav-sticky .nav-left span,
 .nav-sticky .nav-ul span,
-.nav-sticky .nav-right span
-{
+.nav-sticky .nav-right span {
   color: rgb(53, 53, 53);
 }
 
 .nav-sticky .nav-left span:hover,
 .nav-sticky .nav-ul span:hover,
-.nav-sticky .nav-right span:hover
-{
+.nav-sticky .nav-right span:hover {
   color: rgb(118, 177, 240);
   stroke: rgb(134, 173, 213);
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <TheHeaderNav class="header-nav" />
-    <RouterView class="router-view"/>
+    <RouterView class="router-view" />
     <TheFooter class="footer-section" />
   </div>
 </template>
@@ -14,16 +14,23 @@ import { useUserStore } from "./stores/user";
 import { useVideoStore } from "./stores/video";
 import { useCommunityStore } from "./stores/community";
 import { useCommentStore } from "./stores/comment";
+import { useRoutineStore } from "./stores/routine";
+import { useExerciseStore } from "./stores/exercise";
 
 const userStore = useUserStore();
 const videoStore = useVideoStore();
 const communityStore = useCommunityStore();
 const commentStore = useCommentStore();
+const routineStore = useRoutineStore();
+const exerciseStore = useExerciseStore();
 
 onBeforeMount(async () => {
   await videoStore.getAllVideoList();
   await communityStore.getPostList();
   await commentStore.getAllCommentList();
+  await routineStore.getAllRoutineList();
+  await exerciseStore.getAllExerciseList();
+
   const id = sessionStorage.getItem("id");
   if (id !== null) {
     await userStore.getUser(id);
@@ -46,6 +53,7 @@ onBeforeMount(async () => {
       }
     });
   }
+  console.log(routineStore.routineList);
 });
 </script>
 
