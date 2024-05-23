@@ -103,15 +103,13 @@
         <editor-content :editor="editor" />
       </div>
       <div class="btn-box">
-        <v-btn variant="outlined"
-          class="ma-2"
-          @click="router.push('/writePost')"
-        >
+        <v-btn variant="outlined" class="ma-2" @click="updatePost">
           수정하기
         </v-btn>
-        <v-btn  variant="outlined"
+        <v-btn
+          variant="outlined"
           class="ma-2"
-          @click="router.push('/writePost')"
+          @click="router.push('/community')"
         >
           목록으로
         </v-btn>
@@ -127,12 +125,31 @@ import { Editor, EditorContent } from "@tiptap/vue-3";
 import { ref, onMounted, onBeforeMount } from "vue";
 import { useCommunityStore } from "@/stores/community";
 import { useRoute, useRouter } from "vue-router";
+import { useUserStore } from "@/stores/user";
 
 const store = useCommunityStore();
+const userStore = useUserStore();
 const editor = ref(null);
 const postTitle = ref("");
 const route = useRoute();
 const router = useRouter();
+
+const updatePost = () => {
+  if (editor.value) {
+    const htmlContent = editor.value.getHTML();
+    const post = {
+      title: postTitle.value,
+      writer: userStore.loginUser.id,
+      content: htmlContent,
+      likeCnt: 0,
+      viewCnt: 0,
+      comment_cnt: 0,
+    };
+    store.updatePost(route.params.id, post);
+    alert("게시글이 수정되었습니다.");
+    router.push({ name: "communityList" });
+  }
+};
 
 onMounted(() => {
   postTitle.value = store.nowPost.title;
