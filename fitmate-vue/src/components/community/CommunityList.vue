@@ -36,7 +36,7 @@
             v-if="userStore.loginUser.id !== ''"
             @click="router.push('/writePost')"
           >
-            <span class="mdi mdi-lead-pencil"></span>
+            <span class="mdi mdi-lead-pencil">&nbsp;</span>
             글작성
           </v-btn>
         </div>
