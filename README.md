@@ -1,93 +1,260 @@
-# FitMate
+# ✨FITMATE PJT✨
 
+## 0. TEAM MEMBER
+- 🍅 이강현
+- 🍮 최이서
 
+### ☘ 목적
+- 웹 프론트 아키텍처를 이해하고 이를 활용하여 프로젝트에 적용할 수 있다.
+- 수업을 하며 배운 Vue와 Spring을 사용하여 하나의 프로젝트를 구현해낼 수 있다.
+- Vue의 다양한 라이브러리를 이용하여 SPA 방식으로 프로젝트를 구성한다. 
+- 헬스 초보자를 위한 가이드 영상과 루틴을 볼 수 있으며 운동 커뮤니티를 사용해 유저 간 소통이 가능하다.
 
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
+## 1. FILE TREE
 ```
-cd existing_repo
-git remote add origin https://lab.ssafy.com/lkh000131/fitmate.git
-git branch -M master
-git push -uf origin master
+💻 02팀_이서나라_강현공주
+fitmate-spring
+├─src
+│  ├─ main
+│  │  ├─ java
+│  │  │  └─ com
+│  │  │     └─ ssafy
+│  │  │        └─ fitmate
+│  │  │           ├─ config
+│  │  │           │  ├─ DBConfig.java
+│  │  │           │  ├─ SwaggerConfig.java
+│  │  │           │  └─ WebConfig.java
+│  │  │           ├─ controller
+│  │  │           │  ├─ CommunityCommentRestController.java
+│  │  │           │  ├─ CommunityRestController.java
+│  │  │           │  ├─ ExerciseRestController.java
+│  │  │           │  ├─ RoutineRestController.java
+│  │  │           │  ├─ UserRestController.java
+│  │  │           │  ├─ VideoCommentRestController.java
+│  │  │           │  └─ VideoRestController.java
+│  │  │           ├─ interceptor
+│  │  │           │  ├─ AdminPageInterceptor.java
+│  │  │           │  └─ JwtInterceptor.java
+│  │  │           ├─ model
+│  │  │           │  ├─ dao
+│  │  │           │  │  ├─ CommunityCommentDao.java
+│  │  │           │  │  ├─ CommunityDao.java
+│  │  │           │  │  ├─ ExerciseDao.java
+│  │  │           │  │  ├─ RoutineDao.java
+│  │  │           │  │  ├─ UserDao.java
+│  │  │           │  │  ├─ VideoCommentDao.java
+│  │  │           │  │  └─ VideoDao.java
+│  │  │           │  ├─ dto
+│  │  │           │  │  ├─ Community.java
+│  │  │           │  │  ├─ CommunityComment.java
+│  │  │           │  │  ├─ Exercise.java
+│  │  │           │  │  ├─ Routine.java
+│  │  │           │  │  ├─ User.java
+│  │  │           │  │  ├─ Video.java
+│  │  │           │  │  └─ VideoComment.java
+│  │  │           ├─ service
+│  │  │           │  ├─ CommunityCommentService.java
+│  │  │           │  ├─ CommunityCommentServiceImpl.java
+│  │  │           │  ├─ CommunityService.java
+│  │  │           │  ├─ CommunityServiceImpl.java
+│  │  │           │  ├─ ExerciseService.java
+│  │  │           │  ├─ ExerciseServiceImpl.java
+│  │  │           │  ├─ RoutineService.java
+│  │  │           │  ├─ RoutineServiceImpl.java
+│  │  │           │  ├─ UserService.java
+│  │  │           │  ├─ UserServiceImpl.java
+│  │  │           │  ├─ VideoCommentService.java
+│  │  │           │  ├─ VideoCommentServiceImpl.java
+│  │  │           │  ├─ VideoService.java
+│  │  │           │  └─ VideoServiceImpl.java
+│  │  │           └─ FitMateRestApiApplication.java
+│  │  ├─ resources
+│  │  │  └─ mappers
+│  │  │     ├─ communityCommentMapper.xml
+│  │  │     ├─ communityMapper.xml
+│  │  │     ├─ exerciseMapper.xml
+│  │  │     ├─ routineMapper.xml
+│  │  │     ├─ userMapper.xml
+│  │  │     ├─ videoCommentMapper.xml
+│  │  │     └─ videoMapper.xml
+│  │  ├─ static/users
+│  │  └─ application.properties
+fitmate-vue
+├─ src
+│  ├─ assets
+│  │  ├─ css
+│  │  │  └─ reset.css
+│  │  ├─ img
+│  │  ├─ lib
+│  │  └─ video
+│  ├─ components
+│  │  ├─ common
+│  │  │  ├─ TheFooter.vue
+│  │  │  └─ TheHeaderNav.vue
+│  │  ├─ community
+│  │  │  ├─ CommentList.vue
+│  │  │  ├─ CommentThread.vue
+│  │  │  ├─ CommunityDetail.vue
+│  │  │  ├─ CommunityEditPost.vue
+│  │  │  ├─ CommunityList.vue
+│  │  │  └─ CommunityWritePost.vue
+│  │  ├─ exercise
+│  │  │  └─ ExerciseDetail.vue
+│  │  ├─ home
+│  │  │  ├─ HomePopularPost.vue
+│  │  │  └─ HomeRankedVideo.vue
+│  │  ├─ kakao
+│  │  │  └─ KakaoMap.vue
+│  │  ├─ routine
+│  │  │  ├─ RoutineCard.vue
+│  │  │  ├─ RoutineDetail.vue
+│  │  │  └─ RoutineList.vue
+│  │  ├─ user
+│  │  │  ├─ ChangeMyInfo.vue
+│  │  │  ├─ ChangePwd.vue
+│  │  │  ├─ LoginAndSignUpForm.vue
+│  │  │  ├─ MyPage.vue
+│  │  │  └─ MyPostList.vue
+│  │  └─ video
+│  │     └─ VideoDetail.vue
+│  ├─ router
+│  │  ├─ index.js
+│  │  ├─ community.js
+│  │  ├─ exercise.js
+│  │  ├─ home.js
+│  │  ├─ routine.js
+│  │  ├─ user.js
+│  │  └─ video.js
+│  ├─ stores
+│  │  ├─ comment.js
+│  │  ├─ community.js
+│  │  ├─ exercise.js
+│  │  ├─ home.js
+│  │  ├─ routine.js
+│  │  ├─ user.js
+│  │  └─ video.js
+│  ├─ views
+│  │  ├─ CommunityView.vue
+│  │  ├─ HomeView.vue
+│  │  ├─ LoginView.vue
+│  │  ├─ MyPageView.vue
+│  │  ├─ RoutineView.vue
+│  │  ├─ SignupView.vue
+│  │  └─ VideoView.vue
+│  ├─ App.vue
+│  ├─ main.js
+│  ├─ .env.local
+│  ├─ .gitignore
+│  ├─ index.html
+│  ├─ jsconfig.json
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ README.md
+│  ├─ vite.config.js
+│  ├─ fitmate_dummy_data.sql
+│  └─ fitmate_schema.sql
 ```
 
-## Integrate with your tools
+## 2. 실행 화면
 
-- [ ] [Set up project integrations](https://lab.ssafy.com/lkh000131/fitmate/-/settings/integrations)
+#### - 메인 화면1
+![main](/readmeIMG/main.PNG)
 
-## Collaborate with your team
+#### - 메인 화면2
+![main2](/readmeIMG/main2.PNG)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+#### - 메인 화면3
+![main3](/readmeIMG/main3.PNG)
 
-## Test and Deploy
+#### - 메인 화면4
+![main4](/readmeIMG/main4.PNG)
 
-Use the built-in continuous integration in GitLab.
+#### - 로그인
+![login](/readmeIMG/login.PNG)
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+#### - 회원 가입
+![signup](/readmeIMG/signup.PNG)
 
-***
+#### - 회원 가입 전체 화면
+![signup2](/readmeIMG/signup2.PNG)
 
-# Editing this README
+#### - 운동 가이드
+![videolist1](/readmeIMG/videolist1.PNG)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+#### - 좋아요한 운동 영상
+![videolist2](/readmeIMG/videolist2.PNG)
 
-## Suggestions for a good README
+#### - 부위 선택 & 좋아요한 운동 영상
+![videolist3](/readmeIMG/videolist3.PNG)
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+#### - 운동 가이드 페이지네이션
+![videolistpagenation](/readmeIMG/videolistpagination.PNG)
 
-## Name
-Choose a self-explaining name for your project.
+#### - 루틴
+![routine1](/readmeIMG/routine1.PNG)
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+#### - 저장한 루틴
+![routine2](/readmeIMG/routine2.PNG)
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+#### - 루틴 - 부위 난이도 선택
+![routine3](/readmeIMG/routine3.PNG)
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+#### - 커뮤니티
+![community1](/readmeIMG/community1.PNG)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+#### - 커뮤니티 검색 기능
+![community2](/readmeIMG/community2.PNG)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+#### - 게시글 상세
+![communityDetail1](/readmeIMG/communityDetail1.PNG)
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+#### - 댓글 답글 달기
+![communityDetail2](/readmeIMG/communityDetail2.PNG)
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+#### - 댓글 답글
+![communityDetail3](/readmeIMG/communityDetail3.PNG)
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+#### - 답글 수정하기
+![communityDetail4](/readmeIMG/communityDetail4.PNG)
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+#### - 답글 수정
+![communityDetail5](/readmeIMG/communityDetail5.PNG)
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+#### - 게시글 좋아요
+![likePost](/readmeIMG/likePost.PNG)
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+#### - 게시글 작성
+![writepost](/readmeIMG/writepost.PNG)
 
-## License
-For open source projects, say how it is licensed.
+#### - 게시글 작성 완료
+![writepost2](/readmeIMG/writepost2.PNG)
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+#### - 게시글 수정
+![updatepost1](/readmeIMG/updatepost1.PNG)
+
+#### - 게시글 수정 완료
+![updatepost2](/readmeIMG/updatepost2.PNG)
+
+#### - 마이페이지
+![mypage1](/readmeIMG/mypage1.PNG)
+
+#### - 마이페이지 - 좋아요한 영상, 작성한 글
+![mypage2](/readmeIMG/mypage2.PNG)
+
+#### - 프로필 사진 수정
+![changeProfileIMG](/readmeIMG/changeProfileIMG.png)
+
+#### - 프로필 사진 수정 (사진 선택)
+![changeProfileIMG2](/readmeIMG/changeProfileIMG2.png)
+
+
+## 3. PJT REVIEW
+
+👸🏻 이강현
+> 단기간 프로젝트이다보니 한정된 시간을 적절히 분배하는 것이 중요하다는 것을 배웠습니다. 계획대로 작업을 해내갈때마다 성취감을 느꼈고, 오류도 많이 마주쳤지만 결국에는 목표로 한 기능들을 다 만들어 본 것 같아 완성 후 뿌듯한 프로젝트였습니다. css 고수 이서 누나 최고
+
+
+🤴🏻 최이서
+> .
+
+
