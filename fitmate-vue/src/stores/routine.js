@@ -23,7 +23,6 @@ export const useRoutineStore = defineStore("routine", () => {
     } catch (err) {
       console.log(err);
     }
-    console.log(routineList.value);
   };
 
   const getRoutine = function (id) {

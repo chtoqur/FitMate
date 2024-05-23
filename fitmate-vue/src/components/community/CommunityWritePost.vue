@@ -4,18 +4,19 @@
     <div class="the-editor">
       <!-- 제목 -->
       <div class="editor-title">
-        <input type="text"
-        placeholder="제목을 입력하세요."
-        v-model="postTitle">
+        <input
+          type="text"
+          placeholder="제목을 입력하세요."
+          v-model="postTitle"
+        />
       </div>
-      <div v-if="editor"
-      class="editor-tool">
+      <div v-if="editor" class="editor-tool">
         <button
           @click="editor.chain().focus().toggleBold().run()"
           :disabled="!editor.can().chain().focus().toggleBold().run()"
           :class="{ 'is-active': editor.isActive('bold') }"
         >
-        <span class="mdi mdi-format-bold"></span>
+          <span class="mdi mdi-format-bold"></span>
         </button>
         <button
           @click="editor.chain().focus().toggleItalic().run()"
@@ -25,9 +26,9 @@
           <span class="mdi mdi-format-italic"></span>
         </button>
         <button
-        @click="editor.chain().focus().toggleStrike().run()"
-        :disabled="!editor.can().chain().focus().toggleStrike().run()"
-        :class="{ 'is-active': editor.isActive('strike') }"
+          @click="editor.chain().focus().toggleStrike().run()"
+          :disabled="!editor.can().chain().focus().toggleStrike().run()"
+          :class="{ 'is-active': editor.isActive('strike') }"
         >
           <span class="mdi mdi-format-strikethrough"></span>
         </button>
@@ -101,7 +102,7 @@
         <button
           @click="editor.chain().focus().toggleCodeBlock().run()"
           :class="{ 'is-active': editor.isActive('codeBlock') }"
-          >
+        >
           <span class="mdi mdi-code-block-tags"></span>
         </button>
         <!-- <button
@@ -130,9 +131,7 @@
         </button>
       </div>
       <div class="editor-content">
-        <editor-content
-        :editor="editor"
-        />
+        <editor-content :editor="editor" />
       </div>
       <div>
         <button @click="writePost">등록하기</button>
@@ -143,18 +142,18 @@
 
 <script setup>
 // tiptap
-import StarterKit from '@tiptap/starter-kit'
-import { Editor, EditorContent } from '@tiptap/vue-3'
-import Placeholder from '@tiptap/extension-placeholder'
+import StarterKit from "@tiptap/starter-kit";
+import { Editor, EditorContent } from "@tiptap/vue-3";
+import Placeholder from "@tiptap/extension-placeholder";
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
 import { useCommunityStore } from "@/stores/community";
-import { useUserStore } from '@/stores/user';
-import { useRoute } from 'vue-router';
+import { useUserStore } from "@/stores/user";
+import { useRoute } from "vue-router";
 
 const store = useCommunityStore();
 const userStore = useUserStore();
-const editor = ref(null)
+const editor = ref(null);
 const postTitle = ref("");
 const route = useRoute();
 
@@ -167,24 +166,23 @@ const writePost = () => {
       content: htmlContent,
       likeCnt: 0,
       viewCnt: 0,
-      comment_cnt: 0
-    }
+      comment_cnt: 0,
+    };
     store.createPost(post);
-    console.log(post);
   }
-}
+};
 
 onMounted(() => {
   editor.value = new Editor({
     extensions: [
       StarterKit,
       Placeholder.configure({
-        placeholder: 'Write something …',
-      })
+        placeholder: "Write something …",
+      }),
     ],
     content: null,
-  })
-})
+  });
+});
 </script>
 
 <style scoped>
@@ -246,7 +244,7 @@ onMounted(() => {
 .tiptap pre {
   background: #0d0d0d;
   color: #fff;
-  font-family: 'JetBrainsMono', monospace;
+  font-family: "JetBrainsMono", monospace;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
 }

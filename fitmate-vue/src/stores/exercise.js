@@ -17,7 +17,6 @@ export const useExerciseStore = defineStore("exercise", () => {
     } catch (err) {
       console.log(err);
     }
-    console.log(exerciseList);
   };
 
   return {

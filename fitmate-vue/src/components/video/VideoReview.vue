@@ -217,7 +217,6 @@ defineProps({
 });
 
 const createReplyReview = () => {
-  console.log(replyReview.value);
   store.createReview(replyReview.value);
   replyReview.value.content = "";
 };

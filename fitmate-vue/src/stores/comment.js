@@ -29,7 +29,6 @@ export const useCommentStore = defineStore("comment", () => {
   };
 
   const createComment = async (comment) => {
-    console.log(comment);
     try {
       const response = await axios.post(REST_COMMENT_API, comment);
       getNowCommentList(comment.communityId);
